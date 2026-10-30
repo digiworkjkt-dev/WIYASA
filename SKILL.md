@@ -5,7 +5,7 @@ description: Membuat dan memperbarui paket dokumentasi aplikasi end-to-end—bri
 
 # App Documentation
 
-Versi skill: 1.4.1 — baseline referensi diverifikasi 2026-10-05.
+Versi skill: 1.5.0 — baseline referensi diverifikasi 2026-10-30.
 
 Ubah kebutuhan aplikasi menjadi dokumen yang bisa dipakai mengambil keputusan,
 mengimplementasikan, menguji, dan mengoperasikan aplikasi. Jangan sekadar mengisi
@@ -27,8 +27,9 @@ tercakup, bukan setiap aplikasi membutuhkan semua jenis dokumen.
 - Output utama: laporan HTML profesional yang self-contained, layout A4,
   margin cetak 3 cm di semua sisi, Cambria 12 pt, dan aturan cetak/PDF.
   Sumber kerja Markdown boleh dipertahankan untuk pemeliharaan; bukan pengganti
-  deliverable HTML. Diagram harus berupa SVG/image inline yang dapat dicetak,
-  bukan sintaks Mermaid mentah pada laporan akhir.
+  deliverable HTML. Diagram harus berupa SVG/image inline yang dapat dicetak (gunakan contoh
+  pada assets/snippets/architecture-diagram.svg dan assets/snippets/flowchart-diagram.svg
+  sebagai panduan geometris dan tipografi), bukan sintaks Mermaid mentah pada laporan akhir.
 - Ekspor PDF hanya jika engine tersedia dan hasilnya telah diperiksa. Dukungan
   footer dan nomor halaman bergantung pada browser/engine cetak; jangan
   menjamin nomor halaman lintas engine.
@@ -38,19 +39,15 @@ tercakup, bukan setiap aplikasi membutuhkan semua jenis dokumen.
 
 ## Referensi
 
-- Baca [catalog.md](references/catalog.md) sebelum memilih atau menulis dokumen.
-  Di sana ada cakupan tiap dokumen, kondisi tambahan, dan struktur minimum.
-- Baca [quality-gates.md](references/quality-gates.md) sebelum finalisasi atau
-  ketika memperbarui dokumen agar konsistensi lintas dokumen terjaga.
+- Baca dokumen inti: [catalog.md](references/catalog.md), [quality-gates.md](references/quality-gates.md),
+  dan [html-print.md](references/html-print.md) untuk kerangka dokumen, konsistensi, dan aturan cetak A4.
 - Baca [examples.md](references/examples.md) jika perlu contoh requirement dan
   traceability, atau contoh pemilihan cakupan.
-- Baca [standards-indonesia.md](references/standards-indonesia.md) pada setiap
-  paket end-to-end untuk menetapkan baseline industri, relevansi SNI, regulasi,
-  status verifikasi, dan batas klaim. Jangan menunggu pengguna meminta compliance.
-- Baca [skkni-mapping.md](references/skkni-mapping.md) untuk screening kompetensi
-  SDLC, mapping dokumen/pekerjaan ke unit SKKNI, dan rencana bukti kerja.
-- Baca [html-print.md](references/html-print.md) untuk seluruh output HTML,
-  gunakan [report-a4.html](assets/report-a4.html) sebagai kerangka presentasi.
+- Pemuatan bertahap (lazy-loading): baca [standards-indonesia.md](references/standards-indonesia.md)
+  dan [skkni-mapping.md](references/skkni-mapping.md) terutama pada paket Standard/Extended
+  atau jika ada kebutuhan regulasi/SKKNI eksplisit. Untuk paket Lean, screening ringkas
+  dalam dokumen konteks/traceability sudah memadai.
+- Gunakan [report-a4.html](assets/report-a4.html) sebagai kerangka presentasi output HTML.
 
 ## 1. Temukan konteks dan sumber kebenaran
 
@@ -248,6 +245,7 @@ Simpan seluruh output dokumen di folder `app-documentation/` relatif terhadap
 root proyek atau direktori kerja aktif untuk paket satu kali. Buat folder jika
 belum ada. Folder output ini berbeda dari folder instalasi skill
 `.agents/skills/app-documentation/`; jangan menaruh hasil laporan di folder skill.
+Validasi artefak sebelum penyerahan menggunakan python scripts/validate.py --target app-documentation/laporan-dokumentasi-aplikasi.html dan periksa keterlacakan melalui python scripts/lint_traceability.py --dir app-documentation/sources (bila sumber Markdown disertakan).
 README output adalah pintu masuk; gunakan manifest dari katalog.
 Laporan utama berada di `app-documentation/laporan-dokumentasi-aplikasi.html`.
 Sumber Markdown opsional berada di `app-documentation/sources/`; PDF yang

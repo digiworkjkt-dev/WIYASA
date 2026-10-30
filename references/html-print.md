@@ -15,7 +15,7 @@
   tabel dengan header jelas dan kontras memadai.
 - Cover, metadata, status, TOC bertaut, executive summary, bab, sources,
   assumptions/gaps, changelog, serta panduan cetak.
-- Mulai dari `../assets/report-a4.html`; ganti konten contoh dengan isi nyata.
+- Mulai dari [report-a4.html](../assets/report-a4.html); ganti konten contoh dengan isi nyata.
   Template adalah kerangka, bukan laporan selesai.
 
 ## CSS wajib
@@ -64,13 +64,22 @@ Cambria bukan font yang pasti tersedia pada setiap OS atau container.
 - Lebar konten tidak boleh melebihi area 150 mm saat dicetak.
 - Gunakan `overflow-wrap: anywhere`, `table-layout: fixed`, judul kolom ringkas,
   dan padding kecil. Jangan mengecilkan font tabel dari 12 pt untuk memaksa muat.
-- Pecah matriks yang sangat lebar menjadi beberapa tabel berkunci ID yang sama.
+- **Strategi Matriks Lebar (≥ 5 kolom):**
+  Area cetak horizontal 150 mm tidak memadai untuk tabel dengan 6–11 kolom pada font
+  Cambria 12 pt. Terapkan salah satu strategi berikut:
+  1. *Sub-tabel terhubung:* Pecah matriks menjadi 2 tabel yang berbagi kolom kunci ID
+     (misal Tabel A: `Req ID | Statement | Priority | AC`, Tabel B: `Req ID | Task | Test Case | Status`).
+  2. *Format Blok/Kartu (Definition List `<dl>`):* Gunakan blok bertingkat per ID
+     requirement yang memuat rincian relasi komponen, API, task, dan test.
 - Ubah payload/kode lebar menjadi baris pendek atau block wrap; pilih keterbacaan.
 - Tabel besar boleh lintas halaman; ulang header sesuai dukungan engine.
 - Diagram inline SVG menggunakan viewBox dan kontras aman. Jangan sisipkan
   diagram mentah yang belum dirender atau memerlukan jaringan untuk muncul.
+  Gunakan referensi snippet pada `assets/snippets/architecture-diagram.svg` dan
+  `assets/snippets/flowchart-diagram.svg` sebagai panduan geometris dan tipografi.
 - Escape konten pengguna sebagai teks; sanitasi HTML/SVG bila menerima markup.
-  Jangan menjalankan script atau event handler dari sumber tidak tepercaya.
+  Dilarang keras memuat tag `<script>`, `<iframe>`, `<object>`, atau atribut
+  event handler (`onload`, `onerror`, `onclick`).
 
 ## Footer dan nomor halaman
 

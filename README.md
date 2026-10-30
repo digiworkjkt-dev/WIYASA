@@ -1,7 +1,7 @@
 # app-documentation
 
 Skill berbahasa Indonesia untuk membuat dan memperbarui dokumentasi pembangunan
-aplikasi end-to-end. Versi **1.4.1**.
+aplikasi end-to-end. Versi **1.5.0**.
 
 ## Output
 
@@ -55,26 +55,39 @@ Contoh instruksi:
 
 ## Isi repository
 
-- [SKILL.md](SKILL.md): workflow dan batas pekerjaan.
-- [Katalog](references/catalog.md): dokumen dan struktur.
+- [SKILL.md](SKILL.md): workflow, progressive loading, dan batas pekerjaan.
+- [Katalog](references/catalog.md): dokumen dan struktur manifes.
 - [Quality gates](references/quality-gates.md): audit lintas dokumen.
-- [Standar Indonesia](references/standards-indonesia.md): SNI/regulasi/sumber.
+- [Standar Indonesia](references/standards-indonesia.md): SNI/regulasi/sumber resmi.
 - [SKKNI](references/skkni-mapping.md): mapping unit ke aktivitas/artefak.
-- [HTML dan cetak](references/html-print.md): kontrak format dan batas engine.
-- [Contoh](references/examples.md): skenario penggunaan.
+- [HTML dan cetak](references/html-print.md): kontrak format, strategi tabel lebar, dan batas engine.
+- [Contoh](references/examples.md): skenario penggunaan dan acceptance checks.
 - [Template HTML](assets/report-a4.html): kerangka, bukan laporan selesai.
-- [Changelog](CHANGELOG.md): riwayat perubahan.
-- [Validasi](scripts/validate.py): pemeriksaan struktural lokal.
-- [Catatan pengujian](TESTING.md): hasil render template dan batas verifikasi.
+- [Snippet SVG](assets/snippets/): template SVG inline untuk arsitektur dan flowchart.
+- [Changelog](CHANGELOG.md): riwayat perubahan versi.
+- [Validasi](scripts/validate.py): validator mandiri integritas repo dan output HTML pengguna.
+- [Linter Keterlacakan](scripts/lint_traceability.py): pemeriksa relasi FR -> TASK -> TC.
+- [Catatan pengujian](TESTING.md): hasil pengujian, keamanan anti-XSS, dan batas verifikasi.
 
 ## Verifikasi
 
-Jalankan `python scripts/validate.py` dari root repo. Validator memeriksa
-metadata, reference links, HTML anchors dan aturan format wajib. Tidak
-memeriksa kepatuhan klausul SNI, hasil asesmen SKKNI, atau rendering visual.
+1. **Integritas Repositori Lokal:**
+   ```sh
+   python scripts/validate.py
+   ```
+   Memeriksa metadata frontmatter, heading unik, tautan relatif Markdown, aturan cetak CSS A4, dan keamanan sanitasi HTML (tanpa ketergantungan `assert`).
+
+2. **Validasi Deliverable HTML Pengguna:**
+   ```sh
+   python scripts/validate.py --target app-documentation/laporan-dokumentasi-aplikasi.html
+   ```
+
+3. **Verifikasi Keterlacakan (Traceability Linting):**
+   ```sh
+   python scripts/lint_traceability.py --dir app-documentation/sources
+   ```
 
 Metadata/abstrak sumber SNI/ISO dan sebagian lampiran SKKNI telah diperiksa
-pada 2026-10-05. Baca referensi untuk batas lingkupnya dan periksa ulang saat
-menggunakannya. Template ini tidak mendistribusikan teks lengkap standar atau
-font Cambria. Margin/font adalah spesifikasi format pengguna, bukan klaim
-ketentuan SNI/SKKNI.
+pada 2026-10-05 dan diaudit kembali pada 2026-10-30. Baca referensi untuk batas lingkupnya.
+Template ini tidak mendistribusikan teks lengkap standar atau font Cambria. Margin/font
+adalah spesifikasi format pengguna, bukan klaim ketentuan SNI/SKKNI.

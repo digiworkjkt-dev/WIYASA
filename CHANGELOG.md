@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.5.0 — 2026-10-30
+
+- **Refactoring Skrip Validasi (`scripts/validate.py`):**
+  - Menghapus seluruh ketergantungan pada `assert`; menggantinya dengan pengujian kondisional eksplisit dan kode keluar non-nol (`sys.exit(1)`). Kebal terhadap flag optimasi runtime Python (`python -O` / `PYTHONOPTIMIZE=1`).
+  - Menambahkan antarmuka baris perintah (CLI) berbasis `argparse` dengan opsi `--target` untuk memvalidasi berkas deliverable nyata pengguna, bukan hanya aset internal.
+- **Peningkatan Keamanan Anti-XSS (Security Hardening):**
+  - `SecureHTMLParser` kini melarang secara mutlak tag eksekusi skrip (`<script>`, `<iframe>`, `<object>`, `<embed>`, `<applet>`), skema URI berbahaya (`javascript:`, `data:text/html`), serta seluruh inline event handler (`onload`, `onerror`, `onclick`, dll.).
+- **Linter Keterlacakan Otomatis (`scripts/lint_traceability.py`):**
+  - Menambahkan utilitas baris perintah untuk memindai integritas pemetaan relasional antara kebutuhan fungsional (`FR-xxx`), kriteria penerimaan (`AC-xxx`), tugas implementasi (`TASK-xxx`), dan kasus uji (`TC-xxx`).
+- **Pustaka Snippet SVG Standar (`assets/snippets/`):**
+  - Menyediakan template SVG inline cetak A4 yang terkalibrasi secara geometris dan tipografis untuk diagram arsitektur 3-tier (`architecture-diagram.svg`) dan diagram alur keputusan (`flowchart-diagram.svg`).
+- **Panduan Format Tabel Matriks Lebar (`references/html-print.md`):**
+  - Menambahkan strategi mitigasi untuk tabel dengan $\ge 5$ kolom pada batas cetak horizontal A4 150 mm menggunakan sub-tabel berkunci ID atau format kartu definisi (`<dl>`).
+- **Manajemen Jendela Konteks (Progressive Lazy-Loading):**
+  - Menambahkan instruksi pada `SKILL.md` untuk memuat referensi regulasi dan SKKNI secara bertahap hanya saat relevan dengan cakupan proyek, guna menghemat alokasi token agen.
+
 ## 1.4.1 — 2026-10-05
 
 - Tetapkan folder `app-documentation/` untuk seluruh output dokumen.
