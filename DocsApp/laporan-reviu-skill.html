@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Laporan Reviu Multidisiplin Skill app-documentation v1.4.1. Format A4, margin 3 cm, Cambria 12 pt.">
+  <title>Laporan Reviu Skill app-documentation v1.4.1</title>
+  <style>
+    @page { size: A4 portrait; margin: 3cm; }
+    * { box-sizing: border-box; }
+    html { background: #e9edf2; }
+    body {
+      margin: 0; color: #182332;
+      font-family: Cambria, "Times New Roman", serif;
+      font-size: 12pt; line-height: 1.5;
+    }
+    .report {
+      width: 210mm; max-width: 100%; padding: 30mm; margin: 24px auto;
+      background: white; box-shadow: 0 4px 24px #17233518;
+    }
+    h1, h2, h3, p, li, td, th, code { font-size: 12pt; }
+    h1, h2, h3 { line-height: 1.35; color: #183d54; }
+    h1 { margin: 12mm 0 6mm; font-weight: 700; text-transform: uppercase; }
+    h2 { margin: 8mm 0 4mm; border-bottom: 1px solid #a4b5c1; padding-bottom: 2mm; }
+    h3 { margin: 6mm 0 3mm; }
+    p { margin: 0 0 4mm; }
+    .eyebrow { color: #526675; letter-spacing: .06em; font-weight: 700; margin-bottom: 2mm; }
+    .badge { display: inline-block; border: 1px solid #7a8c98; padding: 1mm 3mm; font-weight: 700; }
+    .cover { min-height: 190mm; }
+    .metadata { margin: 8mm 0; }
+    .metadata dt { font-weight: 700; margin-top: 2mm; }
+    .metadata dd { margin: 0 0 2mm 0; }
+    .notice { border-left: 3px solid #536f84; padding: 3mm 4mm; margin: 5mm 0; background: #f1f5f8; }
+    a { color: #194f70; text-underline-offset: 2px; overflow-wrap: anywhere; }
+    table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 5mm 0; }
+    caption { text-align: left; font-weight: 700; margin-bottom: 2mm; }
+    th, td { padding: 2mm; border: 1px solid #9eaeba; vertical-align: top; overflow-wrap: anywhere; }
+    th { text-align: left; background: #eef2f5; font-weight: 700; }
+    pre, code { font-family: inherit; white-space: pre-wrap; overflow-wrap: anywhere; }
+    img, svg { max-width: 100%; height: auto; }
+    .screen-only { border: 1px solid #9eaeba; padding: 4mm; margin-bottom: 6mm; background: #fafbfc; }
+    .document-end { border-top: 1px solid #9eaeba; margin-top: 10mm; padding-top: 3mm; font-size: 11pt; color: #495b6a; }
+    @media screen and (max-width: 800px) {
+      .report { width: 100%; margin: 0; padding: 20px; box-shadow: none; }
+      .cover { min-height: auto; }
+    }
+    @media print {
+      html, body { background: white; margin: 0; padding: 0; }
+      .report { width: auto; max-width: none; padding: 0; margin: 0; box-shadow: none; }
+      .screen-only { display: none !important; }
+      .chapter { break-before: page; page-break-before: always; }
+      h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+      p, li { orphans: 3; widows: 3; }
+      thead { display: table-header-group; }
+      tr { break-inside: avoid; page-break-inside: avoid; }
+      .notice { background: none; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+<main class="report">
+
+  <aside class="screen-only" aria-label="Panduan cetak">
+    <strong>Panduan Cetak Laporan Reviu Skill:</strong>
+    Cetak dokumen ini menggunakan opsi cetak browser: ukuran <strong>A4 portrait</strong>, skala <strong>100%</strong>, margin CSS <strong>3 cm</strong> di semua sisi, dan matikan opsi header/footer bawaan browser. Dokumen ini dirancang <em>self-contained</em> tanpa dependensi jaringan eksternal.
+  </aside>
+
+  <header class="cover" id="cover">
+    <p class="eyebrow">AUDIT TEKNIS & ARSITEKTUR SISTEM DOKUMENTASI</p>
+    <h1>Laporan Reviu Multidisiplin: Skill app-documentation (v1.4.1)</h1>
+    <p>Evaluasi Komprehensif: Principal Agent Skill Architect, Staff Software Engineer, Documentation Systems Architect, Security Engineer, dan Quality Assurance Lead.</p>
+    <p><span class="badge">STATUS: CONDITIONALLY APPROVED</span></p>
+    <dl class="metadata">
+      <dt>Versi Skill Target</dt>
+      <dd>1.4.1 (Baseline referensi terverifikasi 2026-10-05)</dd>
+      <dt>Tanggal Reviu</dt>
+      <dd>2026-10-30</dd>
+      <dt>Target Direktori</dt>
+      <dd>d:\AI_LAB\Office\#Task\Skill\app-documentation</dd>
+      <dt>Tim Peninjau</dt>
+      <dd>Dewan Gabungan Arsitektur Agen, Rekayasa Perangkat Lunak, Sistem Dokumentasi, Keamanan Siber, dan Jaminan Mutu</dd>
+      <dt>Format Standar</dt>
+      <dd>A4 Portrait, Margin 3 cm, Cambria 12 pt, Self-contained Print Ready</dd>
+    </dl>
+    <p class="notice">Laporan ini merupakan hasil evaluasi independen terhadap mutu prompt, arsitektur agen, skrip otomasi, kepatuhan hukum privasi (UU PDP No. 27/2022), standar mutu (SNI ISO/IEC 25010, 27001), dan pemetaan SKKNI (Kepmenaker 282/2016).</p>
+  </header>
+
+  <nav class="chapter" id="daftar-isi" aria-label="Daftar isi">
+    <h2>Daftar Isi</h2>
+    <ol>
+      <li><a href="#ringkasan">Ringkasan Eksekutif dan Lembar Penilaian</a></li>
+      <li><a href="#agent-arch">Reviu Principal Agent Skill Architect</a></li>
+      <li><a href="#swe">Reviu Staff Software Engineer</a></li>
+      <li><a href="#doc-systems">Reviu Documentation Systems Architect</a></li>
+      <li><a href="#security">Reviu Security Engineer</a></li>
+      <li><a href="#qa">Reviu Quality Assurance Lead</a></li>
+      <li><a href="#action-plan">Matriks Temuan dan Rencana Aksi (Action Plan)</a></li>
+      <li><a href="#roadmap">Panduan Verifikasi dan Roadmap v1.5.0</a></li>
+    </ol>
+    <p>Daftar isi bertaut secara internal. Nomor halaman fisik mengikuti tata cetak engine yang digunakan.</p>
+  </nav>
+
+  <section class="chapter" id="ringkasan">
+    <h2>1. Ringkasan Eksekutif dan Lembar Penilaian</h2>
+    <p>Skill <code>app-documentation</code> versi 1.4.1 dievaluasi untuk memastikan kesiapan produksi dalam menghasilkan artefak dokumentasi perangkat lunak end-to-end yang dapat dipertanggungjawabkan secara teknis dan hukum.</p>
+    <table>
+      <caption>Tabel 1.1: Lembar Penilaian Eksekutif (Scorecard)</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 25%;">Pilar Evaluasi</th>
+          <th scope="col" style="width: 25%;">Peninjau Utama</th>
+          <th scope="col" style="width: 12%;">Skor</th>
+          <th scope="col" style="width: 18%;">Status</th>
+          <th scope="col" style="width: 20%;">Catatan Kritis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Agent Skill Architecture</td>
+          <td>Principal Agent Architect</td>
+          <td>8.8 / 10</td>
+          <td>Memenuhi Standar</td>
+          <td>Pemisahan folder tegas, batasan otonomi jelas, guardrail anti-halusinasi sangat solid.</td>
+        </tr>
+        <tr>
+          <td>Software Engineering</td>
+          <td>Staff Software Engineer</td>
+          <td>6.5 / 10</td>
+          <td>Perlu Perbaikan</td>
+          <td>Ketergantungan <code>assert</code> pada skrip validasi berisiko bypass saat flag <code>-O</code> aktif.</td>
+        </tr>
+        <tr>
+          <td>Documentation Systems</td>
+          <td>Documentation Systems Architect</td>
+          <td>8.2 / 10</td>
+          <td>Memenuhi Standar</td>
+          <td>Taksonomi berkas sangat rapi; tantangan ada pada pencegahan <em>drift</em> Markdown vs HTML.</td>
+        </tr>
+        <tr>
+          <td>Security &amp; Privacy</td>
+          <td>Security Engineer</td>
+          <td>8.0 / 10</td>
+          <td>Memenuhi Standar</td>
+          <td>Postur UU PDP 27/2022 sangat kuat; validator perlu pengetatan deteksi skrip inline &amp; event handler.</td>
+        </tr>
+        <tr>
+          <td>Quality Assurance</td>
+          <td>QA Lead</td>
+          <td>7.2 / 10</td>
+          <td>Cukup</td>
+          <td>Quality gates A–H lengkap, namun pengujian masih bertumpu pada audit mental LLM.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chapter" id="agent-arch">
+    <h2>2. Reviu Principal Agent Skill Architect</h2>
+    <p>Evaluasi berfokus pada ketepatan pemicuan agen (*triggering*), efisiensi jendela konteks (*context window*), dan mitigasi risiko perilaku agen (*agentic safety*).</p>
+    <h3>2.1 Triggering dan Boundary Routing</h3>
+    <p>Frontmatter pada <code>SKILL.md</code> memiliki deskripsi komprehensif (541 karakter) yang mencakup kata kunci fungsional utama dari fase spesifikasi hingga operasional. Pengecualian eksplisit untuk routing ("<em>Untuk hanya PRD/roadmap, gunakan product-manager bila tersedia</em>") bekerja efektif mencegah konsumsi resource yang tidak proporsional saat pengguna hanya membutuhkan draf awal produk.</p>
+    <h3>2.2 Pengendalian Otonomi Agen</h3>
+    <p>Skill membatasi wewenang agen secara eksplisit pada baris 23–24. Agen dilarang membuat repository, melakukan deploy, menjalankan migrasi database, atau mengubah kode program tanpa instruksi spesifik. Ini mencegah kecenderungan agen bertindak destruktif di luar lingkup dokumentasi.</p>
+    <h3>2.3 Manajemen Beban Konteks (Context Budgeting)</h3>
+    <p>Meskipun <code>SKILL.md</code> berukuran 300 baris, berkas pendukung pada <code>references/</code> memuat total ~15.000 kata. Agen direkomendasikan mengadopsi pola <em>progressive lazy loading</em>: hanya membaca referensi regulasi dan SKKNI apabila ruang lingkup yang dipilih adalah Standard/Extended atau jika pengguna secara tegas meminta pemetaan kepatuhan.</p>
+  </section>
+
+  <section class="chapter" id="swe">
+    <h2>3. Reviu Staff Software Engineer</h2>
+    <p>Evaluasi terhadap keandalan kode, tooling, pemeliharaan, dan otomasi pada skrip pembantu.</p>
+    <h3>3.1 Analisis Celah Keamanan Skrip <code>scripts/validate.py</code></h3>
+    <p>Skrip validasi saat ini menggunakan pernyataan <code>assert</code> bawaan Python:</p>
+    <pre><code># Potongan kode pada scripts/validate.py:31
+assert main.startswith("---\n"), "Missing frontmatter"</code></pre>
+    <p>Dalam rekayasa perangkat lunak produksi, pernyataan <code>assert</code> tidak boleh digunakan untuk validasi logika operasional. Jika skrip dijalankan dengan perintah <code>python -O scripts/validate.py</code> atau dalam container dengan <code>PYTHONOPTIMIZE=1</code>, seluruh blok pengujian dilewati tanpa eksekusi sama sekali, menghasilkan status semu "PASS".</p>
+    <h3>3.2 Ketiadaan Opsi CLI Target Output</h3>
+    <p>Skrip pengujian hanya memvalidasi kerangka internal (<code>assets/report-a4.html</code>), namun tidak menyediakan antarmuka baris perintah (CLI) untuk memeriksa keabsahan laporan yang dihasilkan agen di folder pengguna (<code>app-documentation/laporan-dokumentasi-aplikasi.html</code>). Diperlukan argumen <code>--target &lt;path&gt;</code>.</p>
+  </section>
+
+  <section class="chapter" id="doc-systems">
+    <h2>4. Reviu Documentation Systems Architect</h2>
+    <p>Evaluasi terhadap arsitektur informasi, tipografi cetak, single-source-of-truth, dan keterbacaan layout fisik.</p>
+    <h3>4.1 Arsitektur Informasi dan Manifes Dokumen</h3>
+    <p>Penyusunan manifes modular 18 berkas (dari <code>00-context.md</code> hingga <code>17-developer-guide.md</code>) sangat sistematis. Pembagian scope <em>Lean</em>, <em>Standard</em>, dan <em>Extended</em> memberikan fleksibilitas tanpa mengorbankan kualitas informasi inti.</p>
+    <h3>4.2 Keterbatasan Lebar Cetak A4 (150 mm) &amp; Huruf Cambria 12 pt</h3>
+    <p>Lebar kertas A4 adalah 210 mm. Dengan margin kiri dan kanan masing-masing 3 cm (60 mm total), area horizontal yang tersisa adalah <strong>150 mm</strong>. Pada ukuran huruf Cambria 12 pt, tabel matriks dengan lebih dari 5 kolom (seperti Matriks Keterlacakan dan Matriks SKKNI) berisiko tinggi mengalami pemotongan teks atau baris yang terlalu rapat. Disarankan agar matriks lebar direpresentasikan dalam format kartu definisi (<code>&lt;dl&gt;</code>) atau dipecah menjadi beberapa tabel sub-fungsional.</p>
+    <h3>4.3 Pencegahan Dokumentasi Ganda (Split-Brain SSOT)</h3>
+    <p>Penggunaan berkas Markdown di <code>sources/</code> bersamaan dengan laporan monolit <code>laporan-dokumentasi-aplikasi.html</code> memerlukan disiplin tinggi agar perubahan pada salah satu media tidak membuat media lain menjadi kedaluwarsa (*stale*).</p>
+  </section>
+
+  <section class="chapter" id="security">
+    <h2>5. Reviu Security Engineer</h2>
+    <p>Evaluasi terhadap risiko keamanan siber, injeksi dokumen, dan kepatuhan terhadap regulasi privasi.</p>
+    <h3>5.1 Vektor Cross-Site Scripting (XSS) pada Laporan HTML</h3>
+    <p>Laporan yang dihasilkan berupa file HTML statis yang dapat dibuka oleh pihak manajerial dan pengembang. Validator saat ini hanya memeriksa tautan eksternal pada tag <code>script</code>, <code>img</code>, dan <code>link</code>, namun belum memblokir tag <code>&lt;script&gt;</code> inline tanpa atribut <code>src</code> atau atribut event handler HTML seperti <code>onload</code>, <code>onerror</code>, dan <code>onclick</code>. Ini harus ditolak secara mutlak pada skrip validasi.</p>
+    <h3>5.2 Kepatuhan UU No. 27/2022 tentang Pelindungan Data Pribadi</h3>
+    <p>Instruksi skill menunjukkan kematangan regulasi yang tinggi. Agen diwajibkan mendokumentasikan peran pengendali versus prosesor data pribadi, menentukan masa retensi data, membedakan data umum dan spesifik, serta menerapkan teknik masking/redaction pada data log operasional.</p>
+    <h3>5.3 Batasan Sertifikasi Keamanan Informasi (SNI ISO/IEC 27001)</h3>
+    <p>Skill melarang klaim sepihak bahwa aplikasi "telah memenuhi SNI ISO/IEC 27001" hanya karena telah memiliki arsitektur keamanan. Standar SMKI mengikat tata kelola organisasi secara menyeluruh dan membutuhkan audit lembaga sertifikasi resmi (LPK).</p>
+  </section>
+
+  <section class="chapter" id="qa">
+    <h2>6. Reviu Quality Assurance Lead</h2>
+    <p>Evaluasi terhadap gerbang kualitas (Gate A–H), cakupan verifikasi, dan reproduktibilitas hasil.</p>
+    <h3>6.1 Kematangan Quality Gates Semantik</h3>
+    <p>Quality Gates A sampai H pada <code>references/quality-gates.md</code> mencakup seluruh siklus hidup pengembangan sistem: mulai dari keunikan ID requirement, pemisahan asumsi, konsistensi skema database, perencanaan pengujian (happy path dan failure state), hingga aturan cetak A4.</p>
+    <h3>6.2 Kebutuhan Otomasi Verifikasi Keterlacakan (Traceability Linting)</h3>
+    <p>Kelemahan terbesar QA saat ini adalah ketiadaan pengujian terprogram untuk memvalidasi apakah setiap <code>FR-xxx</code> pada dokumen requirement benar-benar memiliki pasangan <code>AC-xxx</code>, <code>TASK-xxx</code>, dan <code>TC-xxx</code>. Menyerahkan verifikasi ini hanya kepada model bahasa rentan terhadap kelalaian saat dokumen aplikasi berskala besar (&gt;20 requirement).</p>
+  </section>
+
+  <section class="chapter" id="action-plan">
+    <h2>7. Matriks Temuan dan Rencana Aksi (Action Plan)</h2>
+    <p>Daftar rekomendasi terstruktur untuk memperkuat skill menuju standar kualitas institusional.</p>
+    <table>
+      <caption>Tabel 7.1: Rencana Aksi Perbaikan (Action Plan P0, P1, P2)</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 12%;">ID</th>
+          <th scope="col" style="width: 15%;">Prioritas</th>
+          <th scope="col" style="width: 20%;">Domain</th>
+          <th scope="col" style="width: 28%;">Temuan Kritis</th>
+          <th scope="col" style="width: 25%;">Solusi Rekayasa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ACT-01</td>
+          <td><strong>P0</strong> (Kritis)</td>
+          <td>Software Engineering</td>
+          <td>Pernyataan <code>assert</code> pada <code>validate.py</code> dapat dilewati saat flag optimasi aktif.</td>
+          <td>Ganti seluruh <code>assert</code> dengan blok kondisional eksplisit dan <code>sys.exit(1)</code>.</td>
+        </tr>
+        <tr>
+          <td>ACT-02</td>
+          <td><strong>P0</strong> (Kritis)</td>
+          <td>Security</td>
+          <td>Validator belum mendeteksi tag <code>&lt;script&gt;</code> inline dan event handler <code>on*</code>.</td>
+          <td>Perbarui <code>TemplateParser</code> agar melarang tag script dan seluruh atribut event handler.</td>
+        </tr>
+        <tr>
+          <td>ACT-03</td>
+          <td><strong>P1</strong> (Tinggi)</td>
+          <td>Tooling / QA</td>
+          <td>Skrip validasi tidak memiliki argumen untuk memeriksa file deliverable pengguna.</td>
+          <td>Tambahkan parser CLI <code>--target &lt;file_html&gt;</code> pada <code>scripts/validate.py</code>.</td>
+        </tr>
+        <tr>
+          <td>ACT-04</td>
+          <td><strong>P1</strong> (Tinggi)</td>
+          <td>Documentation Systems</td>
+          <td>Tabel matriks &ge; 5 kolom berisiko terpotong pada lebar cetak A4 150 mm.</td>
+          <td>Tambahkan panduan pemecahan tabel dan format kartu pada <code>html-print.md</code>.</td>
+        </tr>
+        <tr>
+          <td>ACT-05</td>
+          <td><strong>P2</strong> (Sedang)</td>
+          <td>Agent Architecture</td>
+          <td>Pemuatan seluruh referensi regulasi di awal membebani context window.</td>
+          <td>Terapkan strategi <em>lazy loading</em> bersyarat pada instruksi intake <code>SKILL.md</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chapter" id="roadmap">
+    <h2>8. Panduan Verifikasi dan Roadmap v1.5.0</h2>
+    <h3>8.1 Verifikasi Lokal Saat Ini</h3>
+    <p>Skrip validasi internal dapat dijalankan dari root direktori kerja menggunakan perintah:</p>
+    <pre><code>python scripts/validate.py</code></pre>
+    <p>Hasil pengujian statis saat ini menyatakan <strong>PASS</strong> untuk seluruh metadata, konsistensi tautan relatif, keunikan heading, anchor HTML, serta ketiadaan dependensi eksternal.</p>
+    <h3>8.2 Roadmap Peningkatan Menuju v1.5.0</h3>
+    <ol>
+      <li><strong>Skrip Linter Keterlacakan:</strong> Penambahan <code>scripts/lint_traceability.py</code> untuk memeriksa integritas ID relasional otomatis.</li>
+      <li><strong>Pustaka Snippet SVG Standar:</strong> Penyediaan blok diagram arsitektur dan flowchart yang telah terkalibrasi secara geometris di folder <code>assets/</code>.</li>
+      <li><strong>Kompiler Terintegrasi:</strong> Skrip otomatis untuk menggabungkan file modular <code>sources/*.md</code> ke dalam template cetak HTML.</li>
+    </ol>
+    <p class="notice"><strong>Pernyataan Akhir:</strong> Skill <code>app-documentation</code> v1.4.1 telah memiliki fondasi metodologis dan epistemik yang unggul. Penerapan rekomendasi P0 dan P1 akan menjadikan skill ini sebagai standar baku industri untuk sistem dokumentasi berbasis AI.</p>
+  </section>
+
+  <footer class="document-end">
+    Akhir Dokumen Laporan Reviu Multidisiplin · Diterbitkan di folder <code>DocsApp/</code> · Skill app-documentation v1.4.1
+  </footer>
+
+</main>
+</body>
+</html>
