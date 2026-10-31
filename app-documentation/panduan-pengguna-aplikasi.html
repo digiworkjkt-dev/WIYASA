@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Buku Panduan Pengguna dan Administrator Sistem WIYASA v1.6.0. Format A4 Portrait, margin 3 cm, font Cambria 12 pt, align justify, tangkapan layar visual.">
-  <title>Panduan Pengguna dan Administrator - WIYASA v1.6.0</title>
+  <meta name="description" content="Buku Panduan Pengguna dan Administrator Sistem SAKIP OTONOM+ Inspektorat BMKG, Format Cetak A4, Margin 3 cm, Cambria 12 pt, Rata Kanan-Kiri.">
+  <title>Panduan Pengguna dan Administrator: SAKIP OTONOM+ — Inspektorat BMKG</title>
   <style>
     @page {
       size: A4 portrait;
       margin: 3cm;
       @bottom-left {
-        content: "WIYASA ? Panduan Pengguna dan Administrator";
+        content: "WIYASA · SAKIP OTONOM+ — Panduan Pengguna & Administrator";
         font-family: Cambria, "Times New Roman", serif;
-        font-size: 8.5pt;
+        font-size: 8pt;
         color: #64748b;
         vertical-align: top;
         padding-top: 2mm;
@@ -21,7 +21,7 @@
       @bottom-right {
         content: "Halaman " counter(page);
         font-family: Cambria, "Times New Roman", serif;
-        font-size: 8.5pt;
+        font-size: 8pt;
         color: #64748b;
         vertical-align: top;
         padding-top: 2mm;
@@ -41,40 +41,47 @@
     }
     .report {
       width: 210mm; max-width: 100%; padding: 30mm; margin: 24px auto;
-      background: white; box-shadow: 0 4px 24px #17233518;
+      background: white; box-shadow: 0 4px 24px rgba(23, 35, 53, 0.12);
     }
     h1, h2, h3, p, li, td, th, code { font-size: 12pt; }
     h1, h2, h3 { line-height: 1.35; color: #183d54; }
     h1 { margin: 12mm 0 6mm; font-weight: 700; text-transform: uppercase; }
-    h2 { margin: 8mm 0 4mm; border-bottom: 1px solid #a4b5c1; padding-bottom: 2mm; }
-    h3 { margin: 6mm 0 3mm; }
+    h2 { margin: 8mm 0 4mm; border-bottom: 1px solid #a4b5c1; padding-bottom: 2mm; font-weight: 700; }
+    h3 { margin: 6mm 0 3mm; font-weight: 700; }
     p { margin: 0 0 4mm; text-align: justify; text-justify: inter-word; hyphens: auto; }
-    li { text-align: justify; text-justify: inter-word; hyphens: auto; margin-bottom: 2mm; }
+    ul, ol { margin: 0 0 4mm 6mm; padding: 0; }
+    li { margin-bottom: 1.5mm; text-align: justify; text-justify: inter-word; hyphens: auto; }
     .eyebrow { color: #526675; letter-spacing: .06em; font-weight: 700; margin-bottom: 2mm; }
-    .badge { display: inline-block; border: 1px solid #7a8c98; padding: 1mm 3mm; font-weight: 700; }
+    .badge { display: inline-block; border: 1px solid #7a8c98; padding: 1mm 3mm; font-weight: 700; margin-bottom: 4mm; }
     .cover { min-height: 190mm; }
     .metadata { margin: 8mm 0; }
     .metadata dt { font-weight: 700; margin-top: 2mm; }
-    .metadata dd { margin: 0 0 2mm 0; text-align: justify; text-justify: inter-word; hyphens: auto; }
+    .metadata dd { margin: 0 0 2mm; text-align: justify; text-justify: inter-word; hyphens: auto; }
     .notice { border-left: 3px solid #536f84; padding: 3mm 4mm; margin: 5mm 0; background: #f1f5f8; text-align: justify; text-justify: inter-word; hyphens: auto; }
-    a { color: #194f70; text-underline-offset: 2px; overflow-wrap: anywhere; }
+    a { color: #194f70; text-underline-offset: 2px; overflow-wrap: anywhere; text-decoration: underline; }
     table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 5mm 0; }
-    caption { text-align: left; font-weight: 700; margin-bottom: 2mm; }
-    th, td { padding: 2mm; border: 1px solid #9eaeba; vertical-align: top; overflow-wrap: anywhere; text-align: justify; text-justify: inter-word; }
+    caption { text-align: left; font-weight: 700; margin-bottom: 2mm; color: #183d54; }
+    th, td { padding: 2mm; border: 1px solid #9eaeba; vertical-align: top; overflow-wrap: anywhere; }
     th { text-align: left; background: #eef2f5; font-weight: 700; }
     pre, code { font-family: inherit; white-space: pre-wrap; overflow-wrap: anywhere; }
     img, svg { max-width: 100%; height: auto; }
+
+    /* Screenshot / Visual UI Frame */
     .screenshot-frame {
       margin: 5mm 0; padding: 3mm;
       background: #f8fafc; border: 1px solid #cbd5e1;
       border-radius: 4px; text-align: center;
       break-inside: avoid; page-break-inside: avoid;
     }
+    .screenshot-frame img, .screenshot-frame svg {
+      display: block; margin: 0 auto; max-width: 100%; height: auto;
+    }
     .figure-caption {
-      margin-top: 2mm; font-size: 11pt; color: #475569;
+      margin-top: 2.5mm; font-size: 11pt; color: #475569;
       font-style: italic; text-align: center;
     }
-    .document-end { border-top: 1px solid #9eaeba; margin-top: 10mm; padding-top: 3mm; font-size: 11pt; color: #495b6a; }
+
+    .document-end { border-top: 1px solid #9eaeba; margin-top: 10mm; padding-top: 3mm; font-size: 11pt; color: #526675; }
     @media screen and (max-width: 800px) {
       .report { width: 100%; margin: 0; padding: 20px; box-shadow: none; }
       .cover { min-height: auto; }
@@ -82,6 +89,7 @@
     @media print {
       html, body { background: white; margin: 0; padding: 0; }
       .report { width: auto; max-width: none; padding: 0; margin: 0; box-shadow: none; }
+      .screen-only { display: none !important; }
       .chapter { break-before: page; page-break-before: always; }
       .cover {
         break-after: page;
@@ -97,202 +105,602 @@
       tr { break-inside: avoid; page-break-inside: avoid; }
       .notice { background: none; }
       a { color: inherit; text-decoration: none; }
-      }
+    }
   </style>
 </head>
 <body>
 <main class="report">
 
+  <!-- COVER PAGE -->
   <header class="cover" id="cover">
-    <p class="eyebrow">WIYASA ? PANDUAN OPERASIONAL RESMI</p>
-    <h1>Buku Panduan Pengguna dan Administrator: Sistem WIYASA</h1>
-    <p>Petunjuk Praktis Pengoperasian Fitur Pembuatan Dokumentasi, Alur Kerja Tim, Panel Konfigurasi, dan Pemecahan Masalah Mandiri.</p>
-    <p><span class="badge">VERSI 1.6.0 ? DOKUMEN PENGGUNA RESMI</span></p>
+    <p class="eyebrow">PANDUAN OPERASIONAL RESMI APLIKASI</p>
+    <h1>Panduan Pengguna dan Administrator: SAKIP OTONOM+</h1>
+    <p>Petunjuk praktis operasional penelaahan akuntabilitas kinerja berbasis AI bagi Satuan Kerja BMKG, Tim Evaluator Inspektorat, dan Administrator Sistem.</p>
+    <p><span class="badge">VERSI 1.6.2 · BUKU PANDUAN OPERASIONAL RESMI</span></p>
+
     <dl class="metadata">
-      <dt>Target Audiens</dt>
-      <dd>Pengguna Akhir, Staf Operasional, Tim Pengembang, dan Administrator Sistem</dd>
-      <dt>Tanggal Terbit</dt>
-      <dd>2026-10-31</dd>
-      <dt>Penyusun</dt>
-      <dd>Tim Rekayasa Sistem Dokumentasi WIYASA</dd>
-      <dt>Status Aplikasi</dt>
-      <dd>Produksi / Operasional Resmi</dd>
-      <dt>Model Dokumen</dt>
-      <dd>Standar Opsi 2 (Buku Panduan Operasional Mandiri &amp; Bebas Detail Arsitektur Rumit)</dd>
+      <dt>Instansi Pengembang &amp; Pemilik Sistem</dt>
+      <dd>Inspektorat Badan Meteorologi, Klimatologi, dan Geofisika (BMKG)</dd>
+      <dt>Target Pengguna &amp; Pembaca</dt>
+      <dd>Seluruh ASN Satuan Kerja BMKG (Pusat, Balai BBMKG I–V, Stasiun UPT), Tim Evaluator Inspektorat, dan Administrator TI</dd>
+      <dt>Tanggal Terbit / Pembaruan</dt>
+      <dd>Versi 1.6.2 — 31 Oktober 2026</dd>
+      <dt>Rujukan Regulasi Utama</dt>
+      <dd>Peraturan Menteri PANRB No. 88 Tahun 2021 tentang Evaluasi Akuntabilitas Kinerja Instansi Pemerintah</dd>
+      <dt>Status Lingkungan Operasi</dt>
+      <dd>Produksi Aktif (Hybrid Cloud: Google Cloud Run &amp; Supabase PostgreSQL)</dd>
     </dl>
-    <p class="notice">Buku panduan ini disusun sebagai rujukan resmi operasional sehari-hari. Simpan berkas ini pada perangkat kerja Anda untuk memudahkan pemecahan kendala teknis secara mandiri.</p>
+
+    <p class="notice">
+      Buku panduan operasional ini disusun sebagai pedoman resmi pelaksanaan evaluasi akuntabilitas kinerja instansi pemerintah secara digital. Seluruh alur kerja dirancang untuk menegakkan prinsip <em>"AI bekerja. Evidence berbicara. Evaluator memutuskan."</em> Dokumen ini menjadi rujukan resmi bagi satuan kerja dalam menyajikan bukti eviden serta bagi evaluator dalam melakukan telaah profesional.
+    </p>
   </header>
 
+  <!-- DAFTAR ISI -->
   <nav class="chapter" id="daftar-isi" aria-label="Daftar isi">
     <h2>Daftar Isi</h2>
     <ol>
       <li><a href="#gambaran-umum">1. Gambaran Umum dan Peran Pengguna</a></li>
-      <li><a href="#onboarding">2. Pendaftaran, Inisiasi, dan Persiapan Sistem</a></li>
+      <li><a href="#onboarding">2. Pendaftaran, Login, dan Akses Akun</a></li>
       <li><a href="#fitur-utama">3. Panduan Operasional Fitur Utama</a></li>
-      <li><a href="#administrasi">4. Panduan Khusus Administrator Sistem</a></li>
+      <li><a href="#administrasi">4. Panduan Khusus Administrator</a></li>
       <li><a href="#troubleshooting">5. Tanya Jawab (FAQ) dan Penanganan Kendala</a></li>
-      <li><a href="#batasan">6. Batasan Sistem dan Kontak Dukungan</a></li>
+      <li><a href="#batasan">6. Batasan Sistem dan Prasyarat Operasional</a></li>
     </ol>
-    <p>Gunakan daftar isi di atas untuk menavigasi langsung ke topik panduan yang Anda butuhkan.</p>
   </nav>
 
+  <!-- BAB 1 -->
   <section class="chapter" id="gambaran-umum">
     <h2>1. Gambaran Umum dan Peran Pengguna</h2>
-    <p>Sistem WIYASA dirancang untuk membantu seluruh pemangku kepentingan dalam menghasilkan dan memelihara dokumentasi perangkat lunak berkualitas tinggi. Hak akses dan tanggung jawab operasional dikelompokkan ke dalam 3 peran:</p>
+    <p>
+      Sistem SAKIP OTONOM+ adalah platform evaluasi akuntabilitas kinerja instansi pemerintah modern yang memadukan teknologi kecerdasan buatan berbasis <em>Retrieval-Augmented Generation</em> (RAG) dan vektor embedding dengan mekanisme pengujian berbasis bukti nyata. Sistem ini menggantikan proses penelaahan dokumen manual yang memakan waktu berbulan-bulan menjadi proses verifikasi terstruktur yang terukur, transparan, dan akuntabel.
+    </p>
+    <p>
+      Sistem mengoperasikan 3 (tiga) peran pengguna aktif di dalam aplikasi, serta 1 (satu) peran eksternal pimpinan:
+    </p>
+
     <table>
       <caption>Tabel 1.1: Matriks Peran Pengguna dan Wewenang Sistem</caption>
       <thead>
         <tr>
-          <th scope="col" style="width: 25%;">Peran Pengguna</th>
-          <th scope="col" style="width: 35%;">Tanggung Jawab Utama</th>
-          <th scope="col" style="width: 40%;">Artefak yang Diakses</th>
+          <th style="width: 25%;">Peran Pengguna</th>
+          <th style="width: 35%;">Personel yang Bertugas</th>
+          <th style="width: 40%;">Wewenang Utama pada Sistem</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>Pengguna / Klien</strong></td>
-          <td>Menyampaikan kebutuhan aplikasi, mereviu draf, dan menggunakan panduan operasional.</td>
-          <td>Buku Panduan Pengguna (HTML) dan ringkasan eksekutif.</td>
+          <td><strong>SATKER</strong></td>
+          <td>Operator dan Pimpinan Satuan Kerja BMKG (Pusat, Balai Besar BBMKG I–V, dan UPT Stasiun se-Indonesia)</td>
+          <td>Mengunggah dokumen bukti kinerja (Renstra, IKU, PK, Renja, LKjIP, Monev), memantau progres parsing, dan mengisi evaluasi mandiri.</td>
         </tr>
         <tr>
-          <td><strong>Tim Pengembang</strong></td>
-          <td>Mengubah spesifikasi menjadi kode dan memperbarui berkas sumber di Git.</td>
-          <td>Berkas sumber modular Markdown (sources/*.md) dan Laporan Arsitektur.</td>
+          <td><strong>EVALUATOR</strong></td>
+          <td>Auditor dan Inspektur Pembantu pada Inspektorat BMKG</td>
+          <td>Meneliti draf usulan nilai AI, memverifikasi kutipan kalimat bukti, melakukan override nilai, menyusun rekomendasi, dan memfinalisasi evaluasi.</td>
         </tr>
         <tr>
-          <td><strong>Administrator</strong></td>
-          <td>Menjaga integritas repositori, menjalankan validator, dan merilis versi resmi.</td>
-          <td>Seluruh repositori, skrip validasi CLI, dan konfigurasi sistem.</td>
+          <td><strong>ADMIN</strong></td>
+          <td>Administrator TI Inspektorat BMKG</td>
+          <td>Mengelola akun ASN, membuka periode evaluasi, menugaskan tim evaluator ke satker, mengelola penyimpanan Drive, dan memantau tata kelola AI.</td>
+        </tr>
+        <tr>
+          <td><strong>INSPEKTUR UTAMA</strong></td>
+          <td>Pimpinan Inspektorat BMKG (Penandatangan Eksternal)</td>
+          <td>Menerima berkas LHE final berstatus <em>READY_FOR_SIGNATURE</em> untuk ditandatangani secara basah atau melalui TTE resmi di luar aplikasi.</td>
         </tr>
       </tbody>
     </table>
   </section>
 
+  <!-- BAB 2 -->
   <section class="chapter" id="onboarding">
-    <h2>2. Pendaftaran, Inisiasi, dan Persiapan Sistem</h2>
-    <p>Inisiasi sistem WIYASA tidak memerlukan instalasi perangkat lunak rumit. Pengguna cukup memastikan folder skill telah terpasang pada lingkungan asisten AI yang didukung.</p>
-    
-    <div class="screenshot-frame">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 240" width="100%" height="auto">
-        <rect width="600" height="240" rx="6" fill="#1e293b"/>
-        <rect x="0" y="0" width="600" height="30" rx="6" fill="#0f172a"/>
-        <circle cx="20" cy="15" r="4" fill="#ef4444"/>
-        <circle cx="35" cy="15" r="4" fill="#f59e0b"/>
-        <circle cx="50" cy="15" r="4" fill="#10b981"/>
-        <text x="75" y="19" font-family="Consolas, monospace" font-size="11" fill="#94a3b8">Terminal - Persiapan Lingkungan WIYASA</text>
-        <text x="25" y="65" font-family="Consolas, monospace" font-size="13" fill="#38bdf8">PS D:\Proyek&gt; git clone https://github.com/digiworkjkt-dev/WIYASA.git</text>
-        <text x="25" y="95" font-family="Consolas, monospace" font-size="13" fill="#94a3b8">Cloning into 'WIYASA'...</text>
-        <text x="25" y="125" font-family="Consolas, monospace" font-size="13" fill="#10b981">remote: Enumerating objects: 100%, done.</text>
-        <text x="25" y="155" font-family="Consolas, monospace" font-size="13" fill="#38bdf8">PS D:\Proyek&gt; python scripts/validate.py --package-dir DocsApp</text>
-        <text x="25" y="185" font-family="Consolas, monospace" font-size="13" fill="#4ade80">PASS: Validasi berhasil. Metadata, links, print rules, dan footer lolos.</text>
-      </svg>
-      <div class="figure-caption">Gambar 2.1: Antarmuka inisiasi repositori dan pengujian lingkungan kerja WIYASA.</div>
-    </div>
-    <p>Setelah proses inisiasi selesai, pengguna siap menjalankan perintah dokumentasi pertama untuk aplikasi yang sedang dikembangkan.</p>
-  </section>
+    <h2>2. Pendaftaran, Login, dan Akses Akun</h2>
+    <p>
+      Akses ke portal SAKIP OTONOM+ tidak memerlukan pendaftaran mandiri oleh pengguna baru. Seluruh data identitas telah terintegrasi dengan Nomor Induk Pegawai (NIP) 18 digit resmi BMKG yang dikelola oleh Administrator Sistem.
+    </p>
 
-  <section class="chapter" id="fitur-utama">
-    <h2>3. Panduan Operasional Fitur Utama</h2>
-    <p>Pembuatan paket dokumentasi aplikasi melalui WIYASA dilakukan dalam 3 langkah mudah:</p>
-
-    <h3>3.1 Langkah 1: Memberikan Instruksi Kerja Spesifik</h3>
-    <p>Ketikkan instruksi pada jendela asisten AI Anda dengan menyebutkan nama aplikasi dan ruang lingkup yang diinginkan. Contoh prompt resmi:</p>
-    <pre><code>Gunakan skill WIYASA untuk menyusun dokumentasi lengkap aplikasi E-Commerce UMKM.
-Gunakan Standar Opsi 2 (Dual HTML: Laporan Arsitektur &amp; Panduan Pengguna).
-Simpan seluruh berkas sumber di folder DocsApp/sources/ dan laporan di DocsApp/.</code></pre>
+    <h3>2.1 Prosedur Masuk Sistem (Login)</h3>
+    <ol>
+      <li>Buka peramban web resmi (disarankan menggunakan Google Chrome atau Microsoft Edge versi terbaru) dan tuju alamat portal resmi SAKIP OTONOM+.</li>
+      <li>Pada halaman login, masukkan 18 digit Nomor Induk Pegawai (NIP) tanpa spasi atau tanda hubung pada kolom yang tersedia.</li>
+      <li>Ketikkan kata sandi akun Anda, kemudian klik tombol <strong>Masuk ke Sistem</strong>.</li>
+      <li>Sistem secara otomatis mengidentifikasi peran pengguna Anda (Satker, Evaluator, atau Admin) tanpa perlu memilih peran secara manual di antarmuka.</li>
+    </ol>
 
     <div class="screenshot-frame">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280" width="100%" height="auto">
-        <rect width="600" height="280" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-        <rect width="600" height="32" rx="8" fill="#eef2f5"/>
-        <text x="20" y="21" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#183d54">WIYASA Documentation Suite - Peta Navigasi Artefak</text>
-        <rect x="20" y="50" width="260" height="95" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
-        <text x="35" y="75" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#0369a1">1. Laporan Arsitektur (HTML)</text>
-        <text x="35" y="98" font-family="Cambria, serif" font-size="11" fill="#475569">Target: Tim Pengembang &amp; Auditor</text>
-        <text x="35" y="120" font-family="Cambria, serif" font-size="11" fill="#475569">Isi: Spesifikasi, Skema Data, API, ADR</text>
-        <rect x="310" y="50" width="260" height="95" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
-        <text x="325" y="75" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#0369a1">2. Panduan Pengguna (HTML)</text>
-        <text x="325" y="98" font-family="Cambria, serif" font-size="11" fill="#475569">Target: Klien &amp; Staf Operasional</text>
-        <text x="325" y="120" font-family="Cambria, serif" font-size="11" fill="#475569">Isi: Petunjuk Fitur, FAQ, Troubleshooting</text>
-        <rect x="20" y="160" width="550" height="100" rx="6" fill="#f0fdf4" stroke="#86efac"/>
-        <text x="35" y="188" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#166534">3. Single Source of Truth Modular (sources/*.md)</text>
-        <text x="35" y="212" font-family="Cambria, serif" font-size="11" fill="#166534">18 berkas Markdown mandiri tersimpan di folder sources/ siap commit ke Git.</text>
-        <text x="35" y="235" font-family="Cambria, serif" font-size="11" fill="#166534">Status Keterlacakan: 100% Terverifikasi (FR -&gt; AC -&gt; TASK -&gt; TC).</text>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="100%" height="auto" aria-label="Mockup Antarmuka Login NIP BMKG">
+        <defs>
+          <filter id="ug-login-shadow" x="-5%" y="-5%" width="110%" height="110%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#182332" flood-opacity="0.15"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="590" height="310" rx="8" fill="#ffffff" stroke="#9eaeba" stroke-width="1.5" filter="url(#ug-login-shadow)"/>
+        <rect x="5" y="5" width="590" height="30" rx="8" fill="#eef2f5"/>
+        <rect x="5" y="27" width="590" height="8" fill="#eef2f5"/>
+        <line x1="5" y1="35" x2="595" y2="35" stroke="#9eaeba" stroke-width="1"/>
+        <circle cx="25" cy="20" r="5" fill="#e57373"/>
+        <circle cx="40" cy="20" r="5" fill="#ffb74d"/>
+        <circle cx="55" cy="20" r="5" fill="#81c784"/>
+        <rect x="80" y="11" width="320" height="18" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="90" y="24" font-family="Cambria, serif" font-size="10" fill="#64748b">https://sakip.bmkg.go.id/login</text>
+        <rect x="140" y="50" width="320" height="250" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+        <circle cx="300" cy="78" r="16" fill="#183d54"/>
+        <text x="300" y="83" font-family="Cambria, serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">BMKG</text>
+        <text x="300" y="110" font-family="Cambria, serif" font-size="13" font-weight="bold" fill="#183d54" text-anchor="middle">PORTAL SAKIP OTONOM+</text>
+        <text x="300" y="124" font-family="Cambria, serif" font-size="9" fill="#526675" text-anchor="middle">Inspektorat Badan Meteorologi, Klimatologi, dan Geofisika</text>
+        <text x="160" y="146" font-family="Cambria, serif" font-size="10" font-weight="bold" fill="#334155">Nomor Induk Pegawai (NIP 18 Digit)</text>
+        <rect x="160" y="152" width="280" height="26" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+        <text x="170" y="169" font-family="Cambria, serif" font-size="10" fill="#182332">198506152008121002</text>
+        <text x="160" y="194" font-family="Cambria, serif" font-size="10" font-weight="bold" fill="#334155">Kata Sandi Akun</text>
+        <rect x="160" y="200" width="280" height="26" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+        <text x="170" y="217" font-family="Cambria, serif" font-size="12" fill="#182332">••••••••••••</text>
+        <rect x="160" y="238" width="280" height="28" rx="4" fill="#183d54"/>
+        <text x="300" y="256" font-family="Cambria, serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Masuk ke Sistem</text>
+        <text x="300" y="284" font-family="Cambria, serif" font-size="8.5" fill="#64748b" text-anchor="middle">Akses terbatas bagi seluruh ASN Satuan Kerja BMKG &amp; Tim Evaluator</text>
       </svg>
-      <div class="figure-caption">Gambar 3.1: Struktur paket hasil generasi dokumentasi Standar Opsi 2.</div>
+      <div class="figure-caption">Gambar 2.1: Antarmuka Halaman Masuk Terpadu (Login NIP) SAKIP OTONOM+</div>
     </div>
 
-    <h3>3.2 Langkah 2: Mengkaji Hasil Dokumentasi</h3>
-    <p>Buka berkas HTML hasil generasi di peramban web Anda. Periksa kelengkapan tabel, navigasi daftar isi bertaut, dan kerapian tata letak teks rata kanan-kiri.</p>
-  </section>
+    <h3>2.2 Prosedur Penggantian Kata Sandi Awal</h3>
+    <p>
+      Bila akun Anda baru pertama kali dibuat atau kata sandi baru saja di-reset oleh Administrator, sistem akan secara otomatis mengarahkan peramban ke halaman khusus <code>/ubah-password</code>. Pengguna wajib memperbarui kata sandi sementara bawaan sebelum diizinkan mengakses menu kerja lainnya.
+    </p>
 
-  <section class="chapter" id="administrasi">
-    <h2>4. Panduan Khusus Administrator Sistem</h2>
-    <p>Administrator sistem bertugas memastikan tidak ada kemunduran kualitas (*regression*) pada dokumentasi saat aplikasi mengalami pembaruan.</p>
+    <p>Tata cara pengisian formulir pembaharuan kata sandi akun:</p>
+    <ol>
+      <li>Pada kolom <strong>Kata Sandi Saat Ini</strong>, masukkan kata sandi sementara yang diberikan oleh Administrator (kata sandi bawaan awal: <code>satkerbmkg</code>).</li>
+      <li>Ketikkan kata sandi baru yang dikehendaki pada kolom <strong>Kata Sandi Baru</strong>. Sistem secara otomatis menguji kompleksitas dan menampilkan indikator kekuatan kata sandi secara waktu nyata (<em>real-time</em>).</li>
+      <li>Ketikkan ulang kata sandi baru yang sama pada kolom <strong>Konfirmasi Kata Sandi Baru</strong> guna memvalidasi ketepatan pengetikan.</li>
+      <li>Klik tombol <strong>Simpan Kata Sandi &amp; Buka Dasbor Utama</strong>. Sistem akan memperbarui token otorisasi pengguna dan langsung mengarahkan Anda ke beranda evaluasi.</li>
+    </ol>
 
-    <div class="screenshot-frame">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 240" width="100%" height="auto">
-        <rect width="600" height="240" rx="6" fill="#0f172a"/>
-        <text x="25" y="35" font-family="Consolas, monospace" font-size="12" fill="#38bdf8"># Prosedur Audit Kualitas Berkala Administrator</text>
-        <text x="25" y="70" font-family="Consolas, monospace" font-size="12" fill="#e2e8f0">1. Uji Integritas Repositori dan Kepatuhan Aturan Cetak A4:</text>
-        <text x="45" y="95" font-family="Consolas, monospace" font-size="12" fill="#a7f3d0">python scripts/validate.py --package-dir DocsApp</text>
-        <text x="25" y="130" font-family="Consolas, monospace" font-size="12" fill="#e2e8f0">2. Uji Konsistensi Relasi ID Requirement terhadap Test Case:</text>
-        <text x="45" y="155" font-family="Consolas, monospace" font-size="12" fill="#a7f3d0">python scripts/lint_traceability.py --dir DocsApp/sources</text>
-        <text x="25" y="195" font-family="Consolas, monospace" font-size="12" fill="#facc15">Hasil Pengujian: 0 Pelanggaran Keamanan ? 100% Keterlacakan Terhubung</text>
-      </svg>
-      <div class="figure-caption">Gambar 4.1: Prosedur audit otomatis administrator sistem.</div>
-    </div>
-  </section>
-
-  <section class="chapter" id="troubleshooting">
-    <h2>5. Tanya Jawab (FAQ) dan Penanganan Kendala</h2>
-    <p>Berikut adalah kendala yang paling sering dihadapi pengguna dan cara penanganan mandiri:</p>
     <table>
-      <caption>Tabel 5.1: Panduan Pemecahan Masalah Mandiri (Troubleshooting)</caption>
+      <caption>Tabel 2.1: Matriks Ketentuan Keamanan Kredensial Pengguna BMKG</caption>
       <thead>
         <tr>
-          <th scope="col" style="width: 30%;">Gejala / Kendala</th>
-          <th scope="col" style="width: 35%;">Kemungkinan Penyebab</th>
-          <th scope="col" style="width: 35%;">Solusi Rekomendasi</th>
+          <th style="width: 25%;">Parameter Keamanan</th>
+          <th style="width: 45%;">Ketentuan &amp; Aturan Validasi</th>
+          <th style="width: 30%;">Tindakan Pelanggaran</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Font Cambria tidak muncul saat dicetak</td>
-          <td>Perangkat cetak/OS tidak memiliki font lokal Cambria terpasang.</td>
-          <td>Pasang font Cambria atau biarkan fallback Times New Roman dipakai secara wajar.</td>
+          <td><strong>Panjang Karakter</strong></td>
+          <td>Minimal 8 karakter alfanumerik.</td>
+          <td>Tombol simpan dinonaktifkan otomatis.</td>
         </tr>
         <tr>
-          <td>Header/footer bawaan browser muncul tanggal atau URL</td>
-          <td>Opsi "Headers and footers" pada jendela cetak peramban masih aktif.</td>
-          <td>Hilangkan centang "Headers and footers" pada dialog cetak peramban Anda.</td>
+          <td><strong>Komposisi Karakter</strong></td>
+          <td>Kombinasi huruf besar (A–Z), huruf kecil (a–z), dan angka numerik (0–9). Simbol khusus diizinkan.</td>
+          <td>Indikator menampilkan status <em>Kurang Kuat</em>.</td>
         </tr>
         <tr>
-          <td>Tabel bergaris tapi latar warna abu-abu hilang</td>
-          <td>Opsi "Background graphics" peramban belum diaktifkan.</td>
-          <td>Centang opsi "Background graphics" pada jendela cetak peramban.</td>
+          <td><strong>Anti-Duplikasi Sandi</strong></td>
+          <td>Dilarang menggunakan kata sandi bawaan (<code>satkerbmkg</code>) atau nomor NIP pribadi.</td>
+          <td>Validasi sistem menolak penyimpanan berkas.</td>
+        </tr>
+        <tr>
+          <td><strong>Proteksi Brute-Force</strong></td>
+          <td>Maksimal 3 kali percobaan salah berturut-turut pada form login.</td>
+          <td>Akun terkunci otomatis selama 15 menit.</td>
         </tr>
       </tbody>
     </table>
+
+    <div class="screenshot-frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="100%" height="auto" aria-label="Mockup Formulir Ubah Kata Sandi SAKIP OTONOM+">
+        <defs>
+          <filter id="ug-pwd-shadow" x="-5%" y="-5%" width="110%" height="110%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#182332" flood-opacity="0.12"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="590" height="240" rx="8" fill="#ffffff" stroke="#9eaeba" stroke-width="1.5" filter="url(#ug-pwd-shadow)"/>
+        <rect x="5" y="5" width="590" height="28" rx="8" fill="#eef2f5"/>
+        <rect x="5" y="25" width="590" height="8" fill="#eef2f5"/>
+        <line x1="5" y1="33" x2="595" y2="33" stroke="#9eaeba" stroke-width="1"/>
+        <circle cx="22" cy="19" r="4.5" fill="#e57373"/>
+        <circle cx="36" cy="19" r="4.5" fill="#ffb74d"/>
+        <circle cx="50" cy="19" r="4.5" fill="#81c784"/>
+        <rect x="75" y="10" width="320" height="18" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="85" y="23" font-family="Cambria, serif" font-size="9.5" fill="#64748b">https://sakip.bmkg.go.id/ubah-password</text>
+
+        <rect x="110" y="45" width="380" height="190" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="300" y="66" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#183d54" text-anchor="middle">PEMBARUAN KATA SANDI WAJIB</text>
+        <text x="300" y="80" font-family="Cambria, serif" font-size="8.5" fill="#64748b" text-anchor="middle">Kredensial sementara terdeteksi. Demi keamanan, buat kata sandi baru akun Anda.</text>
+
+        <text x="130" y="99" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Kata Sandi Saat Ini / Sementara</text>
+        <rect x="130" y="103" width="340" height="22" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+        <text x="140" y="118" font-family="Cambria, serif" font-size="10" fill="#64748b">•••••••••••• (satkerbmkg)</text>
+
+        <text x="130" y="137" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Kata Sandi Baru</text>
+        <rect x="130" y="141" width="340" height="22" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+        <text x="140" y="156" font-family="Cambria, serif" font-size="11" fill="#182332">Bmkg#2026!Aman</text>
+        <rect x="405" y="144" width="58" height="16" rx="3" fill="#dcfce7"/>
+        <text x="434" y="156" font-family="Cambria, serif" font-size="8.5" font-weight="bold" fill="#15803d" text-anchor="middle">Sangat Kuat</text>
+
+        <text x="130" y="175" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Konfirmasi Kata Sandi Baru</text>
+        <rect x="130" y="179" width="340" height="22" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+        <text x="140" y="194" font-family="Cambria, serif" font-size="11" fill="#182332">Bmkg#2026!Aman</text>
+
+        <rect x="130" y="208" width="340" height="22" rx="4" fill="#183d54"/>
+        <text x="300" y="223" font-family="Cambria, serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">Simpan Kata Sandi &amp; Buka Dasbor Utama</text>
+      </svg>
+      <div class="figure-caption">Gambar 2.2: Antarmuka Formulir Penggantian Kata Sandi Akun (/ubah-password) SAKIP OTONOM+</div>
+    </div>
+
+    <h3>2.3 Prosedur Lupa Kata Sandi dan Pemulihan Akun</h3>
+    <p>
+      Apabila pengguna mengalami lupa kata sandi atau akun berstatus terkunci akibat keliru memasukkan kata sandi lebih dari 3 kali berturut-turut, sistem tidak menyediakan fitur pemulihan mandiri via email publik demi menegakkan kepatuhan keamanan data institusional BMKG.
+    </p>
+    <p>
+      Pengguna wajib menghubungi Administrator TI Inspektorat BMKG melalui kanal kedinasan resmi dengan menyertakan Nomor Induk Pegawai (NIP) dan surat keterangan penugasan dari pimpinan satker. Administrator akan melakukan verifikasi identitas pegawai pada modul <code>/admin/users</code> dan menerbitkan kata sandi sementara baru bertanda wajib ubah kata sandi saat login berikutnya.
+    </p>
   </section>
 
-  <section class="chapter" id="batasan">
-    <h2>6. Batasan Sistem dan Kontak Dukungan</h2>
-    <p>Pengguna perlu memperhatikan batasan teknis sistem berikut:</p>
+  <!-- BAB 3 -->
+  <section class="chapter" id="fitur-utama">
+    <h2>3. Panduan Operasional Fitur Utama</h2>
+    <p>
+      Bab ini menyajikan panduan operasional langkah-demi-langkah bagi dua kelompok pengguna operasional utama: Satuan Kerja dan Tim Evaluator Inspektorat.
+    </p>
+
+    <h3>3.1 Panduan Satuan Kerja (Satker): Unggah Bukti Eviden</h3>
+    <p>
+      Satuan kerja bertugas mengunggah seluruh dokumen kinerja institusional ke dalam sistem sebelum jendela kalender unggah ditutup. Dokumen yang diunggah mencakup enam kategori utama:
+    </p>
     <ul>
-      <li>WIYASA menghasilkan dokumen teknis rekayasa, bukan kode sumber aplikasi yang dapat langsung dieksekusi di server.</li>
-      <li>Verifikasi kelayakan visual akhir pada media cetak fisik tetap memerlukan peninjauan langsung oleh tim penjamin mutu.</li>
+      <li><strong>RENSTRA</strong>: Dokumen Rencana Strategis lima tahunan unit pelaksana teknis atau kedeputian.</li>
+      <li><strong>IKU</strong>: Dokumen penetapan Indikator Kinerja Utama satker.</li>
+      <li><strong>PK</strong>: Perjanjian Kinerja tahun berjalan beserta lampiran rincian target.</li>
+      <li><strong>RENJA</strong>: Rencana Kerja Tahunan satker.</li>
+      <li><strong>LKjIP</strong>: Laporan Kinerja Instansi Pemerintah tahun evaluasi sebelumnya.</li>
+      <li><strong>MONEV</strong>: Laporan pemantauan capaian kinerja triwulanan atau semesteran.</li>
     </ul>
-    <dl class="metadata">
-      <dt>Pusat Dukungan Teknis</dt>
-      <dd>Repositori Resmi: https://github.com/digiworkjkt-dev/WIYASA</dd>
-      <dt>Layanan Bantuan</dt>
-      <dd>Buka GitHub Issues pada repositori resmi untuk pelaporan bug atau perbaikan.</dd>
-    </dl>
+
+    <p>Prosedur pengunggahan berkas oleh Satker:</p>
+    <ol>
+      <li>Buka menu <strong>Daftar Evaluasi</strong> pada navigasi samping, lalu klik tombol <strong>Buka Evaluasi</strong> pada tahun yang sedang berjalan.</li>
+      <li>Tinjau status periode pada bilah atas. Pastikan status menampilkan lencana hijau <em>DIBUKA</em>.</li>
+      <li>Klik tombol biru <strong>+ Unggah Dokumen</strong> di sudut kanan atas tabel eviden.</li>
+      <li>Pilih kategori berkas yang sesuai, pilih berkas PDF/DOCX dari komputer Anda (maksimal 50 MB), lalu klik <strong>Kirim Berkas</strong>.</li>
+      <li>Sistem akan melakukan komputasi hash SHA-256 dan memicu mesin ekstraksi. Periksa kolom <em>Status Ekstraksi</em>: status <code>COMPLETED</code> menandakan dokumen telah berhasil diurai menjadi potongan teks (chunks) dan siap ditelaah AI.</li>
+    </ol>
+
+    <div class="screenshot-frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="100%" height="auto" aria-label="Mockup Antarmuka Unggah Eviden Satker">
+        <defs>
+          <filter id="ug-satker-shadow" x="-5%" y="-5%" width="110%" height="110%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#182332" flood-opacity="0.15"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="590" height="310" rx="8" fill="#ffffff" stroke="#9eaeba" stroke-width="1.5" filter="url(#ug-satker-shadow)"/>
+        <rect x="5" y="5" width="590" height="30" rx="8" fill="#eef2f5"/>
+        <rect x="5" y="27" width="590" height="8" fill="#eef2f5"/>
+        <line x1="5" y1="35" x2="595" y2="35" stroke="#9eaeba" stroke-width="1"/>
+        <circle cx="25" cy="20" r="5" fill="#e57373"/>
+        <circle cx="40" cy="20" r="5" fill="#ffb74d"/>
+        <circle cx="55" cy="20" r="5" fill="#81c784"/>
+        <rect x="80" y="11" width="340" height="18" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="90" y="24" font-family="Cambria, serif" font-size="10" fill="#64748b">https://sakip.bmkg.go.id/evaluations/stg-bdg-2026</text>
+        <rect x="5" y="35" width="125" height="280" fill="#f8fafc"/>
+        <line x1="130" y1="35" x2="130" y2="315" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="18" y="58" font-family="Cambria, serif" font-size="10.5" font-weight="bold" fill="#183d54">MENU SATKER</text>
+        <text x="18" y="82" font-family="Cambria, serif" font-size="10" fill="#475569">Beranda</text>
+        <rect x="10" y="94" width="112" height="22" rx="4" fill="#e0f2fe"/>
+        <text x="18" y="109" font-family="Cambria, serif" font-size="10" font-weight="bold" fill="#0369a1">Eviden Kinerja</text>
+        <text x="18" y="134" font-family="Cambria, serif" font-size="10" fill="#475569">LKE Mandiri</text>
+        <text x="18" y="156" font-family="Cambria, serif" font-size="10" fill="#475569">Riwayat LHE</text>
+        <g transform="translate(145, 45)">
+          <text x="0" y="16" font-family="Cambria, serif" font-size="13" font-weight="bold" fill="#183d54">Stasiun Geofisika Kelas I Bandung</text>
+          <text x="0" y="30" font-family="Cambria, serif" font-size="9.5" fill="#526675">Periode Evaluasi SAKIP 2026 · Status Unggah: DIBUKA (s.d. 31 Maret 2026)</text>
+          <rect x="315" y="6" width="125" height="24" rx="4" fill="#183d54"/>
+          <text x="377" y="22" font-family="Cambria, serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">+ Unggah Dokumen</text>
+          <rect x="0" y="42" width="105" height="42" rx="4" fill="#f1f5f8" stroke="#cbd5e1"/>
+          <text x="10" y="56" font-family="Cambria, serif" font-size="8.5" fill="#64748b">Total Berkas</text>
+          <text x="10" y="75" font-family="Cambria, serif" font-size="14" font-weight="bold" fill="#183d54">5 Dokumen</text>
+          <rect x="115" y="42" width="105" height="42" rx="4" fill="#f1f5f8" stroke="#cbd5e1"/>
+          <text x="125" y="56" font-family="Cambria, serif" font-size="8.5" fill="#64748b">Status Parsing</text>
+          <text x="125" y="75" font-family="Cambria, serif" font-size="13" font-weight="bold" fill="#166534">100% Selesai</text>
+          <rect x="230" y="42" width="105" height="42" rx="4" fill="#f1f5f8" stroke="#cbd5e1"/>
+          <text x="240" y="56" font-family="Cambria, serif" font-size="8.5" fill="#64748b">Vektor Terbentuk</text>
+          <text x="240" y="75" font-family="Cambria, serif" font-size="14" font-weight="bold" fill="#183d54">184 Chunks</text>
+          <text x="0" y="104" font-family="Cambria, serif" font-size="11" font-weight="bold" fill="#183d54">Daftar Berkas Eviden Terunggah</text>
+          <rect x="0" y="112" width="440" height="20" fill="#eef2f5" rx="2"/>
+          <text x="8" y="126" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Nama Berkas</text>
+          <text x="175" y="126" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Kategori</text>
+          <text x="260" y="126" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Ukuran</text>
+          <text x="340" y="126" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Status Ekstraksi</text>
+          <line x1="0" y1="152" x2="440" y2="152" stroke="#e2e8f0"/>
+          <text x="8" y="145" font-family="Cambria, serif" font-size="9" fill="#182332">Renstra_Stageof_Bandung_2020-2024.pdf</text>
+          <text x="175" y="145" font-family="Cambria, serif" font-size="9" fill="#182332">RENSTRA</text>
+          <text x="260" y="145" font-family="Cambria, serif" font-size="9" fill="#182332">4.2 MB</text>
+          <rect x="340" y="136" width="65" height="14" rx="7" fill="#dcfce7"/>
+          <text x="372" y="146" font-family="Cambria, serif" font-size="8" font-weight="bold" fill="#166534" text-anchor="middle">COMPLETED</text>
+          <line x1="0" y1="174" x2="440" y2="174" stroke="#e2e8f0"/>
+          <text x="8" y="167" font-family="Cambria, serif" font-size="9" fill="#182332">Perjanjian_Kinerja_2026_Final.pdf</text>
+          <text x="175" y="167" font-family="Cambria, serif" font-size="9" fill="#182332">PK</text>
+          <text x="260" y="167" font-family="Cambria, serif" font-size="9" fill="#182332">2.5 MB</text>
+          <rect x="340" y="158" width="65" height="14" rx="7" fill="#dcfce7"/>
+          <text x="372" y="168" font-family="Cambria, serif" font-size="8" font-weight="bold" fill="#166534" text-anchor="middle">COMPLETED</text>
+          <line x1="0" y1="196" x2="440" y2="196" stroke="#e2e8f0"/>
+          <text x="8" y="189" font-family="Cambria, serif" font-size="9" fill="#182332">Indikator_Kinerja_Utama_IKU_2026.pdf</text>
+          <text x="175" y="189" font-family="Cambria, serif" font-size="9" fill="#182332">IKU</text>
+          <text x="260" y="189" font-family="Cambria, serif" font-size="9" fill="#182332">1.8 MB</text>
+          <rect x="340" y="180" width="65" height="14" rx="7" fill="#dcfce7"/>
+          <text x="372" y="190" font-family="Cambria, serif" font-size="8" font-weight="bold" fill="#166534" text-anchor="middle">COMPLETED</text>
+          <line x1="0" y1="218" x2="440" y2="218" stroke="#e2e8f0"/>
+          <text x="8" y="211" font-family="Cambria, serif" font-size="9" fill="#182332">Laporan_Kinerja_LKjIP_Tahun_2025.pdf</text>
+          <text x="175" y="211" font-family="Cambria, serif" font-size="9" fill="#182332">LKJIP</text>
+          <text x="260" y="211" font-family="Cambria, serif" font-size="9" fill="#182332">8.1 MB</text>
+          <rect x="340" y="202" width="65" height="14" rx="7" fill="#dcfce7"/>
+          <text x="372" y="212" font-family="Cambria, serif" font-size="8" font-weight="bold" fill="#166534" text-anchor="middle">COMPLETED</text>
+          <line x1="0" y1="240" x2="440" y2="240" stroke="#e2e8f0"/>
+          <text x="8" y="233" font-family="Cambria, serif" font-size="9" fill="#182332">Eviden_Monev_Kinerja_Triwulan_III.pdf</text>
+          <text x="175" y="233" font-family="Cambria, serif" font-size="9" fill="#182332">MONEV</text>
+          <text x="260" y="233" font-family="Cambria, serif" font-size="9" fill="#182332">3.4 MB</text>
+          <rect x="340" y="224" width="65" height="14" rx="7" fill="#dcfce7"/>
+          <text x="372" y="234" font-family="Cambria, serif" font-size="8" font-weight="bold" fill="#166534" text-anchor="middle">COMPLETED</text>
+        </g>
+      </svg>
+      <div class="figure-caption">Gambar 3.1: Dasbor Satuan Kerja dan Lembar Pemantauan Berkas Eviden Terunggah</div>
+    </div>
+
+    <h3>3.2 Panduan Tim Evaluator Inspektorat: Telaah LKE &amp; Human Override</h3>
+    <p>
+      Evaluator memiliki otoritas penuh untuk menilai, mengonfirmasi, atau mengubah draf kriteria Lembar Kerja Evaluasi (LKE) yang dihasilkan oleh model AI. Prinsip kerja sistem memastikan bahwa AI hanya bertindak sebagai asisten pemeriksa draf, sedangkan penetapan nilai akhir berada sepenuhnya di tangan auditor.
+    </p>
+
+    <p>Prosedur penelaahan LKE oleh Evaluator:</p>
+    <ol>
+      <li>Buka menu <strong>Daftar Evaluasi</strong> dan gunakan filter untuk memilih satker binaan yang ditugaskan kepada Anda sesuai Surat Perintah Tugas (SPT).</li>
+      <li>Klik tab <strong>Lembar Kerja Evaluasi (LKE)</strong>. Sistem akan menampilkan 4 komponen evaluasi PermenPANRB 88/2021: Perencanaan Kinerja (30%), Pengukuran Kinerja (30%), Pelaporan Kinerja (15%), dan Evaluasi Internal (25%).</li>
+      <li>Periksa kriteria dengan penanda prioritas <em>Exceptions Needing Review</em>. Kriteria ini menandakan terdapat anomali atau confidence score AI di bawah ambang batas toleransi (0.70).</li>
+      <li>Baca kutipan bukti kalimat asli beserta referensi nomor halaman dokumen yang ditampilkan dalam kotak rekomendasi AI.</li>
+      <li><strong>Menerima Nilai AI</strong>: Jika bukti yang disajikan sangat akurat dan relevan, klik tombol hijau <strong>✓ Terima Usulan AI</strong>.</li>
+      <li><strong>Mengubah Nilai (Override)</strong>: Jika menurut keahlian profesional auditor satker layak mendapat predikat berbeda atau bukti belum memadai, klik tombol biru <strong>✎ Override Skor Nilai</strong>. Pilih predikat baru (misal: dari B ke BB).</li>
+      <li><strong>Kewajiban Catatan Auditor</strong>: Sistem mewajibkan evaluator menuliskan alasan pertimbangan audit pada kotak teks catatan saat melakukan override nilai. Tanpa catatan ini, perubahan nilai tidak dapat disimpan.</li>
+      <li>Buka tab <strong>Temuan &amp; Rekomendasi</strong> untuk memfinalisasi rumusan kalimat saran perbaikan bagi satker.</li>
+      <li>Klik tombol <strong>Finalisasi Evaluasi</strong>. Status evaluasi berpindah ke <code>READY_FOR_SIGNATURE</code>, dan formulir otomatis terkunci dari pengubahan lebih lanjut.</li>
+    </ol>
+
+    <div class="screenshot-frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="100%" height="auto" aria-label="Mockup Antarmuka Evaluator LKE dan Override Nilai">
+        <defs>
+          <filter id="ug-eval-shadow" x="-5%" y="-5%" width="110%" height="110%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#182332" flood-opacity="0.15"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="590" height="310" rx="8" fill="#ffffff" stroke="#9eaeba" stroke-width="1.5" filter="url(#ug-eval-shadow)"/>
+        <rect x="5" y="5" width="590" height="30" rx="8" fill="#eef2f5"/>
+        <rect x="5" y="27" width="590" height="8" fill="#eef2f5"/>
+        <line x1="5" y1="35" x2="595" y2="35" stroke="#9eaeba" stroke-width="1"/>
+        <circle cx="25" cy="20" r="5" fill="#e57373"/>
+        <circle cx="40" cy="20" r="5" fill="#ffb74d"/>
+        <circle cx="55" cy="20" r="5" fill="#81c784"/>
+        <rect x="80" y="11" width="360" height="18" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="90" y="24" font-family="Cambria, serif" font-size="10" fill="#64748b">https://sakip.bmkg.go.id/evaluations/stg-bdg-2026/lke</text>
+        <rect x="5" y="35" width="125" height="280" fill="#f8fafc"/>
+        <line x1="130" y1="35" x2="130" y2="315" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="18" y="58" font-family="Cambria, serif" font-size="10.5" font-weight="bold" fill="#183d54">MENU AUDITOR</text>
+        <text x="18" y="82" font-family="Cambria, serif" font-size="10" fill="#475569">Satker Binaan</text>
+        <rect x="10" y="94" width="112" height="22" rx="4" fill="#e0f2fe"/>
+        <text x="18" y="109" font-family="Cambria, serif" font-size="10" font-weight="bold" fill="#0369a1">LKE 77 Kriteria</text>
+        <text x="18" y="134" font-family="Cambria, serif" font-size="10" fill="#475569">Temuan &amp; Rekom</text>
+        <text x="18" y="156" font-family="Cambria, serif" font-size="10" fill="#475569">Pratinjau LHE</text>
+        <g transform="translate(145, 45)">
+          <text x="0" y="15" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#183d54">Telaah LKE: Kriteria 1.1.a (Perencanaan Kinerja - Bobot 30%)</text>
+          <text x="0" y="28" font-family="Cambria, serif" font-size="9" fill="#526675">Indikator: Pemenuhan kualitas dokumen Renstra yang berorientasi hasil dan selaras IKU nasional</text>
+          <rect x="0" y="38" width="440" height="78" rx="6" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1"/>
+          <text x="10" y="54" font-family="Cambria, serif" font-size="9.5" font-weight="bold" fill="#0369a1">REKOMENDASI MODEL AI (Confidence Score: 94.2%)</text>
+          <rect x="375" y="44" width="55" height="18" rx="4" fill="#0284c7"/>
+          <text x="402" y="57" font-family="Cambria, serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">NILAI: A</text>
+          <text x="10" y="70" font-family="Cambria, serif" font-size="8.5" fill="#475569">Kutipan Bukti Terverifikasi (Renstra_Stageof_Bandung_2020-2024.pdf, Halaman 18, Paragraf 3):</text>
+          <rect x="10" y="76" width="420" height="32" rx="3" fill="#ffffff" stroke="#e0f2fe"/>
+          <text x="16" y="89" font-family="Cambria, serif" font-size="8.5" font-style="italic" fill="#1e293b">"Sasaran strategis UPT ditetapkan selaras IKU BMKG Pusat dengan target diseminasi informasi gempabumi</text>
+          <text x="16" y="101" font-family="Cambria, serif" font-size="8.5" font-style="italic" fill="#1e293b">M &gt;= 5.0 dalam waktu kurang dari 3 menit secara otomatis dan terverifikasi 100%."</text>
+          <text x="0" y="132" font-family="Cambria, serif" font-size="11" font-weight="bold" fill="#183d54">Otoritas Validasi Evaluator (Human-in-the-Loop)</text>
+          <rect x="0" y="140" width="130" height="26" rx="4" fill="#166534"/>
+          <text x="65" y="157" font-family="Cambria, serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">✓ Terima Usulan AI</text>
+          <rect x="140" y="140" width="130" height="26" rx="4" fill="#1e3a8a"/>
+          <text x="205" y="157" font-family="Cambria, serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">✎ Override Skor Nilai</text>
+          <rect x="280" y="140" width="160" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+          <text x="360" y="157" font-family="Cambria, serif" font-size="9.5" fill="#334155" text-anchor="middle">Tandai Pengecualian (Flag)</text>
+          <text x="0" y="182" font-family="Cambria, serif" font-size="9.5" font-weight="bold" fill="#334155">Catatan Pertimbangan Audit Evaluator (Wajib diisi bila Override):</text>
+          <rect x="0" y="188" width="440" height="42" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+          <text x="8" y="204" font-family="Cambria, serif" font-size="9" fill="#182332">Bukti eviden pada Renstra Bab II dan Bab III sangat lengkap. Selaras penuh dengan IKU Kedeputian Geofisika.</text>
+          <text x="8" y="218" font-family="Cambria, serif" font-size="9" fill="#182332">Nilai A disetujui tanpa catatan anomali.</text>
+          <rect x="330" y="235" width="110" height="22" rx="4" fill="#183d54"/>
+          <text x="385" y="250" font-family="Cambria, serif" font-size="9.5" font-weight="bold" fill="#ffffff" text-anchor="middle">Simpan Telaah</text>
+        </g>
+      </svg>
+      <div class="figure-caption">Gambar 3.2: Antarmuka Telaah Lembar Kerja Evaluasi (LKE) dan Panel Human Override Evaluator</div>
+    </div>
   </section>
+
+  <!-- BAB 4 -->
+  <section class="chapter" id="administrasi">
+    <h2>4. Panduan Khusus Administrator</h2>
+    <p>
+      Administrator sistem bertanggung jawab atas pemeliharaan operasional, manajemen akun pengguna, pengaturan jadwal evaluasi tahunan, dan tata kelola penyimpanan data.
+    </p>
+
+    <h3>4.1 Manajemen Akun dan Pengguna</h3>
+    <p>
+      Melalui menu <strong>Admin -&gt; Kelola Akun</strong> (<code>/admin/users</code>), Administrator dapat mendaftarkan akun baru, menonaktifkan pengguna yang mutasi atau pensiun, serta me-reset kata sandi pengguna satker yang terkendala. Akun pengguna diidentifikasi menggunakan NIP resmi dan terikat pada ID Satuan Kerja.
+    </p>
+
+    <h3>4.2 Pengaturan Periode Kalender Evaluasi</h3>
+    <p>
+      Periode evaluasi mengontrol tahun anggaran SAKIP yang dievaluasi serta jendela waktu unggah dokumen. Pada menu <strong>Admin -&gt; Periode Evaluasi</strong> (<code>/admin/periods</code>), Administrator menentukan tanggal <code>upload_open_at</code> dan <code>upload_close_at</code>. Bila tanggal penutupan telah terlewati, sistem secara otomatis menonaktifkan tombol unggah satker demi menjaga integritas batas waktu audit.
+    </p>
+
+    <h3>4.3 Tata Kelola Penyimpanan (Shared Drive Dynamic Config)</h3>
+    <p>
+      Sistem menerapkan arsitektur penyimpanan berkas multi-periode berbasis Google Shared Drive BMKG. Melalui menu <strong>Admin -&gt; Storage Drive</strong> (<code>/admin/storage</code>), Administrator dapat mengikat <em>Shared Drive ID</em> tertentu ke periode tahun evaluasi aktif:
+    </p>
+    <ul>
+      <li><strong>Uji Koneksi Mandiri</strong>: Tombol <em>Uji Koneksi Storage</em> memverifikasi keabsahan izin token Service Account / OAuth secara aman tanpa mengekspos kredensial rahasia ke antarmuka.</li>
+      <li><strong>Period Storage Lock</strong>: Periode evaluasi yang telah memuat dokumen terunggah terkunci dari perubahan konfigurasi binding secara langsung demi mencegah tautan berkas historis terputus.</li>
+      <li><strong>Historical Safety</strong>: Penggantian Shared Drive pada periode baru tidak memindahkan berkas lama. Berkas historis selalu diunduh mengacu pada konfigurasi aslinya.</li>
+    </ul>
+
+    <div class="screenshot-frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="100%" height="auto" aria-label="Mockup Antarmuka Administrator Storage Drive">
+        <defs>
+          <filter id="ug-admin-shadow" x="-5%" y="-5%" width="110%" height="110%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#182332" flood-opacity="0.15"/>
+          </filter>
+        </defs>
+        <rect x="5" y="5" width="590" height="310" rx="8" fill="#ffffff" stroke="#9eaeba" stroke-width="1.5" filter="url(#ug-admin-shadow)"/>
+        <rect x="5" y="5" width="590" height="30" rx="8" fill="#eef2f5"/>
+        <rect x="5" y="27" width="590" height="8" fill="#eef2f5"/>
+        <line x1="5" y1="35" x2="595" y2="35" stroke="#9eaeba" stroke-width="1"/>
+        <circle cx="25" cy="20" r="5" fill="#e57373"/>
+        <circle cx="40" cy="20" r="5" fill="#ffb74d"/>
+        <circle cx="55" cy="20" r="5" fill="#81c784"/>
+        <rect x="80" y="11" width="340" height="18" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="90" y="24" font-family="Cambria, serif" font-size="10" fill="#64748b">https://sakip.bmkg.go.id/admin/storage</text>
+        <rect x="5" y="35" width="125" height="280" fill="#f8fafc"/>
+        <line x1="130" y1="35" x2="130" y2="315" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="18" y="58" font-family="Cambria, serif" font-size="10.5" font-weight="bold" fill="#183d54">ADMIN SISTEM</text>
+        <text x="18" y="82" font-family="Cambria, serif" font-size="10" fill="#475569">Kelola Akun</text>
+        <text x="18" y="104" font-family="Cambria, serif" font-size="10" fill="#475569">Periode Evaluasi</text>
+        <text x="18" y="126" font-family="Cambria, serif" font-size="10" fill="#475569">Penugasan SPT</text>
+        <rect x="10" y="138" width="112" height="22" rx="4" fill="#e0f2fe"/>
+        <text x="18" y="153" font-family="Cambria, serif" font-size="10" font-weight="bold" fill="#0369a1">Storage Drive</text>
+        <text x="18" y="178" font-family="Cambria, serif" font-size="10" fill="#475569">AI Governance</text>
+        <g transform="translate(145, 45)">
+          <text x="0" y="15" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#183d54">Tata Kelola Konfigurasi Storage (Shared Drive Dynamic Config)</text>
+          <text x="0" y="28" font-family="Cambria, serif" font-size="9" fill="#526675">Manajemen multi-binding Google Shared Drive BMKG per periode evaluasi</text>
+          <rect x="330" y="6" width="110" height="24" rx="4" fill="#183d54"/>
+          <text x="385" y="22" font-family="Cambria, serif" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">+ Tambah Drive</text>
+          <rect x="0" y="38" width="440" height="100" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+          <rect x="0" y="38" width="440" height="24" fill="#eef2f5" rx="6"/>
+          <rect x="0" y="56" width="440" height="6" fill="#eef2f5"/>
+          <text x="10" y="54" font-family="Cambria, serif" font-size="9.5" font-weight="bold" fill="#183d54">DRIVE_PROD_BMKG_2026 (Konfigurasi Aktif)</text>
+          <rect x="375" y="42" width="55" height="16" rx="8" fill="#dcfce7"/>
+          <text x="402" y="53" font-family="Cambria, serif" font-size="8" font-weight="bold" fill="#166534" text-anchor="middle">ACTIVE</text>
+          <text x="10" y="76" font-family="Cambria, serif" font-size="8.5" fill="#64748b">Shared Drive ID:</text>
+          <text x="95" y="76" font-family="Cambria, serif" font-size="8.5" font-weight="bold" fill="#182332">0AByZ90218xklQkz0A9</text>
+          <text x="240" y="76" font-family="Cambria, serif" font-size="8.5" fill="#64748b">Root Folder ID:</text>
+          <text x="315" y="76" font-family="Cambria, serif" font-size="8.5" font-weight="bold" fill="#182332">1fK8wpL90zXyQa891</text>
+          <text x="10" y="94" font-family="Cambria, serif" font-size="8.5" fill="#64748b">Periode Terikat:</text>
+          <text x="95" y="94" font-family="Cambria, serif" font-size="8.5" font-weight="bold" fill="#182332">Evaluasi SAKIP BMKG 2026</text>
+          <text x="240" y="94" font-family="Cambria, serif" font-size="8.5" fill="#64748b">Hak Akses:</text>
+          <text x="315" y="94" font-family="Cambria, serif" font-size="8.5" font-weight="bold" fill="#166534">Read / Write</text>
+          <rect x="10" y="106" width="120" height="22" rx="3" fill="#0284c7"/>
+          <text x="70" y="121" font-family="Cambria, serif" font-size="8.5" font-weight="bold" fill="#ffffff" text-anchor="middle">Uji Koneksi Storage</text>
+          <text x="140" y="121" font-family="Cambria, serif" font-size="8.5" fill="#166534">Status: Terhubung (HTTP 200 OK, Latensi: 138ms)</text>
+          <text x="0" y="156" font-family="Cambria, serif" font-size="11" font-weight="bold" fill="#183d54">Daftar Binding Storage Antar-Periode (Historical Safety)</text>
+          <rect x="0" y="164" width="440" height="20" fill="#eef2f5" rx="2"/>
+          <text x="8" y="178" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Tahun</text>
+          <text x="65" y="178" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Nama Storage Config</text>
+          <text x="210" y="178" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Total Berkas</text>
+          <text x="290" y="178" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Kapasitas</text>
+          <text x="375" y="178" font-family="Cambria, serif" font-size="9" font-weight="bold" fill="#334155">Status</text>
+          <line x1="0" y1="202" x2="440" y2="202" stroke="#e2e8f0"/>
+          <text x="8" y="196" font-family="Cambria, serif" font-size="9" fill="#182332">2026</text>
+          <text x="65" y="196" font-family="Cambria, serif" font-size="9" fill="#182332">DRIVE_PROD_BMKG_2026</text>
+          <text x="210" y="196" font-family="Cambria, serif" font-size="9" fill="#182332">342 Berkas</text>
+          <text x="290" y="196" font-family="Cambria, serif" font-size="9" fill="#182332">24.6 GB</text>
+          <text x="375" y="196" font-family="Cambria, serif" font-size="8.5" font-weight="bold" fill="#166534">ACTIVE</text>
+          <line x1="0" y1="222" x2="440" y2="222" stroke="#e2e8f0"/>
+          <text x="8" y="216" font-family="Cambria, serif" font-size="9" fill="#182332">2025</text>
+          <text x="65" y="216" font-family="Cambria, serif" font-size="9" fill="#182332">DRIVE_ARCHIVE_BMKG_2025</text>
+          <text x="210" y="216" font-family="Cambria, serif" font-size="9" fill="#182332">1.820 Berkas</text>
+          <text x="290" y="216" font-family="Cambria, serif" font-size="9" fill="#182332">118.2 GB</text>
+          <text x="375" y="216" font-family="Cambria, serif" font-size="8.5" fill="#475569">READ-ONLY</text>
+          <line x1="0" y1="242" x2="440" y2="242" stroke="#e2e8f0"/>
+          <text x="8" y="236" font-family="Cambria, serif" font-size="9" fill="#182332">2024</text>
+          <text x="65" y="236" font-family="Cambria, serif" font-size="9" fill="#182332">DRIVE_LEGACY_BMKG_2024</text>
+          <text x="210" y="236" font-family="Cambria, serif" font-size="9" fill="#182332">1.450 Berkas</text>
+          <text x="290" y="236" font-family="Cambria, serif" font-size="9" fill="#182332">94.0 GB</text>
+          <text x="375" y="236" font-family="Cambria, serif" font-size="8.5" fill="#475569">READ-ONLY</text>
+        </g>
+      </svg>
+      <div class="figure-caption">Gambar 4.1: Panel Tata Kelola Penyimpanan Dinamis Google Shared Drive Administrator</div>
+    </div>
+  </section>
+
+  <!-- BAB 5 -->
+  <section class="chapter" id="troubleshooting">
+    <h2>5. Tanya Jawab (FAQ) dan Penanganan Kendala</h2>
+    <p>
+      Bagian ini memuat prosedur penyelesaian kendala umum (*troubleshooting*) mandiri bagi pengguna satker dan evaluator saat mengoperasikan aplikasi:
+    </p>
+
+    <table>
+      <caption>Tabel 5.1: Panduan Pemecahan Masalah Operasional Mandiri</caption>
+      <thead>
+        <tr>
+          <th style="width: 25%;">Gejala Masalah</th>
+          <th style="width: 35%;">Penyebab Teknis</th>
+          <th style="width: 40%;">Langkah Solusi Mandiri</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Gagal Unggah Dokumen Eviden</strong></td>
+          <td>Ukuran berkas melebihi 50 MB atau ekstensi berkas berupa file gambar mentah / executable.</td>
+          <td>Kompres berkas PDF menggunakan utilitas kompresi dokumen resmi atau simpan ulang berkas dalam format PDF/A teks standar.</td>
+        </tr>
+        <tr>
+          <td><strong>Status Parsing Bertanda FAILED</strong></td>
+          <td>Berkas PDF berupa hasil pindaian foto buram tanpa lapisan teks digital (OCR layer).</td>
+          <td>Unggah ulang berkas dokumen digital asli yang dihasilkan langsung dari aplikasi pengolah kata, atau hubungi Admin untuk memicu OCR Document AI.</td>
+        </tr>
+        <tr>
+          <td><strong>Nilai Override Tidak Tersimpan</strong></td>
+          <td>Evaluator belum mengisi kolom teks <em>Catatan Pertimbangan Audit</em> saat mengubah skor kriteria.</td>
+          <td>Ketikkan kalimat alasan audit yang memadai pada kolom catatan pertimbangan, lalu klik kembali tombol <em>Simpan Telaah</em>.</td>
+        </tr>
+        <tr>
+          <td><strong>Tombol Finalisasi LHE Terkunci</strong></td>
+          <td>Masih terdapat kriteria bertanda <em>Exceptions Needing Review</em> yang belum dikonfirmasi atau di-override.</td>
+          <td>Buka tab filter pengecualian, periksa kriteria yang tersisa, dan lakukan konfirmasi hingga seluruh indikator bertanda valid.</td>
+        </tr>
+        <tr>
+          <td><strong>Sesi Terputus Tiba-Tiba</strong></td>
+          <td>Masa berlaku token autentikasi JWT telah habis setelah periode inaktivitas pengguna.</td>
+          <td>Muat ulang peramban web dan lakukan login ulang menggunakan NIP dan kata sandi Anda. Draf telaah yang telah disimpan tetap aman di basis data.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>5.2 Pertanyaan yang Sering Diajukan (FAQ)</h3>
+    <p>
+      <strong>T: Apakah AI dapat mengubah skor evaluasi secara sepihak tanpa persetujuan manusia?</strong><br>
+      J: Tidak. Sistem SAKIP OTONOM+ menerapkan arsitektur <em>Human-in-the-Loop</em> mutlak. Model AI hanya menyajikan usulan nilai awal dan merekomendasikan kutipan kalimat bukti. Penetapan nilai resmi 100% bergantung pada konfirmasi dan penetapan oleh Evaluator Inspektorat.
+    </p>
+    <p>
+      <strong>T: Bagaimana jika dokumen eviden diunggah setelah batas waktu penutupan?</strong><br>
+      J: Setelah tanggal <code>upload_close_at</code> terlewati, tombol unggah otomatis dinonaktifkan oleh sistem. Satker wajib mengajukan surat permohonan pembukaan dispensasi unggah kepada Inspektur Utama BMKG untuk membuka kembali jendela unggah secara khusus.
+    </p>
+  </section>
+
+  <!-- BAB 6 -->
+  <section class="chapter" id="batasan">
+    <h2>6. Batasan Sistem dan Prasyarat Operasional</h2>
+    <p>
+      Guna menjaga performa, reliabilitas, dan keamanan sistem secara optimal, perhatikan batasan teknis operasional berikut:
+    </p>
+    <ol>
+      <li><strong>Format Dokumen Didukung</strong>: Hanya menerima berkas biner bertipe PDF, DOCX, dan XLSX. Berkas hasil scan gambar JPG/PNG wajib diintegrasikan terlebih dahulu ke dalam berkas PDF berteks.</li>
+      <li><strong>Batas Ukuran Berkas</strong>: Maksimal 50 MB per berkas dokumen guna mencegah kejenuhan memori pada kontainer pemroses backend.</li>
+      <li><strong>Mekanisme Tanda Tangan LHE</strong>: Pengesahan hukum LHE formal dilakukan di luar aplikasi melalui Tanda Tangan Elektronik (TTE) tersertifikasi BSrE atau tanda tangan basah pimpinan, kemudian berkas hasil pengesahan diunggah kembali ke sistem untuk pengarsipan permanen.</li>
+      <li><strong>Spesifikasi Peramban</strong>: Disarankan menggunakan peramban Google Chrome versi 120+, Microsoft Edge versi 120+, atau Mozilla Firefox versi 122+ dengan resolusi layar minimal 1366x768 piksel.</li>
+    </ol>
+  </section>
+
   <footer class="document-end">
-    Dokumen Panduan Pengguna Resmi ? Diterbitkan di folder DocsApp/ ? WIYASA v1.6.0
+    <p>
+      <strong>Buku Panduan Berakhir.</strong> Diterbitkan secara resmi oleh Inspektorat Badan Meteorologi, Klimatologi, dan Geofisika (BMKG) menggunakan engine WIYASA v1.6.2.<br>
+      Hak cipta dan kekayaan intelektual sistem dilindungi oleh peraturan perundang-undangan Republik Indonesia.
+    </p>
   </footer>
+
 </main>
 </body>
 </html>
+

@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.6.4 — 2026-10-31: Penyempurnaan Bab 2 Onboarding & Penanganan Halaman Kosong (Complete Password Change Flow)
+
+- **Eliminasi Anomali Halaman Kosong / Persepsi Konten Terpotong:**
+  - Mengatasi kendala pada Sub-bab 2.2 *Penggantian Kata Sandi Awal* yang sebelumnya hanya berupa paragraf pendek tanpa rincian langkah, sehingga saat terdorong ke halaman baru menyisakan ruang kosong 80% yang tampak seperti teks terpotong.
+  - Melengkapi Sub-bab 2.2 dengan:
+    1. Prosedur terstruktur 4 langkah pengisian formulir pembaharuan kata sandi `/ubah-password`.
+    2. Tabel 2.1: Matriks Ketentuan Keamanan Kredensial Pengguna BMKG (panjang karakter, komposisi, anti-duplikasi sandi default, dan proteksi brute-force).
+    3. Mockup visual UI vektor SVG mandiri: Gambar 2.2 (*Antarmuka Formulir Penggantian Kata Sandi Akun*).
+    4. Sub-bab 2.3: Prosedur resmi penanganan lupa kata sandi dan pemulihan akun terkunci melalui permohonan ke Administrator TI Inspektorat.
+  - Halaman dokumen kini terisi penuh secara proporsional, informatif, dan estetik tanpa celah kosong janggal sebelum transisi ke Bab 3.
+- **Pembaruan Berkas:**
+  - Memperbarui langsung `D:\AI_LAB\Office\SAKIP OTONOM+\app-documentation\panduan-pengguna-aplikasi.html` dan `sources/12-user-admin-guide.md`, serta menyinkronkan paket template bawaan.
+
 ## 1.6.3 — 2026-10-31: Eliminasi Total Rogue Header & Fixed Footers Bug (True Clean Margin Architecture)
 
 - **Eliminasi Anomali Mispositioning Element Cetak Chromium (`position: fixed`):**
