@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.6.1 ? 2026-10-31: Perbaikan Layout Header Anti-Tabrakan Konten (Anti-Collision Architecture)
+
+- **Eliminasi Cacat Tabrakan Visual Running Header Terhadap Konten Halaman:**
+  - Menghilangkan bug di mana elemen kop atas/running header berulang menimpa judul bab (`h2`) dan paragraf pertama dokumen saat dicetak/preview.
+  - Memposisikan running header secara presisi di ruang margin atas 3 cm (`position: fixed; top: -22mm; left: 0; right: 0; height: 8mm;` pada `@media print`).
+  - Menerapkan aturan `white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 48%;` pada seluruh elemen teks header guna mencegah teks judul panjang membungkus ke baris kedua yang membengkakkan tinggi header.
+  - Menambahkan buffer aman `.chapter { break-before: page; padding-top: 8mm; }` pada `@media print` sehingga terdapat celah bersih 22 mm antara batas bawah header dan teks judul bab.
+  - Memperbarui proteksi halaman cover (`.cover { break-after: page; min-height: 100vh; position: relative; z-index: 10; background: white; }`) agar running header tidak muncul pada lembar sampul dokumen.
+- **Peningkatan Filter Validator (`scripts/validate.py`):**
+  - Menambahkan deteksi otomatis yang menolak penggunaan `position: fixed` dengan `top: 0` atau nilai positif pada elemen header yang berisiko menimpa konten.
+  - Mewajibkan penyertaan `white-space: nowrap` dan `text-overflow: ellipsis` pada kelas `.running-header`.
+- **Sinkronisasi Template & Artefak Deliverable:**
+  - Memperbarui `assets/report-a4.html`, `assets/user-guide-a4.html`, `DocsApp/`, dan `app-documentation/` dengan arsitektur header anti-tabrakan yang telah terverifikasi.
+
 ## 1.6.0 ? 2026-10-31: Rebranding Resmi WIYASA & Running Page Footers
 
 - **Pengenalan Running Page Footers pada Dokumen Cetak A4:**

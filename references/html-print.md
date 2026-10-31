@@ -108,6 +108,104 @@ Cambria bukan font yang pasti tersedia pada setiap OS atau container.
   Dilarang keras memuat tag `<script>`, `<iframe>`, `<object>`, atau atribut
   event handler (`onload`, `onerror`, `onclick`).
 
+## Header Halaman dan Pencegahan Tabrakan Konten (Running Page Headers)
+
+Running Header (kop halaman atas berulang) sering kali menimpa atau menutup judul bab (`h2`) dan paragraf pertama jika tidak dikonfigurasi secara presisi. Tabrakan visual terjadi akibat 3 faktor:
+1. **Posisi Tidak Tepat:** Menggunakan `top: 0` atau nilai positif pada `position: fixed`, yang menempatkan header tepat di koordinat awal konten bab.
+2. **Teks Panjang Turun Baris (Multi-Line Wrap):** Judul dokumen atau instansi yang panjang membungkus menjadi 2 baris sehingga tingginya membengkak (? 15 mm) dan merangsek ke area teks bab.
+3. **Ketiadaan Buffer Atas pada Bab:** Elemen `.chapter` tidak memiliki `padding-top` pada `@media print`, sehingga judul bab langsung menempel pada batas margin atas.
+
+### Arsitektur Anti-Tabrakan Header Resmi WIYASA:
+
+```css
+/* 1. Aturan CSS Paged Media Standar (@page) */
+@page {
+  size: A4 portrait;
+  margin: 3cm;
+  @top-left {
+    content: "WIYASA ? [Judul Dokumen]";
+    font-family: Cambria, "Times New Roman", serif;
+    font-size: 8pt;
+    color: #64748b;
+    vertical-align: bottom;
+    padding-bottom: 2mm;
+    border-bottom: 0.5pt solid #cbd5e1;
+  }
+  @top-right {
+    content: "[Dokumen Resmi / Status]";
+    font-family: Cambria, "Times New Roman", serif;
+    font-size: 8pt;
+    color: #64748b;
+    vertical-align: bottom;
+    padding-bottom: 2mm;
+    border-bottom: 0.5pt solid #cbd5e1;
+  }
+}
+@page :first {
+  @top-left { content: none; }
+  @top-right { content: none; }
+}
+
+/* 2. Tampilan Layar (Screen View) */
+.running-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5pt solid #cbd5e1;
+  padding-bottom: 2mm;
+  margin-bottom: 8mm;
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 8pt;
+  color: #64748b;
+}
+.running-header span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 48%;
+}
+
+/* 3. Pengulangan Cetak Peramban Bebas Tabrakan (@media print) */
+@media print {
+  /* Ditempatkan presisi di dalam ruang margin atas 3cm (30mm) */
+  .running-header {
+    position: fixed;
+    top: -22mm;
+    left: 0;
+    right: 0;
+    height: 8mm;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5pt solid #cbd5e1;
+    padding-bottom: 1.5mm;
+    font-size: 8pt;
+    color: #64748b;
+    background: transparent;
+  }
+  /* MENCEGAH MULTI-BARIS: Wajib satu baris dengan ellipsis */
+  .running-header span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 48%;
+  }
+
+  /* BUFFER ANTI-TABRAKAN WAJIB: Menjamin jarak aman 8mm dari batas atas konten */
+  .chapter {
+    break-before: page;
+    page-break-before: always;
+    padding-top: 8mm;
+  }
+}
+```
+
+Dengan konfigurasi di atas:
+- Posisi `top: -22mm` dengan tinggi 8mm menempatkan batas bawah garis header pada ketinggian **16 mm dari tepi atas kertas fisik**.
+- Batas atas isi bab dimulai pada margin 30 mm ditambah `padding-top: 8mm`, yaitu pada **38 mm dari tepi atas kertas fisik**.
+- Terdapat ruang bebas bersih (*clearance buffer*) sebesar **22 mm** di antara garis header dan judul bab (`h2`), sehingga tabrakan visual mustahil terjadi.
+
 ## Footer dan Nomor Halaman (Running Page Footers)
 
 Seluruh dokumen resmi A4 yang dihasilkan WIYASA wajib menyertakan identitas halaman running footer pada setiap halaman cetak:

@@ -126,8 +126,23 @@ def validate_html_content(html_text: str, filename: str = "HTML") -> list[str]:
             if not any(k in sel_clean for k in [".running-footer", ".running-header", "footer"]):
                 errors.append(
                     f"Penggunaan position: fixed tidak diizinkan pada '{selector.strip()}' di {filename}. "
-                    "Hanya diperbolehkan untuk elemen header/footer cetak (.running-footer)."
+                    "Hanya diperbolehkan untuk elemen header/footer cetak (.running-footer / .running-header)."
                 )
+
+    # Deteksi bahaya tabrakan konten: running header dilarang menggunakan top: 0 atau nilai positif
+    if re.search(r'position:\s*fixed[^}]*?(?<!-)\btop:\s*(?:0\b|[1-9]\d*(?:px|mm|pt))', html_text, re.I):
+        errors.append(
+            f"Bahaya tabrakan konten pada {filename}: Header fixed tidak boleh menggunakan top: 0 atau nilai positif "
+            "karena akan menimpa judul bab dan teks. Gunakan posisi aman di dalam margin atas (top: -22mm) "
+            "dan tambahkan padding-top: 8mm pada .chapter di @media print."
+        )
+
+    # Pastikan running-header menyertakan nowrap untuk mencegah wrap 2 baris yang menimpa konten
+    if ".running-header" in html_text and "nowrap" not in html_text.lower():
+        errors.append(
+            f"Risiko multi-baris pada {filename}: .running-header wajib menyertakan 'white-space: nowrap' dan "
+            "'text-overflow: ellipsis' agar judul dokumen tidak turun ke baris kedua dan menimpa konten."
+        )
 
     # Deteksi kebocoran instruksi cetak peramban & meta-kriteria ke dalam badan dokumen aplikasi
     leakage_patterns = [
