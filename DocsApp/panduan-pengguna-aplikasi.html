@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Buku Panduan Pengguna dan Administrator Sistem WIYASA v1.6.0. Format A4 Portrait, margin 3 cm, font Cambria 12 pt, align justify, tangkapan layar visual.">
+  <title>Panduan Pengguna dan Administrator - WIYASA v1.6.0</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 3cm;
+      @bottom-left {
+        content: "WIYASA ? Panduan Pengguna dan Administrator";
+        font-family: Cambria, "Times New Roman", serif;
+        font-size: 8.5pt;
+        color: #64748b;
+        vertical-align: top;
+        padding-top: 2mm;
+        border-top: 0.5pt solid #cbd5e1;
+      }
+      @bottom-right {
+        content: "Halaman " counter(page);
+        font-family: Cambria, "Times New Roman", serif;
+        font-size: 8.5pt;
+        color: #64748b;
+        vertical-align: top;
+        padding-top: 2mm;
+        border-top: 0.5pt solid #cbd5e1;
+      }
+    }
+    @page :first {
+      @bottom-left { content: none; }
+      @bottom-right { content: none; }
+    }
+    * { box-sizing: border-box; }
+    html { background: #e9edf2; }
+    body {
+      margin: 0; color: #182332;
+      font-family: Cambria, "Times New Roman", serif;
+      font-size: 12pt; line-height: 1.5;
+    }
+    .report {
+      width: 210mm; max-width: 100%; padding: 30mm; margin: 24px auto;
+      background: white; box-shadow: 0 4px 24px #17233518;
+    }
+    h1, h2, h3, p, li, td, th, code { font-size: 12pt; }
+    h1, h2, h3 { line-height: 1.35; color: #183d54; }
+    h1 { margin: 12mm 0 6mm; font-weight: 700; text-transform: uppercase; }
+    h2 { margin: 8mm 0 4mm; border-bottom: 1px solid #a4b5c1; padding-bottom: 2mm; }
+    h3 { margin: 6mm 0 3mm; }
+    p { margin: 0 0 4mm; text-align: justify; text-justify: inter-word; hyphens: auto; }
+    li { text-align: justify; text-justify: inter-word; hyphens: auto; margin-bottom: 2mm; }
+    .eyebrow { color: #526675; letter-spacing: .06em; font-weight: 700; margin-bottom: 2mm; }
+    .badge { display: inline-block; border: 1px solid #7a8c98; padding: 1mm 3mm; font-weight: 700; }
+    .cover { min-height: 190mm; }
+    .metadata { margin: 8mm 0; }
+    .metadata dt { font-weight: 700; margin-top: 2mm; }
+    .metadata dd { margin: 0 0 2mm 0; text-align: justify; text-justify: inter-word; hyphens: auto; }
+    .notice { border-left: 3px solid #536f84; padding: 3mm 4mm; margin: 5mm 0; background: #f1f5f8; text-align: justify; text-justify: inter-word; hyphens: auto; }
+    a { color: #194f70; text-underline-offset: 2px; overflow-wrap: anywhere; }
+    table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 5mm 0; }
+    caption { text-align: left; font-weight: 700; margin-bottom: 2mm; }
+    th, td { padding: 2mm; border: 1px solid #9eaeba; vertical-align: top; overflow-wrap: anywhere; text-align: justify; text-justify: inter-word; }
+    th { text-align: left; background: #eef2f5; font-weight: 700; }
+    pre, code { font-family: inherit; white-space: pre-wrap; overflow-wrap: anywhere; }
+    img, svg { max-width: 100%; height: auto; }
+    .screenshot-frame {
+      margin: 5mm 0; padding: 3mm;
+      background: #f8fafc; border: 1px solid #cbd5e1;
+      border-radius: 4px; text-align: center;
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .figure-caption {
+      margin-top: 2mm; font-size: 11pt; color: #475569;
+      font-style: italic; text-align: center;
+    }
+    .document-end { border-top: 1px solid #9eaeba; margin-top: 10mm; padding-top: 3mm; font-size: 11pt; color: #495b6a; }
+    .running-footer {
+      margin-top: 15mm;
+      padding-top: 3mm;
+      border-top: 0.5pt solid #cbd5e1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8.5pt;
+      color: #64748b;
+    }
+    @media screen and (max-width: 800px) {
+      .report { width: 100%; margin: 0; padding: 20px; box-shadow: none; }
+      .cover { min-height: auto; }
+    }
+    @media print {
+      html, body { background: white; margin: 0; padding: 0; }
+      .report { width: auto; max-width: none; padding: 0; margin: 0; box-shadow: none; }
+      .chapter { break-before: page; page-break-before: always; }
+      h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+      p, li { orphans: 3; widows: 3; text-align: justify; text-justify: inter-word; hyphens: auto; }
+      thead { display: table-header-group; }
+      tr { break-inside: avoid; page-break-inside: avoid; }
+      .notice { background: none; }
+      a { color: inherit; text-decoration: none; }
+      .running-footer {
+        position: fixed;
+        bottom: -22mm;
+        left: 0;
+        right: 0;
+        height: 10mm;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 0.5pt solid #cbd5e1;
+        padding-top: 2mm;
+        font-size: 8.5pt;
+        color: #64748b;
+        background: transparent;
+      }
+    }
+  </style>
+</head>
+<body>
+<main class="report">
+
+  <header class="cover" id="cover">
+    <p class="eyebrow">WIYASA ? PANDUAN OPERASIONAL RESMI</p>
+    <h1>Buku Panduan Pengguna dan Administrator: Sistem WIYASA</h1>
+    <p>Petunjuk Praktis Pengoperasian Fitur Pembuatan Dokumentasi, Alur Kerja Tim, Panel Konfigurasi, dan Pemecahan Masalah Mandiri.</p>
+    <p><span class="badge">VERSI 1.6.0 ? DOKUMEN PENGGUNA RESMI</span></p>
+    <dl class="metadata">
+      <dt>Target Audiens</dt>
+      <dd>Pengguna Akhir, Staf Operasional, Tim Pengembang, dan Administrator Sistem</dd>
+      <dt>Tanggal Terbit</dt>
+      <dd>2026-10-31</dd>
+      <dt>Penyusun</dt>
+      <dd>Tim Rekayasa Sistem Dokumentasi WIYASA</dd>
+      <dt>Status Aplikasi</dt>
+      <dd>Produksi / Operasional Resmi</dd>
+      <dt>Model Dokumen</dt>
+      <dd>Standar Opsi 2 (Buku Panduan Operasional Mandiri &amp; Bebas Detail Arsitektur Rumit)</dd>
+    </dl>
+    <p class="notice">Buku panduan ini disusun sebagai rujukan resmi operasional sehari-hari. Simpan berkas ini pada perangkat kerja Anda untuk memudahkan pemecahan kendala teknis secara mandiri.</p>
+  </header>
+
+  <nav class="chapter" id="daftar-isi" aria-label="Daftar isi">
+    <h2>Daftar Isi</h2>
+    <ol>
+      <li><a href="#gambaran-umum">1. Gambaran Umum dan Peran Pengguna</a></li>
+      <li><a href="#onboarding">2. Pendaftaran, Inisiasi, dan Persiapan Sistem</a></li>
+      <li><a href="#fitur-utama">3. Panduan Operasional Fitur Utama</a></li>
+      <li><a href="#administrasi">4. Panduan Khusus Administrator Sistem</a></li>
+      <li><a href="#troubleshooting">5. Tanya Jawab (FAQ) dan Penanganan Kendala</a></li>
+      <li><a href="#batasan">6. Batasan Sistem dan Kontak Dukungan</a></li>
+    </ol>
+    <p>Gunakan daftar isi di atas untuk menavigasi langsung ke topik panduan yang Anda butuhkan.</p>
+  </nav>
+
+  <section class="chapter" id="gambaran-umum">
+    <h2>1. Gambaran Umum dan Peran Pengguna</h2>
+    <p>Sistem WIYASA dirancang untuk membantu seluruh pemangku kepentingan dalam menghasilkan dan memelihara dokumentasi perangkat lunak berkualitas tinggi. Hak akses dan tanggung jawab operasional dikelompokkan ke dalam 3 peran:</p>
+    <table>
+      <caption>Tabel 1.1: Matriks Peran Pengguna dan Wewenang Sistem</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 25%;">Peran Pengguna</th>
+          <th scope="col" style="width: 35%;">Tanggung Jawab Utama</th>
+          <th scope="col" style="width: 40%;">Artefak yang Diakses</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Pengguna / Klien</strong></td>
+          <td>Menyampaikan kebutuhan aplikasi, mereviu draf, dan menggunakan panduan operasional.</td>
+          <td>Buku Panduan Pengguna (HTML) dan ringkasan eksekutif.</td>
+        </tr>
+        <tr>
+          <td><strong>Tim Pengembang</strong></td>
+          <td>Mengubah spesifikasi menjadi kode dan memperbarui berkas sumber di Git.</td>
+          <td>Berkas sumber modular Markdown (sources/*.md) dan Laporan Arsitektur.</td>
+        </tr>
+        <tr>
+          <td><strong>Administrator</strong></td>
+          <td>Menjaga integritas repositori, menjalankan validator, dan merilis versi resmi.</td>
+          <td>Seluruh repositori, skrip validasi CLI, dan konfigurasi sistem.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chapter" id="onboarding">
+    <h2>2. Pendaftaran, Inisiasi, dan Persiapan Sistem</h2>
+    <p>Inisiasi sistem WIYASA tidak memerlukan instalasi perangkat lunak rumit. Pengguna cukup memastikan folder skill telah terpasang pada lingkungan asisten AI yang didukung.</p>
+    
+    <div class="screenshot-frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 240" width="100%" height="auto">
+        <rect width="600" height="240" rx="6" fill="#1e293b"/>
+        <rect x="0" y="0" width="600" height="30" rx="6" fill="#0f172a"/>
+        <circle cx="20" cy="15" r="4" fill="#ef4444"/>
+        <circle cx="35" cy="15" r="4" fill="#f59e0b"/>
+        <circle cx="50" cy="15" r="4" fill="#10b981"/>
+        <text x="75" y="19" font-family="Consolas, monospace" font-size="11" fill="#94a3b8">Terminal - Persiapan Lingkungan WIYASA</text>
+        <text x="25" y="65" font-family="Consolas, monospace" font-size="13" fill="#38bdf8">PS D:\Proyek&gt; git clone https://github.com/digiworkjkt-dev/WIYASA.git</text>
+        <text x="25" y="95" font-family="Consolas, monospace" font-size="13" fill="#94a3b8">Cloning into 'WIYASA'...</text>
+        <text x="25" y="125" font-family="Consolas, monospace" font-size="13" fill="#10b981">remote: Enumerating objects: 100%, done.</text>
+        <text x="25" y="155" font-family="Consolas, monospace" font-size="13" fill="#38bdf8">PS D:\Proyek&gt; python scripts/validate.py --package-dir DocsApp</text>
+        <text x="25" y="185" font-family="Consolas, monospace" font-size="13" fill="#4ade80">PASS: Validasi berhasil. Metadata, links, print rules, dan footer lolos.</text>
+      </svg>
+      <div class="figure-caption">Gambar 2.1: Antarmuka inisiasi repositori dan pengujian lingkungan kerja WIYASA.</div>
+    </div>
+    <p>Setelah proses inisiasi selesai, pengguna siap menjalankan perintah dokumentasi pertama untuk aplikasi yang sedang dikembangkan.</p>
+  </section>
+
+  <section class="chapter" id="fitur-utama">
+    <h2>3. Panduan Operasional Fitur Utama</h2>
+    <p>Pembuatan paket dokumentasi aplikasi melalui WIYASA dilakukan dalam 3 langkah mudah:</p>
+
+    <h3>3.1 Langkah 1: Memberikan Instruksi Kerja Spesifik</h3>
+    <p>Ketikkan instruksi pada jendela asisten AI Anda dengan menyebutkan nama aplikasi dan ruang lingkup yang diinginkan. Contoh prompt resmi:</p>
+    <pre><code>Gunakan skill WIYASA untuk menyusun dokumentasi lengkap aplikasi E-Commerce UMKM.
+Gunakan Standar Opsi 2 (Dual HTML: Laporan Arsitektur &amp; Panduan Pengguna).
+Simpan seluruh berkas sumber di folder DocsApp/sources/ dan laporan di DocsApp/.</code></pre>
+
+    <div class="screenshot-frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280" width="100%" height="auto">
+        <rect width="600" height="280" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+        <rect width="600" height="32" rx="8" fill="#eef2f5"/>
+        <text x="20" y="21" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#183d54">WIYASA Documentation Suite - Peta Navigasi Artefak</text>
+        <rect x="20" y="50" width="260" height="95" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+        <text x="35" y="75" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#0369a1">1. Laporan Arsitektur (HTML)</text>
+        <text x="35" y="98" font-family="Cambria, serif" font-size="11" fill="#475569">Target: Tim Pengembang &amp; Auditor</text>
+        <text x="35" y="120" font-family="Cambria, serif" font-size="11" fill="#475569">Isi: Spesifikasi, Skema Data, API, ADR</text>
+        <rect x="310" y="50" width="260" height="95" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+        <text x="325" y="75" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#0369a1">2. Panduan Pengguna (HTML)</text>
+        <text x="325" y="98" font-family="Cambria, serif" font-size="11" fill="#475569">Target: Klien &amp; Staf Operasional</text>
+        <text x="325" y="120" font-family="Cambria, serif" font-size="11" fill="#475569">Isi: Petunjuk Fitur, FAQ, Troubleshooting</text>
+        <rect x="20" y="160" width="550" height="100" rx="6" fill="#f0fdf4" stroke="#86efac"/>
+        <text x="35" y="188" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#166534">3. Single Source of Truth Modular (sources/*.md)</text>
+        <text x="35" y="212" font-family="Cambria, serif" font-size="11" fill="#166534">18 berkas Markdown mandiri tersimpan di folder sources/ siap commit ke Git.</text>
+        <text x="35" y="235" font-family="Cambria, serif" font-size="11" fill="#166534">Status Keterlacakan: 100% Terverifikasi (FR -&gt; AC -&gt; TASK -&gt; TC).</text>
+      </svg>
+      <div class="figure-caption">Gambar 3.1: Struktur paket hasil generasi dokumentasi Standar Opsi 2.</div>
+    </div>
+
+    <h3>3.2 Langkah 2: Mengkaji Hasil Dokumentasi</h3>
+    <p>Buka berkas HTML hasil generasi di peramban web Anda. Periksa kelengkapan tabel, navigasi daftar isi bertaut, dan kerapian tata letak teks rata kanan-kiri.</p>
+  </section>
+
+  <section class="chapter" id="administrasi">
+    <h2>4. Panduan Khusus Administrator Sistem</h2>
+    <p>Administrator sistem bertugas memastikan tidak ada kemunduran kualitas (*regression*) pada dokumentasi saat aplikasi mengalami pembaruan.</p>
+
+    <div class="screenshot-frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 240" width="100%" height="auto">
+        <rect width="600" height="240" rx="6" fill="#0f172a"/>
+        <text x="25" y="35" font-family="Consolas, monospace" font-size="12" fill="#38bdf8"># Prosedur Audit Kualitas Berkala Administrator</text>
+        <text x="25" y="70" font-family="Consolas, monospace" font-size="12" fill="#e2e8f0">1. Uji Integritas Repositori dan Kepatuhan Aturan Cetak A4:</text>
+        <text x="45" y="95" font-family="Consolas, monospace" font-size="12" fill="#a7f3d0">python scripts/validate.py --package-dir DocsApp</text>
+        <text x="25" y="130" font-family="Consolas, monospace" font-size="12" fill="#e2e8f0">2. Uji Konsistensi Relasi ID Requirement terhadap Test Case:</text>
+        <text x="45" y="155" font-family="Consolas, monospace" font-size="12" fill="#a7f3d0">python scripts/lint_traceability.py --dir DocsApp/sources</text>
+        <text x="25" y="195" font-family="Consolas, monospace" font-size="12" fill="#facc15">Hasil Pengujian: 0 Pelanggaran Keamanan ? 100% Keterlacakan Terhubung</text>
+      </svg>
+      <div class="figure-caption">Gambar 4.1: Prosedur audit otomatis administrator sistem.</div>
+    </div>
+  </section>
+
+  <section class="chapter" id="troubleshooting">
+    <h2>5. Tanya Jawab (FAQ) dan Penanganan Kendala</h2>
+    <p>Berikut adalah kendala yang paling sering dihadapi pengguna dan cara penanganan mandiri:</p>
+    <table>
+      <caption>Tabel 5.1: Panduan Pemecahan Masalah Mandiri (Troubleshooting)</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 30%;">Gejala / Kendala</th>
+          <th scope="col" style="width: 35%;">Kemungkinan Penyebab</th>
+          <th scope="col" style="width: 35%;">Solusi Rekomendasi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Font Cambria tidak muncul saat dicetak</td>
+          <td>Perangkat cetak/OS tidak memiliki font lokal Cambria terpasang.</td>
+          <td>Pasang font Cambria atau biarkan fallback Times New Roman dipakai secara wajar.</td>
+        </tr>
+        <tr>
+          <td>Header/footer bawaan browser muncul tanggal atau URL</td>
+          <td>Opsi "Headers and footers" pada jendela cetak peramban masih aktif.</td>
+          <td>Hilangkan centang "Headers and footers" pada dialog cetak peramban Anda.</td>
+        </tr>
+        <tr>
+          <td>Tabel bergaris tapi latar warna abu-abu hilang</td>
+          <td>Opsi "Background graphics" peramban belum diaktifkan.</td>
+          <td>Centang opsi "Background graphics" pada jendela cetak peramban.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chapter" id="batasan">
+    <h2>6. Batasan Sistem dan Kontak Dukungan</h2>
+    <p>Pengguna perlu memperhatikan batasan teknis sistem berikut:</p>
+    <ul>
+      <li>WIYASA menghasilkan dokumen teknis rekayasa, bukan kode sumber aplikasi yang dapat langsung dieksekusi di server.</li>
+      <li>Verifikasi kelayakan visual akhir pada media cetak fisik tetap memerlukan peninjauan langsung oleh tim penjamin mutu.</li>
+    </ul>
+    <dl class="metadata">
+      <dt>Pusat Dukungan Teknis</dt>
+      <dd>Repositori Resmi: https://github.com/digiworkjkt-dev/WIYASA</dd>
+      <dt>Layanan Bantuan</dt>
+      <dd>Buka GitHub Issues pada repositori resmi untuk pelaporan bug atau perbaikan.</dd>
+    </dl>
+  </section>
+
+  <footer class="running-footer" aria-hidden="true">
+    <span>WIYASA ? Panduan Pengguna dan Administrator</span>
+    <span>Dokumen Resmi ? Terkendali</span>
+  </footer>
+
+  <div class="document-end">
+    Dokumen Panduan Pengguna Resmi ? Diterbitkan di folder DocsApp/ ? WIYASA v1.6.0
+  </div>
+
+</main>
+</body>
+</html>

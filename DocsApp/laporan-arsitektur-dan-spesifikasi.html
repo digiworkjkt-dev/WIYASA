@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Laporan Arsitektur dan Spesifikasi Sistem WIYASA v1.6.0. Format A4 Portrait, margin 3 cm, font Cambria 12 pt, align justify.">
+  <title>Laporan Arsitektur dan Spesifikasi Sistem - WIYASA v1.6.0</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 3cm;
+      @bottom-left {
+        content: "WIYASA ? Laporan Arsitektur dan Spesifikasi Sistem";
+        font-family: Cambria, "Times New Roman", serif;
+        font-size: 8.5pt;
+        color: #64748b;
+        vertical-align: top;
+        padding-top: 2mm;
+        border-top: 0.5pt solid #cbd5e1;
+      }
+      @bottom-right {
+        content: "Halaman " counter(page);
+        font-family: Cambria, "Times New Roman", serif;
+        font-size: 8.5pt;
+        color: #64748b;
+        vertical-align: top;
+        padding-top: 2mm;
+        border-top: 0.5pt solid #cbd5e1;
+      }
+    }
+    @page :first {
+      @bottom-left { content: none; }
+      @bottom-right { content: none; }
+    }
+    * { box-sizing: border-box; }
+    html { background: #e9edf2; }
+    body {
+      margin: 0; color: #182332;
+      font-family: Cambria, "Times New Roman", serif;
+      font-size: 12pt; line-height: 1.5;
+    }
+    .report {
+      width: 210mm; max-width: 100%; padding: 30mm; margin: 24px auto;
+      background: white; box-shadow: 0 4px 24px #17233518;
+    }
+    h1, h2, h3, p, li, td, th, code { font-size: 12pt; }
+    h1, h2, h3 { line-height: 1.35; color: #183d54; }
+    h1 { margin: 12mm 0 6mm; font-weight: 700; text-transform: uppercase; }
+    h2 { margin: 8mm 0 4mm; border-bottom: 1px solid #a4b5c1; padding-bottom: 2mm; }
+    h3 { margin: 6mm 0 3mm; }
+    p { margin: 0 0 4mm; text-align: justify; text-justify: inter-word; hyphens: auto; }
+    li { text-align: justify; text-justify: inter-word; hyphens: auto; margin-bottom: 2mm; }
+    .eyebrow { color: #526675; letter-spacing: .06em; font-weight: 700; margin-bottom: 2mm; }
+    .badge { display: inline-block; border: 1px solid #7a8c98; padding: 1mm 3mm; font-weight: 700; }
+    .cover { min-height: 190mm; }
+    .metadata { margin: 8mm 0; }
+    .metadata dt { font-weight: 700; margin-top: 2mm; }
+    .metadata dd { margin: 0 0 2mm 0; text-align: justify; text-justify: inter-word; hyphens: auto; }
+    .notice { border-left: 3px solid #536f84; padding: 3mm 4mm; margin: 5mm 0; background: #f1f5f8; text-align: justify; text-justify: inter-word; hyphens: auto; }
+    a { color: #194f70; text-underline-offset: 2px; overflow-wrap: anywhere; }
+    table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 5mm 0; }
+    caption { text-align: left; font-weight: 700; margin-bottom: 2mm; }
+    th, td { padding: 2mm; border: 1px solid #9eaeba; vertical-align: top; overflow-wrap: anywhere; text-align: justify; text-justify: inter-word; }
+    th { text-align: left; background: #eef2f5; font-weight: 700; }
+    pre, code { font-family: inherit; white-space: pre-wrap; overflow-wrap: anywhere; }
+    img, svg { max-width: 100%; height: auto; display: block; margin: 4mm auto; }
+    .document-end { border-top: 1px solid #9eaeba; margin-top: 10mm; padding-top: 3mm; font-size: 11pt; color: #495b6a; }
+    .running-footer {
+      margin-top: 15mm;
+      padding-top: 3mm;
+      border-top: 0.5pt solid #cbd5e1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8.5pt;
+      color: #64748b;
+    }
+    @media screen and (max-width: 800px) {
+      .report { width: 100%; margin: 0; padding: 20px; box-shadow: none; }
+      .cover { min-height: auto; }
+    }
+    @media print {
+      html, body { background: white; margin: 0; padding: 0; }
+      .report { width: auto; max-width: none; padding: 0; margin: 0; box-shadow: none; }
+      .chapter { break-before: page; page-break-before: always; }
+      h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+      p, li { orphans: 3; widows: 3; text-align: justify; text-justify: inter-word; hyphens: auto; }
+      thead { display: table-header-group; }
+      tr { break-inside: avoid; page-break-inside: avoid; }
+      .notice { background: none; }
+      a { color: inherit; text-decoration: none; }
+      .running-footer {
+        position: fixed;
+        bottom: -22mm;
+        left: 0;
+        right: 0;
+        height: 10mm;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 0.5pt solid #cbd5e1;
+        padding-top: 2mm;
+        font-size: 8.5pt;
+        color: #64748b;
+        background: transparent;
+      }
+    }
+  </style>
+</head>
+<body>
+<main class="report">
+
+  <header class="cover" id="cover">
+    <p class="eyebrow">WIYASA ? DOKUMENTASI PEMBANGUNAN APLIKASI</p>
+    <h1>Laporan Arsitektur dan Spesifikasi Sistem: WIYASA v1.6.0</h1>
+    <p>Spesifikasi Produk, Rekayasa Arsitektur 3-Tier, Matriks Keterlacakan, Model Data, Keamanan Anti-XSS, dan Standar Kepatuhan Industri.</p>
+    <p><span class="badge">STATUS: APPROVED ? DOKUMEN RESMI</span></p>
+    <dl class="metadata">
+      <dt>Nama Sistem</dt>
+      <dd>WIYASA Documentation Engine (Versi 1.6.0)</dd>
+      <dt>Tanggal Terbit</dt>
+      <dd>2026-10-31</dd>
+      <dt>Penyusun</dt>
+      <dd>Dewan Gabungan Arsitektur Agen, Rekayasa Perangkat Lunak, dan Jaminan Mutu</dd>
+      <dt>Repositori Resmi</dt>
+      <dd>https://github.com/digiworkjkt-dev/WIYASA.git</dd>
+      <dt>Model Distribusi</dt>
+      <dd>Standar Opsi 2 (Laporan Arsitektur Mandiri untuk Pengembang, Arsitek, &amp; Auditor)</dd>
+    </dl>
+    <p class="notice">Dokumen ini merupakan spesifikasi arsitektur dan rekayasa perangkat lunak resmi yang mengikat bagi seluruh tim teknis. Berkas ini berfungsi sebagai cetak biru implementasi, verifikasi kualitas, dan audit kepatuhan sistem.</p>
+  </header>
+
+  <nav class="chapter" id="daftar-isi" aria-label="Daftar isi">
+    <h2>Daftar Isi</h2>
+    <ol>
+      <li><a href="#ringkasan">1. Ringkasan Eksekutif dan Kesiapan Sistem</a></li>
+      <li><a href="#spesifikasi">2. Spesifikasi Produk dan Kebutuhan Sistem</a></li>
+      <li><a href="#arsitektur">3. Arsitektur Teknis dan Desain Sistem</a></li>
+      <li><a href="#delivery">4. Rencana Delivery, Matriks Keterlacakan, dan Pengujian</a></li>
+      <li><a href="#standar">5. Kepatuhan Standar Industri, SKKNI, dan Regulasi UU PDP</a></li>
+      <li><a href="#keputusan">6. Catatan Keputusan Arsitektur dan Riwayat Revisi</a></li>
+    </ol>
+    <p>Daftar isi ini dilengkapi tautan internal aktif. Seluruh bab dan sub-bab dapat diakses secara langsung pada media digital.</p>
+  </nav>
+
+  <section class="chapter" id="ringkasan">
+    <h2>1. Ringkasan Eksekutif dan Kesiapan Sistem</h2>
+    <p>Sistem WIYASA dirancang untuk menyelesaikan kesenjangan kritis antara kebutuhan bisnis dan eksekusi teknis pada pengembangan perangkat lunak modern. Banyak proyek perangkat lunak mengalami kegagalan akibat spesifikasi yang tidak terlacak, dokumentasi yang usang terhadap kode, serta ketiadaan panduan operasional yang layak bagi pengguna akhir.</p>
+    <p>WIYASA v1.6.0 mengintegrasikan mesin standardisasi dokumen end-to-end yang memproduksi Single Source of Truth (SSOT) modular di Git serta sepasang dokumen cetak HTML berkualitas A4 formal Indonesia. Sistem ini memastikan seluruh kebutuhan terhubung secara matematis ke dalam kode, pengujian, dan instruksi kerja operasional.</p>
+    <table>
+      <caption>Tabel 1.1: Matriks Status Kesiapan Rilis Sistem WIYASA v1.6.0</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 25%;">Dimensi Kesiapan</th>
+          <th scope="col" style="width: 20%;">Status</th>
+          <th scope="col" style="width: 55%;">Bukti dan Catatan Verifikasi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Arsitektur Sistem</td>
+          <td>Verified</td>
+          <td>Pemisahan 3-tier (Presentation, Core Pipeline, Verification) teruji penuh.</td>
+        </tr>
+        <tr>
+          <td>Standar Cetak A4</td>
+          <td>Verified</td>
+          <td>Margin 3 cm, Cambria 12pt, perataan rata kanan-kiri (align justify) aktif.</td>
+        </tr>
+        <tr>
+          <td>Running Page Footers</td>
+          <td>Verified</td>
+          <td>Pengulangan otomatis tiap halaman aman di margin bawah tanpa menimpa teks.</td>
+        </tr>
+        <tr>
+          <td>Keamanan Siber</td>
+          <td>Verified</td>
+          <td>SecureHTMLParser menolak mutlak tag skrip, event handler, dan CDN eksternal.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chapter" id="spesifikasi">
+    <h2>2. Spesifikasi Produk dan Kebutuhan Sistem</h2>
+    <p>Spesifikasi kebutuhan sistem didefinisikan menggunakan identifier unik stabil guna menjamin keterlacakan penuh sepanjang siklus hidup rekayasa perangkat lunak.</p>
+    
+    <h3>2.1 Kebutuhan Fungsional (Functional Requirements)</h3>
+    <table>
+      <caption>Tabel 2.1: Register Kebutuhan Fungsional Ber-ID</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 15%;">Req ID</th>
+          <th scope="col" style="width: 45%;">Pernyataan Kebutuhan</th>
+          <th scope="col" style="width: 25%;">Kriteria Penerimaan (AC)</th>
+          <th scope="col" style="width: 15%;">Prioritas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>FR-001</strong></td>
+          <td>Pembangkitan paket deliverable lengkap Opsi 2 (Dual HTML &amp; Markdown SSOT).</td>
+          <td>AC-001: Terbitnya sepasang berkas HTML dan 18 berkas .md di folder sources/.</td>
+          <td>P0 (Tinggi)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-002</strong></td>
+          <td>Penerapan tata letak cetak A4 portrait, margin 3 cm, font Cambria 12 pt, dan teks rata kanan-kiri.</td>
+          <td>AC-002: Lolos aturan CSS cetak dan text-align: justify pada seluruh paragraf.</td>
+          <td>P0 (Tinggi)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-003</strong></td>
+          <td>Penyediaan running page footers multi-engine pada setiap lembar cetak dokumen.</td>
+          <td>AC-003: Munculnya footer berulang di margin bawah pada mode cetak peramban.</td>
+          <td>P0 (Tinggi)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-004</strong></td>
+          <td>Sanitasi keamanan dokumen anti-XSS dan sifat dokumen mandiri (offline-first).</td>
+          <td>AC-004: Ketiadaan tag skrip eksternal, inline scripts, dan atribut event handler.</td>
+          <td>P0 (Tinggi)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-005</strong></td>
+          <td>Isolasi penuh instruksi operasional peramban agar tidak bocor ke badan dokumen aplikasi.</td>
+          <td>AC-005: Seluruh panduan tata naskah cetak berada di README.md, badan HTML bersih 100%.</td>
+          <td>P0 (Tinggi)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-006</strong></td>
+          <td>Penyediaan perkakas validasi otomatis CLI (validate.py &amp; lint_traceability.py).</td>
+          <td>AC-006: Evaluasi status berkas fisik secara terprogram dengan exit code 0.</td>
+          <td>P1 (Sedang)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chapter" id="arsitektur">
+    <h2>3. Arsitektur Teknis dan Desain Sistem</h2>
+    <p>Arsitektur WIYASA menganut prinsip pemisahan tanggung jawab (Separation of Concerns) secara ketat, membagi alur kerja ke dalam Presentation Tier, Core Engine Pipeline, dan Automated Verification Layer.</p>
+
+    <div style="margin: 6mm 0; padding: 3mm; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 4px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="100%" height="auto">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#183d54" />
+          </marker>
+        </defs>
+        <rect width="600" height="220" fill="#f8fafc" rx="6" stroke="#9eaeba" stroke-width="1"/>
+        <g transform="translate(20, 25)">
+          <rect width="160" height="170" rx="4" fill="#ffffff" stroke="#183d54" stroke-width="1.5"/>
+          <rect width="160" height="32" rx="4" fill="#eef2f5" stroke="#183d54" stroke-width="1.5"/>
+          <text x="80" y="21" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#183d54" text-anchor="middle">1. Presentation Tier</text>
+          <rect x="15" y="45" width="130" height="32" rx="3" fill="#f1f5f8" stroke="#a4b5c1"/>
+          <text x="80" y="65" font-family="Cambria, serif" font-size="10" fill="#182332" text-anchor="middle">Laporan Arsitektur A4</text>
+          <rect x="15" y="85" width="130" height="32" rx="3" fill="#f1f5f8" stroke="#a4b5c1"/>
+          <text x="80" y="105" font-family="Cambria, serif" font-size="10" fill="#182332" text-anchor="middle">Panduan Pengguna A4</text>
+          <rect x="15" y="125" width="130" height="32" rx="3" fill="#f1f5f8" stroke="#a4b5c1"/>
+          <text x="80" y="145" font-family="Cambria, serif" font-size="10" fill="#182332" text-anchor="middle">Running Page Footers</text>
+        </g>
+        <line x1="180" y1="110" x2="218" y2="110" stroke="#183d54" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <g transform="translate(220, 25)">
+          <rect width="160" height="170" rx="4" fill="#ffffff" stroke="#183d54" stroke-width="1.5"/>
+          <rect width="160" height="32" rx="4" fill="#eef2f5" stroke="#183d54" stroke-width="1.5"/>
+          <text x="80" y="21" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#183d54" text-anchor="middle">2. Core Engine Tier</text>
+          <rect x="15" y="45" width="130" height="32" rx="3" fill="#f1f5f8" stroke="#a4b5c1"/>
+          <text x="80" y="65" font-family="Cambria, serif" font-size="10" fill="#182332" text-anchor="middle">Agent Rules (SKILL.md)</text>
+          <rect x="15" y="85" width="130" height="32" rx="3" fill="#f1f5f8" stroke="#a4b5c1"/>
+          <text x="80" y="105" font-family="Cambria, serif" font-size="10" fill="#182332" text-anchor="middle">Modular SSOT (sources/)</text>
+          <rect x="15" y="125" width="130" height="32" rx="3" fill="#f1f5f8" stroke="#a4b5c1"/>
+          <text x="80" y="145" font-family="Cambria, serif" font-size="10" fill="#182332" text-anchor="middle">Anti-Leakage Filter</text>
+        </g>
+        <line x1="380" y1="110" x2="418" y2="110" stroke="#183d54" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <g transform="translate(420, 25)">
+          <rect width="160" height="170" rx="4" fill="#ffffff" stroke="#183d54" stroke-width="1.5"/>
+          <rect width="160" height="32" rx="4" fill="#eef2f5" stroke="#183d54" stroke-width="1.5"/>
+          <text x="80" y="21" font-family="Cambria, serif" font-size="12" font-weight="bold" fill="#183d54" text-anchor="middle">3. Verification Tier</text>
+          <rect x="15" y="45" width="130" height="32" rx="3" fill="#f1f5f8" stroke="#a4b5c1"/>
+          <text x="80" y="65" font-family="Cambria, serif" font-size="10" fill="#182332" text-anchor="middle">validate.py CLI</text>
+          <rect x="15" y="85" width="130" height="32" rx="3" fill="#f1f5f8" stroke="#a4b5c1"/>
+          <text x="80" y="105" font-family="Cambria, serif" font-size="10" fill="#182332" text-anchor="middle">lint_traceability.py</text>
+          <rect x="15" y="125" width="130" height="32" rx="3" fill="#f1f5f8" stroke="#a4b5c1"/>
+          <text x="80" y="145" font-family="Cambria, serif" font-size="10" fill="#182332" text-anchor="middle">SecureHTMLParser</text>
+        </g>
+      </svg>
+      <div style="font-size: 11pt; color: #475569; font-style: italic; text-align: center; margin-top: 2mm;">Gambar 3.1: Diagram Arsitektur 3-Tier Sistem WIYASA.</div>
+    </div>
+    <p>Presentation Tier bertugas mengompilasi tampilan antarmuka dokumen cetak A4. Core Engine Tier mengelola integritas logika dan isolasi konten. Verification Tier mengawal kelayakan keamanan dan keterlacakan relasional sebelum dokumen diserahkan.</p>
+  </section>
+
+  <section class="chapter" id="delivery">
+    <h2>4. Rencana Delivery, Matriks Keterlacakan, dan Pengujian</h2>
+    <p>Setiap kebutuhan fungsional memiliki pemetaan eksplisit ke dalam backlog tugas rekayasa dan skenario pengujian guna menjamin akuntabilitas pengujian sistem.</p>
+    <table>
+      <caption>Tabel 4.1: Matriks Keterlacakan Relasional (Traceability Matrix)</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 15%;">Req ID</th>
+          <th scope="col" style="width: 20%;">Kriteria AC</th>
+          <th scope="col" style="width: 20%;">Task Rekayasa</th>
+          <th scope="col" style="width: 20%;">Kasus Uji</th>
+          <th scope="col" style="width: 25%;">Hasil Evaluasi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>FR-001</strong></td>
+          <td>AC-001 (Opsi 2)</td>
+          <td>TASK-001</td>
+          <td>TC-001</td>
+          <td>PASS (Terverifikasi)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-002</strong></td>
+          <td>AC-002 (Cetak A4)</td>
+          <td>TASK-002</td>
+          <td>TC-002</td>
+          <td>PASS (Terverifikasi)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-003</strong></td>
+          <td>AC-003 (Footer)</td>
+          <td>TASK-003</td>
+          <td>TC-003</td>
+          <td>PASS (Terverifikasi)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-004</strong></td>
+          <td>AC-004 (Anti-XSS)</td>
+          <td>TASK-004</td>
+          <td>TC-004</td>
+          <td>PASS (Terverifikasi)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-005</strong></td>
+          <td>AC-005 (Anti-Leak)</td>
+          <td>TASK-005</td>
+          <td>TC-005</td>
+          <td>PASS (Terverifikasi)</td>
+        </tr>
+        <tr>
+          <td><strong>FR-006</strong></td>
+          <td>AC-006 (CLI Tools)</td>
+          <td>TASK-006</td>
+          <td>TC-006</td>
+          <td>PASS (Terverifikasi)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chapter" id="standar">
+    <h2>5. Kepatuhan Standar Industri, SKKNI, dan Regulasi UU PDP</h2>
+    <p>Sistem WIYASA dirancang dengan memperhatikan regulasi nasional dan standar internasional:</p>
+    <ul>
+      <li><strong>Standar Mutu Perangkat Lunak ISO/IEC 25010:</strong> Memenuhi karakteristik Functional Suitability, Usability, dan Portability.</li>
+      <li><strong>Standar Keamanan SNI ISO/IEC 27001:</strong> Menjamin integritas data teknis dan ketiadaan kerentanan eksekusi skrip dinamis.</li>
+      <li><strong>UU No. 27/2022 tentang Pelindungan Data Pribadi (UU PDP):</strong> Penerapan data fiktif (dummy/pseudonymized) secara ketat pada seluruh contoh visual antarmuka untuk mencegah kebocoran informasi sensitif.</li>
+      <li><strong>SKKNI Kepmenaker No. 282/2016:</strong> Mendukung bukti pencapaian unit kompetensi rekayasa perangkat lunak (`J.620100.023.02` - Membuat Dokumentasi Kode Program dan Sistem).</li>
+    </ul>
+  </section>
+
+  <section class="chapter" id="keputusan">
+    <h2>6. Catatan Keputusan Arsitektur dan Riwayat Revisi</h2>
+    <p>Seluruh keputusan fundamental dicatat dalam Architecture Decision Records (ADR) untuk menjaga integritas historis rekayasa sistem.</p>
+    <table>
+      <caption>Tabel 6.1: Log Keputusan Arsitektur Utama (ADR)</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 15%;">ADR ID</th>
+          <th scope="col" style="width: 35%;">Keputusan Arsitektur</th>
+          <th scope="col" style="width: 15%;">Status</th>
+          <th scope="col" style="width: 35%;">Dampak dan Justifikasi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ADR-001</strong></td>
+          <td>Pemisahan Deliverable Opsi 2</td>
+          <td>Approved</td>
+          <td>Pengguna akhir tidak terbebani detail teknis arsitektur yang tebal.</td>
+        </tr>
+        <tr>
+          <td><strong>ADR-002</strong></td>
+          <td>Eliminasi Assert pada Skrip Validasi</td>
+          <td>Approved</td>
+          <td>Mencegah bypass pemeriksaan kualitas saat Python runtime dioptimasi (-O).</td>
+        </tr>
+        <tr>
+          <td><strong>ADR-003</strong></td>
+          <td>Sanitasi Anti-XSS &amp; Offline-First</td>
+          <td>Approved</td>
+          <td>Mencegah serangan injeksi skrip peramban pada dokumen mandiri.</td>
+        </tr>
+        <tr>
+          <td><strong>ADR-004</strong></td>
+          <td>Running Page Footers Multi-Engine</td>
+          <td>Approved</td>
+          <td>Menghadirkan nomor halaman dan identitas resmi pada setiap lembar cetak fisik.</td>
+        </tr>
+        <tr>
+          <td><strong>ADR-005</strong></td>
+          <td>Rebranding Resmi Menjadi WIYASA</td>
+          <td>Approved</td>
+          <td>Mengadopsi identitas Begawan Wiyasa sebagai lambang pencatat agung Nusantara.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="running-footer" aria-hidden="true">
+    <span>WIYASA ? Laporan Arsitektur dan Spesifikasi Sistem</span>
+    <span>Dokumen Resmi ? Terkendali</span>
+  </footer>
+
+  <div class="document-end">
+    Akhir Dokumen Laporan Arsitektur dan Spesifikasi ? Diterbitkan di folder DocsApp/ ? WIYASA v1.6.0
+  </div>
+
+</main>
+</body>
+</html>
