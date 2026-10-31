@@ -23,14 +23,14 @@
     h1 { margin: 12mm 0 6mm; font-weight: 700; text-transform: uppercase; }
     h2 { margin: 8mm 0 4mm; border-bottom: 1px solid #a4b5c1; padding-bottom: 2mm; }
     h3 { margin: 6mm 0 3mm; }
-    p { margin: 0 0 4mm; }
+    p { margin: 0 0 4mm; text-align: justify; text-justify: inter-word; hyphens: auto; }
     .eyebrow { color: #526675; letter-spacing: .06em; font-weight: 700; margin-bottom: 2mm; }
     .badge { display: inline-block; border: 1px solid #7a8c98; padding: 1mm 3mm; font-weight: 700; }
     .cover { min-height: 190mm; }
     .metadata { margin: 8mm 0; }
     .metadata dt { font-weight: 700; margin-top: 2mm; }
     .metadata dd { margin: 0 0 2mm 0; }
-    .notice { border-left: 3px solid #536f84; padding: 3mm 4mm; margin: 5mm 0; background: #f1f5f8; }
+    .notice { border-left: 3px solid #536f84; padding: 3mm 4mm; margin: 5mm 0; background: #f1f5f8; text-align: justify; text-justify: inter-word; }
     a { color: #194f70; text-underline-offset: 2px; overflow-wrap: anywhere; }
     table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 5mm 0; }
     caption { text-align: left; font-weight: 700; margin-bottom: 2mm; }
@@ -50,7 +50,7 @@
       .screen-only { display: none !important; }
       .chapter { break-before: page; page-break-before: always; }
       h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
-      p, li { orphans: 3; widows: 3; }
+      p, li { orphans: 3; widows: 3; text-align: justify; text-justify: inter-word; hyphens: auto; }
       thead { display: table-header-group; }
       tr { break-inside: avoid; page-break-inside: avoid; }
       .notice { background: none; }
@@ -61,10 +61,7 @@
 <body>
 <main class="report">
 
-  <aside class="screen-only" aria-label="Panduan cetak">
-    <strong>Panduan Cetak Laporan Reviu Skill:</strong>
-    Cetak dokumen ini menggunakan opsi cetak browser: ukuran <strong>A4 portrait</strong>, skala <strong>100%</strong>, margin CSS <strong>3 cm</strong> di semua sisi, dan matikan opsi header/footer bawaan browser. Dokumen ini dirancang <em>self-contained</em> tanpa dependensi jaringan eksternal.
-  </aside>
+
 
   <header class="cover" id="cover">
     <p class="eyebrow">AUDIT TEKNIS & ARSITEKTUR SISTEM DOKUMENTASI</p>

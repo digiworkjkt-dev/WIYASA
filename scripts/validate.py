@@ -105,6 +105,7 @@ def validate_html_content(html_text: str, filename: str = "HTML") -> list[str]:
         ("break-before: page", "Pemisahan bab break-before: page"),
         ('lang="id"', 'Atribut bahasa lang="id"'),
         ('charset="utf-8"', 'Karakter encoding utf-8'),
+        ('text-align: justify', 'Perataan paragraf rata kanan-kiri (text-align: justify)'),
     ]
     for pattern, label in required_print_rules:
         if pattern.lower() not in html_text.lower():
@@ -115,6 +116,21 @@ def validate_html_content(html_text: str, filename: str = "HTML") -> list[str]:
 
     if "position: fixed" in html_text:
         errors.append(f"Hindari position: fixed pada {filename} karena ketidakstabilan rendering footer browser")
+
+    # Deteksi kebocoran instruksi cetak peramban & meta-kriteria ke dalam badan dokumen aplikasi
+    leakage_patterns = [
+        (r"petunjuk\s+cetak", "Kotak/petunjuk cetak peramban"),
+        (r"instruksi\s+(?:resmi\s+)?cetak", "Bab/instruksi cetak peramban"),
+        (r"aturan\s+cetak/pdf", "Sub-bab aturan cetak/PDF"),
+        (r"save\s+as\s+pdf", "Petunjuk tombol Save as PDF"),
+        (r"ctrl\s*\+\s*p", "Pintasan cetak Ctrl+P"),
+    ]
+    for pattern, desc in leakage_patterns:
+        if re.search(pattern, html_text, re.IGNORECASE):
+            errors.append(
+                f"Kebocoran konten pada {filename}: {desc} ditemukan di badan dokumen. "
+                "Panduan cetak dan petunjuk teknis peramban harus ditempatkan di README.md, bukan di laporan aplikasi."
+            )
 
     return errors
 
@@ -179,6 +195,11 @@ def validate_repo() -> list[str]:
         template_html = template_file.read_text(encoding="utf-8")
         errors.extend(validate_html_content(template_html, "assets/report-a4.html"))
 
+    user_guide_template = ROOT / "assets/user-guide-a4.html"
+    if user_guide_template.is_file():
+        ug_html = user_guide_template.read_text(encoding="utf-8")
+        errors.extend(validate_html_content(ug_html, "assets/user-guide-a4.html"))
+
     # Validasi kontrak jalur kanonis pada SKILL.md
     for required_phrase in (
         "html-print.md",
@@ -202,6 +223,11 @@ def main():
         help="Path ke berkas laporan HTML yang akan diperiksa (misal: app-documentation/laporan-dokumentasi-aplikasi.html)",
     )
     parser.add_argument(
+        "--package-dir",
+        type=str,
+        help="Path ke folder paket deliverable (misal: app-documentation). Memastikan README.md, sources/*.md, dan laporan HTML lengkap.",
+    )
+    parser.add_argument(
         "--skip-repo-check",
         action="store_true",
         help="Lewati pemeriksaan integritas repo internal dan hanya periksa --target.",
@@ -215,7 +241,44 @@ def main():
         repo_errors = validate_repo()
         all_errors.extend(repo_errors)
 
-    # 2. Mode pemeriksaan target spesifik
+    # 2. Mode pemeriksaan paket deliverable lengkap
+    if args.package_dir:
+        pkg_path = Path(args.package_dir).resolve()
+        if not pkg_path.is_dir():
+            all_errors.append(f"Direktori paket tidak ditemukan: {args.package_dir}")
+        else:
+            readme_path = pkg_path / "README.md"
+            tech_report = pkg_path / "laporan-arsitektur-dan-spesifikasi.html"
+            user_report = pkg_path / "panduan-pengguna-aplikasi.html"
+            single_report = pkg_path / "laporan-dokumentasi-aplikasi.html"
+            sources_dir = pkg_path / "sources"
+
+            if not readme_path.is_file():
+                all_errors.append(f"Paket tidak lengkap: {args.package_dir}/README.md tidak ditemukan.")
+
+            found_reports = []
+            if tech_report.is_file() and user_report.is_file():
+                found_reports.extend([tech_report, user_report])
+            elif single_report.is_file():
+                found_reports.append(single_report)
+            else:
+                all_errors.append(
+                    f"Paket tidak lengkap: {args.package_dir}/ wajib memuat sepasang dokumen HTML Opsi 2 "
+                    "(laporan-arsitektur-dan-spesifikasi.html & panduan-pengguna-aplikasi.html) "
+                    "atau laporan-dokumentasi-aplikasi.html."
+                )
+
+            for rep in found_reports:
+                html_errors = validate_html_content(rep.read_text(encoding="utf-8"), rep.name)
+                all_errors.extend(html_errors)
+            if not sources_dir.is_dir():
+                all_errors.append(f"Paket tidak lengkap: Folder {args.package_dir}/sources/ tidak ditemukan.")
+            else:
+                md_sources = list(sources_dir.glob("*.md"))
+                if not md_sources:
+                    all_errors.append(f"Paket tidak lengkap: Tidak ada berkas .md di {args.package_dir}/sources/.")
+
+    # 3. Mode pemeriksaan target spesifik
     if args.target:
         target_path = Path(args.target).resolve()
         if not target_path.is_file():

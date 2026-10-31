@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.5.2 ? 2026-10-31
+
+- **Standarisasi Deliverable Opsi 2 (Pemisahan Dokumen Berdasarkan Audiens):**
+  - Mengadopsi standar pemisahan dua berkas HTML mandiri:
+    1. `laporan-arsitektur-dan-spesifikasi.html` (Laporan Teknis bagi Tim Pengembang, Arsitek, dan Auditor).
+    2. `panduan-pengguna-aplikasi.html` (Buku Panduan Operasional Mandiri bagi Klien, Pengguna Akhir, dan Administrator).
+  - Menyediakan template khusus baru [`assets/user-guide-a4.html`](assets/user-guide-a4.html) yang dirancang ramah pengguna dengan gaya tata letak buku manual operasional.
+- **Kewajiban Tangkapan Layar (Screenshots / UI Mockups):**
+  - Mewajibkan penyematan screenshot atau mockup visual pada bagian-bagian krusial: Layar Onboarding/Login, Dashboard Pengguna, Alur Transaksi Utama, dan Panel Kontrol Administrator.
+  - Menyediakan blok visual vektor [`assets/snippets/ui-mockup-frame.svg`](assets/snippets/ui-mockup-frame.svg) sebagai template representasi antarmuka saat frontend belum diimplementasikan.
+- **Penyempurnaan Validator & Panduan Operasional:**
+  - Memperbarui `scripts/validate.py` agar secara otomatis memverifikasi ketersediaan sepasang berkas HTML Opsi 2 pada pemeriksaan `--package-dir`.
+  - Menerbitkan berkas [`PANDUAN_PENGGUNA.md`](PANDUAN_PENGGUNA.md) di root repositori sebagai panduan operasional praktis.
+
+## 1.5.1 ? 2026-10-31
+
+- **Pembersihan Meta-Instruksi & Kriteria dari Dokumen (Anti-Leakage):**
+  - Menghapus banner petunjuk cetak dan bab tutorial operasional cetak peramban (seperti sub-bab "6.3 Instruksi Resmi Cetak Dokumen A4", pintasan Ctrl+P, dsb.) dari badan dokumen aplikasi.
+  - Memindahkan seluruh panduan teknis pencetakan dan ekspor PDF secara eksklusif ke berkas `app-documentation/README.md` pada seksi *Panduan Cetak*.
+  - Melarang keras pencantuman kriteria/rubrik evaluasi internal (Gate A?H, checklist prompt) di dalam laporan aplikasi. Dokumen aplikasi kini murni berupa artefak rekayasa perangkat lunak resmi.
+  - Menambahkan verifikasi anti-kebocoran pada `scripts/validate.py` untuk secara otomatis menggagalkan validasi bila ditemukan petunjuk cetak peramban di badan dokumen HTML.
+- **Kewajiban Paket Deliverable Lengkap (Multi-File Package):**
+  - Mengubah klausul pengiriman dari "sumber Markdown opsional" menjadi **kewajiban mutlak** menghasilkan paket lengkap: `README.md` (katalog/indeks), seluruh berkas sumber modular Markdown di folder `sources/` sebagai Single Source of Truth (SSOT), dan laporan gabungan HTML `laporan-dokumentasi-aplikasi.html`.
+  - Mencegah agen hanya menghasilkan satu berkas HTML tanpa menyertakan berkas sumber Markdown pengembang.
+- **Standarisasi Tipografi Cetak Rata Kanan-Kiri (Align Justify):**
+  - Mewajibkan `text-align: justify; text-justify: inter-word; hyphens: auto;` pada seluruh paragraf naratif, deskripsi, dan catatan (.notice) pada kerangka `assets/report-a4.html`, `references/html-print.md`, dan Gate H, sesuai kaidah dokumen teknis formal Indonesia.
+  - Judul dan header tabel tetap dipertahankan rata kiri untuk ketajaman hierarki visual.
+- **Validasi Paket Deliverable Otomatis (`scripts/validate.py`):**
+  - Menambahkan opsi `--package-dir <path>` pada validator untuk memeriksa integritas paket secara menyeluruh: keberadaan `README.md`, minimal 1 berkas sumber di `sources/`, serta validitas HTML `laporan-dokumentasi-aplikasi.html` (termasuk verifikasi aturan align justify).
+
 ## 1.5.0 — 2026-10-30
 
 - **Refactoring Skrip Validasi (`scripts/validate.py`):**

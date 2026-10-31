@@ -42,6 +42,7 @@ diperiksa. Audit dokumen tidak setara dengan validasi aplikasi.
 
 ## Gate E: Packaging
 
+- Paket deliverable lengkap: Wajib menghasilkan README.md, seluruh berkas sumber modular Markdown di folder \sources/\, dan laporan HTML monolit siap cetak. Tidak boleh hanya menghasilkan satu berkas HTML saja tanpa berkas sumber Markdown.
 - README menautkan seluruh dokumen yang dihasilkan dan menjelaskan urutan baca.
 - Tautan relatif dan reference ID dapat ditemukan; tidak ada placeholder
   tak berlabel atau dokumen kosong yang diklaim lengkap.
@@ -80,9 +81,11 @@ diperiksa. Audit dokumen tidak setara dengan validasi aplikasi.
 - Deliverable utama HTML self-contained; sumber Markdown tidak menggantikannya.
 - Seluruh output berada di `app-documentation/`; path laporan dan narasi lokasi
   penyimpanan sesuai file aktual, terpisah dari direktori instalasi skill.
-- @page A4 portrait/margin 3 cm, font utama Cambria 12 pt dan print CSS tersedia.
+- @page A4 portrait/margin 3 cm, font utama Cambria 12 pt, align justify (text-align: justify; text-justify: inter-word;), dan print CSS tersedia.
+- Seluruh paragraf naratif dan catatan menggunakan rata kanan-kiri (align justify), sedangkan judul dan tabel tetap rata kiri.
 - Tidak ada margin ganda, konten terlalu lebar, raw Mermaid, atau sumber CDN.
-- Cover, metadata, status, TOC/anchor, sumber, gap dan panduan cetak tersedia.
+- Cover, metadata, status, TOC/anchor, sumber acuan, gap analitis, dan riwayat revisi (changelog) tersedia.
+- Dokumen aplikasi bersih dari instruksi cetak peramban (misal: tombol Ctrl+P, Save as PDF, petunjuk cetak) dan kriteria/rubrik internal skill. Panduan cetak berada di `README.md`, bukan di dalam dokumen aplikasi.
 - Font aktual diperiksa bila render tersedia; fallback dinyatakan terbuka.
 - Pagination/footer tidak dijanjikan tanpa hasil engine yang telah diuji.
 - QA statis, render PDF, text inspection dan visual QA dibedakan pada laporan.

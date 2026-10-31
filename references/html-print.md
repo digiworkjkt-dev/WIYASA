@@ -13,10 +13,37 @@
   hierarki default dibedakan dengan weight/spacing, bukan mengecilkan tabel.
 - Line-height default 1.5, warna teks gelap, accent terbatas, heading bernomor,
   tabel dengan header jelas dan kontras memadai.
+- Perataan teks (Text Alignment):
+  Seluruh paragraf naratif, deskripsi metadata, dan notice box wajib menggunakan
+  rata kanan-kiri (\	ext-align: justify; text-justify: inter-word; hyphens: auto;\)
+  sesuai kaidah baku tata naskah laporan formal Indonesia. Judul dan header tabel
+  tetap rata kiri.
+- Paket lengkap wajib: Deliverable akhir tidak boleh hanya berupa berkas HTML tunggal;
+  wajib menyertakan \README.md\ (katalog & status) dan seluruh berkas modular Markdown
+  di folder \pp-documentation/sources/\ sebagai Single Source of Truth (SSOT).
 - Cover, metadata, status, TOC bertaut, executive summary, bab, sources,
-  assumptions/gaps, changelog, serta panduan cetak.
+  assumptions/gaps, dan riwayat revisi (changelog).
 - Mulai dari [report-a4.html](../assets/report-a4.html); ganti konten contoh dengan isi nyata.
   Template adalah kerangka, bukan laporan selesai.
+
+## Visual Screenshots dan UI Mockups
+
+Panduan pengguna (`panduan-pengguna-aplikasi.html`) dan alur UX (`04-ux-flows.md`) wajib menyertakan tangkapan layar (screenshot) atau mockup visual (SVG/UI frame) pada bagian-bagian krusial:
+1. Layar Onboarding dan Form Login
+2. Dashboard Utama Pengguna
+3. Alur Transaksi / Operasi Utama (Langkah-demi-langkah)
+4. Panel Konfigurasi Administrator
+
+Format tampilan gambar pada HTML cetak A4 dibungkus dengan wadah berikut:
+
+```html
+<div class="screenshot-frame">
+  <img src="assets/images/dashboard-user.png" alt="Tampilan Dashboard Pengguna">
+  <div class="figure-caption">Gambar 3.1: Antarmuka dashboard utama pengguna dan widget ringkasan.</div>
+</div>
+```
+
+Jika aplikasi belum di-coding, gunakan blok visual SVG seperti pada `assets/snippets/ui-mockup-frame.svg` agar dokumen tetap memiliki ilustrasi visual antarmuka yang nyata.
 
 ## CSS wajib
 
@@ -33,7 +60,7 @@ body {
   .screen-only { display: none !important; }
   .chapter { break-before: page; page-break-before: always; }
   h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
-  p, li { orphans: 3; widows: 3; }
+  p, li { orphans: 3; widows: 3; text-align: justify; text-justify: inter-word; hyphens: auto; }
   thead { display: table-header-group; }
   tr { break-inside: avoid; page-break-inside: avoid; }
   img, svg { max-width: 100%; height: auto; }
@@ -113,17 +140,17 @@ Contoh opsional untuk engine paged media yang telah diverifikasi:
 }
 ```
 
-## Instruksi cetak yang disertakan pada HTML
+## Pemisahan panduan cetak dan konten dokumen
 
-1. Buka HTML di browser dan pilih Print/Save as PDF.
-2. Pilih A4 portrait, skala 100%, tanpa fit-to-page bila mengubah ukuran font.
-3. Gunakan margin CSS 3 cm. Jika engine mengabaikan @page, set custom margin
-   30 mm di semua sisi dan periksa agar tidak terhitung ganda.
-4. Matikan header/footer bawaan kecuali sengaja memilih fitur tersebut.
-5. Background graphics bersifat opsional; informasi harus tetap terbaca tanpa
-   warna latar. Hindari URL/path sensitif pada header/footer browser.
-6. Periksa print preview: clipping, pemisahan tabel, blank page, heading
-   menggantung, diagram, font, dan footer/nomor halaman jika digunakan.
+**Aturan Mutlak (Anti-Leakage):**
+- Seluruh instruksi operasional peramban (misal: tombol Ctrl+P / Cmd+P, opsi Save as PDF,
+  nonaktifkan header/footer, dsb.) **DILARANG KERAS** dimasukkan ke dalam badan dokumen
+  aplikasi HTML (`laporan-dokumentasi-aplikasi.html`) maupun berkas sumber Markdown (`sources/*.md`).
+- Kriteria evaluasi internal skill (Gate A s.d. Gate H, checklist prompt, rubrik nilai)
+  juga **DILARANG** dimasukkan ke dalam dokumen aplikasi.
+- Dokumen aplikasi adalah deliverable bisnis/teknis murni (PRD, SRS, Arsitektur, dsb.).
+- Seluruh panduan cara membuka dan mencetak laporan HTML ditempatkan secara eksklusif
+  pada **`app-documentation/README.md`** di bawah seksi `## Panduan Cetak / Ekspor PDF`.
 
 ## QA dan batas verifikasi
 

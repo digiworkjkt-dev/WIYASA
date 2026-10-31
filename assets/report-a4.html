@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kerangka laporan dokumentasi aplikasi, A4, margin 3 cm, Cambria 12 pt.">
+  <meta name="description" content="Kerangka laporan dokumentasi aplikasi, A4, margin 3 cm, Cambria 12 pt, align justify.">
   <title>Kerangka Laporan Dokumentasi Aplikasi</title>
   <style>
     @page { size: A4 portrait; margin: 3cm; }
@@ -23,14 +23,14 @@
     h1 { margin: 12mm 0 6mm; font-weight: 700; text-transform: uppercase; }
     h2 { margin: 8mm 0 4mm; border-bottom: 1px solid #a4b5c1; padding-bottom: 2mm; }
     h3 { margin: 6mm 0 3mm; }
-    p { margin: 0 0 4mm; }
+    p { margin: 0 0 4mm; text-align: justify; text-justify: inter-word; hyphens: auto; }
     .eyebrow { color: #526675; letter-spacing: .06em; font-weight: 700; }
     .badge { display: inline-block; border: 1px solid #7a8c98; padding: 1mm 3mm; }
     .cover { min-height: 190mm; }
     .metadata { margin: 8mm 0; }
     .metadata dt { font-weight: 700; }
     .metadata dd { margin: 0 0 3mm; }
-    .notice { border-left: 3px solid #536f84; padding: 3mm 4mm; margin: 5mm 0; background: #f1f5f8; }
+    .notice { border-left: 3px solid #536f84; padding: 3mm 4mm; margin: 5mm 0; background: #f1f5f8; text-align: justify; text-justify: inter-word; }
     a { color: #194f70; text-underline-offset: 2px; overflow-wrap: anywhere; }
     table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 5mm 0; }
     caption { text-align: left; font-weight: 700; margin-bottom: 2mm; }
@@ -50,7 +50,7 @@
       .screen-only { display: none !important; }
       .chapter { break-before: page; page-break-before: always; }
       h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
-      p, li { orphans: 3; widows: 3; }
+      p, li { orphans: 3; widows: 3; text-align: justify; text-justify: inter-word; hyphens: auto; }
       thead { display: table-header-group; }
       tr { break-inside: avoid; page-break-inside: avoid; }
       .notice { background: none; }
@@ -86,9 +86,9 @@
       <li><a href="#ringkasan">Ringkasan dan readiness</a></li>
       <li><a href="#spesifikasi">Spesifikasi produk dan requirement</a></li>
       <li><a href="#desain">UX dan desain teknis</a></li>
-      <li><a href="#delivery">Delivery, testing, dan operasi</a></li>
+      <li><a href="#delivery">Delivery, testing, operasi, dan panduan pengguna</a></li>
       <li><a href="#standar">Standar, SKKNI, regulasi, dan gap</a></li>
-      <li><a href="#sumber">Sumber, changelog, dan aturan cetak</a></li>
+      <li><a href="#sumber">Sumber acuan, gap analitis, dan riwayat revisi</a></li>
     </ol>
     <p>Daftar isi bertaut. Nomor halaman hanya ditambahkan setelah pagination
       final diverifikasi dengan engine cetak yang dipilih.</p>
@@ -114,9 +114,16 @@
       Sisipkan diagram inline SVG yang sudah dirender; jangan sintaks mentah.]</p>
   </section>
   <section class="chapter" id="delivery">
-    <h2>4. Delivery, testing, dan operasi</h2>
-    <p>[Backlog, traceability, test plan, UAT, deployment/runbook dan panduan.
-      Test planned tidak diberi status pass tanpa bukti pelaksanaan.]</p>
+    <h2>4. Delivery, testing, operasi, dan panduan pengguna</h2>
+    <p>[Backlog rilis, kasus uji, prosedur deployment runbook, serta panduan operasional pengguna dan administrator.]</p>
+    <h3>4.1 Rencana Delivery dan Matriks Keterlacakan</h3>
+    <p>[Backlog milestone, task implementasi ber-ID, definition of done, dan keterlacakan requirement.]</p>
+    <h3>4.2 Rencana Pengujian (Test Plan &amp; UAT)</h3>
+    <p>[Cakupan pengujian fungsional/non-fungsional, skenario UAT, dan kriteria keberhasilan pengujian.]</p>
+    <h3>4.3 Deployment dan Runbook Operasional</h3>
+    <p>[Konfigurasi lingkungan, prosedur rilis, migrasi database, monitoring, backup, dan penanganan insiden.]</p>
+    <h3>4.4 Panduan Pengguna dan Administrator (User &amp; Admin Guide)</h3>
+    <p>[Alur onboarding pengguna baru, langkah operasional fitur utama per role, panduan administrasi sistem, prosedur penanganan kendala (troubleshooting/FAQ), dan batasan sistem yang diketahui (known limitations).]</p>
   </section>
   <section class="chapter" id="standar">
     <h2>5. Standar, SKKNI, regulasi, dan gap</h2>
@@ -126,22 +133,28 @@
       sertifikasi personel. Pecah matriks lebar menjadi tabel berkunci ID.</p>
   </section>
   <section class="chapter" id="sumber">
-    <h2>6. Sumber, changelog, dan aturan cetak</h2>
-    <p>[Isi referensi aktual beserta tanggal cek, perubahan versi, audit yang
-      dijalankan dan batas verifikasinya.]</p>
-    <h3>Aturan cetak/PDF</h3>
-    <ol>
-      <li>Pilih A4 portrait dan skala 100%.</li>
-      <li>Gunakan margin CSS 3 cm di semua sisi. Bila engine mengabaikannya,
-        gunakan custom 30 mm dan periksa agar tidak ganda.</li>
-      <li>Pastikan Cambria tersedia; fallback bukan pemenuhan Cambria persis.</li>
-      <li>Default matikan header/footer bawaan browser. Footer dan nomor halaman
-        bergantung pada engine; aktifkan hanya setelah hasilnya diperiksa.</li>
-      <li>Periksa clipping, tabel, page break, blank page, diagram, dan font
-        pada print preview serta PDF akhir.</li>
-    </ol>
-    <p>Catat engine/versi, font aktual, mode footer, checks run dan limitations
-      pada laporan akhir. Kerangka ini tidak menjamin hasil lintas browser.</p>
+    <h2>6. Sumber acuan, gap analitis, dan riwayat revisi</h2>
+    <p>[Daftar referensi dokumen, standar yang dijadikan rujukan, catatan asumsi,
+      keputusan arsitektur (ADR), dan riwayat perubahan versi aplikasi.]</p>
+    <table>
+      <caption>Riwayat Perubahan Dokumen Aplikasi</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 15%;">Versi</th>
+          <th scope="col" style="width: 20%;">Tanggal</th>
+          <th scope="col" style="width: 45%;">Perubahan Utama</th>
+          <th scope="col" style="width: 20%;">Penyusun</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>v0.1.0</td>
+          <td>[YYYY-MM-DD]</td>
+          <td>Draf awal spesifikasi kebutuhan dan arsitektur aplikasi.</td>
+          <td>[Tim Pengembang]</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
   <footer class="document-end">
     Akhir dokumen · Kerangka app-documentation v1.4.

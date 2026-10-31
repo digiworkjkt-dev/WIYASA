@@ -24,12 +24,16 @@ tercakup, bukan setiap aplikasi membutuhkan semua jenis dokumen.
   menjalankan migrasi, atau melakukan deployment tanpa permintaan yang sesuai.
 - Dokumentasi bukan bukti fitur sudah dibangun, diuji, aman, atau memenuhi regulasi.
 - Ikuti bahasa pengguna; pertahankan nama field, endpoint, dan identifier teknis.
-- Output utama: laporan HTML profesional yang self-contained, layout A4,
-  margin cetak 3 cm di semua sisi, Cambria 12 pt, dan aturan cetak/PDF.
-  Sumber kerja Markdown boleh dipertahankan untuk pemeliharaan; bukan pengganti
-  deliverable HTML. Diagram harus berupa SVG/image inline yang dapat dicetak (gunakan contoh
-  pada assets/snippets/architecture-diagram.svg dan assets/snippets/flowchart-diagram.svg
-  sebagai panduan geometris dan tipografi), bukan sintaks Mermaid mentah pada laporan akhir.
+- Format Deliverable Standar Opsi 2 (Pemisahan Dua Dokumen Berdasarkan Audiens):
+  1. `app-documentation/README.md`: Pintu masuk, ringkasan, urutan baca, status, dan panduan cetak PDF;
+  2. `app-documentation/sources/*.md`: 18 berkas modular Markdown sebagai Single Source of Truth (SSOT) teknis pengembang;
+  3. `app-documentation/laporan-arsitektur-dan-spesifikasi.html`: Dokumen arsitektur dan spesifikasi teknis lengkap bagi Tim Pengembang, Arsitek, dan Auditor (menggunakan template assets/report-a4.html);
+  4. `app-documentation/panduan-pengguna-aplikasi.html`: Buku panduan operasional mandiri bagi Klien, Pengguna Akhir, dan Administrator Sistem (menggunakan template assets/user-guide-a4.html).
+  (Catatan: Berkas `app-documentation/laporan-dokumentasi-aplikasi.html` tetap didukung sebagai opsi jika pengguna meminta 1 dokumen master gabungan).
+  Seluruh dokumen HTML berformat A4 portrait, margin 3 cm, Cambria 12 pt, dan seluruh paragraf wajib rata kanan-kiri (align justify: `text-align: justify; text-justify: inter-word; hyphens: auto;`).
+- Wajib Menyertakan Tangkapan Layar (Screenshots / UI Mockups):
+  Pada panduan pengguna (`panduan-pengguna-aplikasi.html` dan `12-user-admin-guide.md`) serta alur UX (`04-ux-flows.md`), wajib menyertakan tangkapan layar (screenshots) atau mockup antarmuka visual (SVG/UI frames) pada bagian-bagian penting (halaman onboarding/login, dashboard utama, alur transaksi/fitur inti, dan panel admin) agar penjelasan menarik, konkret, dan mudah dipahami. Gunakan contoh `assets/snippets/ui-mockup-frame.svg` sebagai acuan saat frontend belum selesai di-coding.
+  Diagram harus berupa SVG/image inline yang dapat dicetak (gunakan contoh pada assets/snippets/architecture-diagram.svg dan assets/snippets/flowchart-diagram.svg sebagai panduan), bukan sintaks Mermaid mentah pada laporan akhir.
 - Ekspor PDF hanya jika engine tersedia dan hasilnya telah diperiksa. Dukungan
   footer dan nomor halaman bergantung pada browser/engine cetak; jangan
   menjamin nomor halaman lintas engine.
@@ -111,6 +115,12 @@ Untuk Standard/Extended buat `16-skkni-competency-map.md`. Untuk Lean,
 section pada delivery plan cukup. Tambahkan `17-developer-guide.md` saat ada
 kode; sebelum coding hanya rencanakan struktur dan bukti yang diperlukan.
 
+Wajib produksi dokumen panduan operasional: buat `12-user-admin-guide.md` pada
+paket Standard/Extended (atau gabungkan pada seksi Operations & Guide untuk Lean)
+yang memuat onboarding, walkthrough fitur utama per role, panduan administrasi sistem,
+troubleshooting/FAQ, dan batasan sistem yang diketahui. Panduan pengguna tidak boleh
+dilewatkan atau hanya disingkat menjadi satu kalimat.
+
 ## 2a. Tetapkan baseline industri dan regulasi
 
 Ikuti standards-indonesia.md sebelum mendetailkan requirement:
@@ -174,7 +184,7 @@ menulis "harus sesuai SNI".
 3. UX/user flow, role-permission matrix, dan aturan state.
 4. Arsitektur, data model, API/integrasi, security/privacy, serta ADR.
 5. Backlog dan delivery plan berdasarkan requirement yang sama.
-6. Test plan, UAT, deployment/runbook, dan panduan penggunaan.
+6. Test plan, UAT, deployment/runbook, serta panduan pengguna dan admin (12-user-admin-guide.md).
 7. Traceability, audit konsistensi, indeks, dan changelog.
 
 Gunakan tautan relatif antardokumen. Hindari mengulang aturan yang sama dalam
@@ -245,13 +255,16 @@ Simpan seluruh output dokumen di folder `app-documentation/` relatif terhadap
 root proyek atau direktori kerja aktif untuk paket satu kali. Buat folder jika
 belum ada. Folder output ini berbeda dari folder instalasi skill
 `.agents/skills/app-documentation/`; jangan menaruh hasil laporan di folder skill.
-Validasi artefak sebelum penyerahan menggunakan python scripts/validate.py --target app-documentation/laporan-dokumentasi-aplikasi.html dan periksa keterlacakan melalui python scripts/lint_traceability.py --dir app-documentation/sources (bila sumber Markdown disertakan).
-README output adalah pintu masuk; gunakan manifest dari katalog.
-Laporan utama berada di `app-documentation/laporan-dokumentasi-aplikasi.html`.
-Sumber Markdown opsional berada di `app-documentation/sources/`; PDF yang
-benar-benar dihasilkan, lampiran, dan paket ZIP juga disimpan dalam folder output
-ini. Jangan menimpa file pengguna yang tidak terkait atau menghapus versi lama
-tanpa izin; gunakan penamaan versi bila diperlukan.
+Struktur deliverable WAJIB lengkap mencakup komponen Opsi 2 (Audiens Terpisah):
+1. `app-documentation/README.md`: Pintu masuk, ringkasan, urutan baca, status, blocker, indeks dokumen, dan panduan cetak PDF.
+2. `app-documentation/sources/*.md`: Seluruh berkas modular Markdown (00-context s.d. 17-developer-guide) ditulis lengkap sebagai SSOT.
+3. `app-documentation/laporan-arsitektur-dan-spesifikasi.html`: Dokumen teknis dan arsitektur lengkap (menggunakan template `assets/report-a4.html`).
+4. `app-documentation/panduan-pengguna-aplikasi.html`: Buku panduan pengguna dan administrator mandiri (menggunakan template `assets/user-guide-a4.html`) lengkap dengan screenshots/mockup visual antarmuka.
+(Catatan: Berkas `app-documentation/laporan-dokumentasi-aplikasi.html` dapat digunakan jika pengguna secara spesifik meminta 1 dokumen master tunggal).
+
+Paragraf naratif dan catatan pada HTML wajib rata kanan-kiri (align justify: `text-align: justify; text-justify: inter-word; hyphens: auto;`).
+Validasi paket sebelum penyerahan menggunakan `python scripts/validate.py --package-dir app-documentation` untuk memastikan seluruh berkas lengkap, serta periksa keterlacakan melalui `python scripts/lint_traceability.py --dir app-documentation/sources`.
+PDF yang benar-benar dihasilkan, lampiran, dan paket ZIP juga disimpan dalam folder output ini. Jangan menimpa file pengguna yang tidak terkait atau menghapus versi lama tanpa izin; gunakan penamaan versi bila diperlukan.
 
 Gunakan manifest katalog sebagai sumber kerja dan susun laporan utama
 `laporan-dokumentasi-aplikasi.html` dengan section/anchor sesuai urutan dokumen.
@@ -259,10 +272,15 @@ Jika ukuran laporan mengharuskan pemisahan, setiap HTML harus self-contained
 dan memiliki indeks/panduan cetak. Tautkan versi/ID dokumen agar sumber Markdown
 dan laporan HTML tidak saling bertentangan.
 Wajib ada cover, metadata/status, daftar isi bertaut, ringkasan, bab terstruktur,
-matriks/diagram relevan, sumber, gap, changelog, dan panduan cetak.
+matriks/diagram teknis, sumber acuan, gap analitis, dan riwayat revisi (changelog).
+DILARANG KERAS memasukkan petunjuk cetak peramban (misal: kotak petunjuk cetak, pintasan Ctrl+P / Cmd+P,
+Save as PDF, dsb.) maupun kriteria/rubrik internal skill (Gate A?H, checklist prompt) ke dalam
+badan dokumen aplikasi HTML atau berkas sumber Markdown. Dokumen aplikasi adalah produk deliverable
+rekayasa perangkat lunak murni. Seluruh panduan teknis cetak diletakkan secara eksklusif pada
+`app-documentation/README.md` pada bagian Panduan Cetak.
 Font utama Cambria 12 pt; bila tidak terpasang, nyatakan fallback dan bahwa
 hasil belum memenuhi persyaratan Cambria persis. Jangan menyertakan berkas
-font proprietary tanpa lisensi. Ikuti html-print.md untuk QA cetak.
+font proprietary tanpa lisensi.
 
 Header tiap dokumen:
 
@@ -286,7 +304,7 @@ Kirim file nyata melalui mekanisme delivery yang tersedia, bukan hanya tree
 folder atau janji. ZIP boleh ditambahkan untuk paket banyak file.
 Setelah file benar-benar tersimpan, wajib sertakan narasi penyerahan:
 "Seluruh output dokumen disimpan di folder `app-documentation/`.
-Laporan utama tersedia di `app-documentation/laporan-dokumentasi-aplikasi.html`."
+Laporan teknis tersedia di `app-documentation/laporan-arsitektur-dan-spesifikasi.html` (atau `app-documentation/laporan-dokumentasi-aplikasi.html`) dan panduan pengguna mandiri di `app-documentation/panduan-pengguna-aplikasi.html`."
 Sesuaikan nama file dengan hasil aktual, sebutkan PDF hanya bila dihasilkan,
 dan jangan menyatakan file tersimpan sebelum memverifikasi keberadaannya.
 Ringkasan akhir memuat cakupan, keputusan terbuka yang menghambat build,

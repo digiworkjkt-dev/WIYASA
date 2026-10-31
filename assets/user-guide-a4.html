@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kerangka panduan pengguna dan administrator aplikasi, A4, margin 3 cm, Cambria 12 pt, align justify.">
+  <title>Panduan Pengguna dan Administrator Aplikasi</title>
+  <style>
+    @page { size: A4 portrait; margin: 3cm; }
+    * { box-sizing: border-box; }
+    html { background: #e9edf2; }
+    body {
+      margin: 0; color: #182332;
+      font-family: Cambria, "Times New Roman", serif;
+      font-size: 12pt; line-height: 1.5;
+    }
+    .report {
+      width: 210mm; max-width: 100%; padding: 30mm; margin: 24px auto;
+      background: white; box-shadow: 0 4px 24px #17233518;
+    }
+    h1, h2, h3, p, li, td, th, code { font-size: 12pt; }
+    h1, h2, h3 { line-height: 1.35; color: #183d54; }
+    h1 { margin: 12mm 0 6mm; font-weight: 700; text-transform: uppercase; }
+    h2 { margin: 8mm 0 4mm; border-bottom: 1px solid #a4b5c1; padding-bottom: 2mm; }
+    h3 { margin: 6mm 0 3mm; }
+    p { margin: 0 0 4mm; text-align: justify; text-justify: inter-word; hyphens: auto; }
+    .eyebrow { color: #526675; letter-spacing: .06em; font-weight: 700; }
+    .badge { display: inline-block; border: 1px solid #7a8c98; padding: 1mm 3mm; }
+    .cover { min-height: 190mm; }
+    .metadata { margin: 8mm 0; }
+    .metadata dt { font-weight: 700; }
+    .metadata dd { margin: 0 0 3mm; text-align: justify; text-justify: inter-word; hyphens: auto; }
+    .notice { border-left: 3px solid #536f84; padding: 3mm 4mm; margin: 5mm 0; background: #f1f5f8; text-align: justify; text-justify: inter-word; hyphens: auto; }
+    a { color: #194f70; text-underline-offset: 2px; overflow-wrap: anywhere; }
+    table { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 5mm 0; }
+    caption { text-align: left; font-weight: 700; margin-bottom: 2mm; }
+    th, td { padding: 2mm; border: 1px solid #9eaeba; vertical-align: top; overflow-wrap: anywhere; }
+    th { text-align: left; background: #eef2f5; font-weight: 700; }
+    pre, code { font-family: inherit; white-space: pre-wrap; overflow-wrap: anywhere; }
+    img, svg { max-width: 100%; height: auto; }
+
+    /* Screenshot / Visual UI Frame */
+    .screenshot-frame {
+      margin: 5mm 0; padding: 3mm;
+      background: #f8fafc; border: 1px solid #cbd5e1;
+      border-radius: 4px; text-align: center;
+      break-inside: avoid; page-break-inside: avoid;
+    }
+    .screenshot-frame img, .screenshot-frame svg {
+      display: block; margin: 0 auto; max-width: 100%; height: auto;
+    }
+    .figure-caption {
+      margin-top: 2mm; font-size: 11pt; color: #475569;
+      font-style: italic; text-align: center;
+    }
+
+    .document-end { border-top: 1px solid #9eaeba; margin-top: 10mm; padding-top: 3mm; }
+    @media screen and (max-width: 800px) {
+      .report { width: 100%; margin: 0; padding: 20px; box-shadow: none; }
+      .cover { min-height: auto; }
+    }
+    @media print {
+      html, body { background: white; margin: 0; padding: 0; }
+      .report { width: auto; max-width: none; padding: 0; margin: 0; box-shadow: none; }
+      .screen-only { display: none !important; }
+      .chapter { break-before: page; page-break-before: always; }
+      h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+      p, li { orphans: 3; widows: 3; text-align: justify; text-justify: inter-word; hyphens: auto; }
+      thead { display: table-header-group; }
+      tr { break-inside: avoid; page-break-inside: avoid; }
+      .notice { background: none; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+<main class="report">
+
+  <header class="cover" id="cover">
+    <p class="eyebrow">PANDUAN OPERASIONAL RESMI</p>
+    <h1>Panduan Pengguna dan Administrator: [Nama Aplikasi]</h1>
+    <p>Petunjuk praktis pengoperasian fitur bagi seluruh pengguna dan prosedur pemeliharaan sistem bagi administrator.</p>
+    <p><span class="badge">VERSI [1.0.0] · DOKUMEN PENGGUNA</span></p>
+    <dl class="metadata">
+      <dt>Target Audiens</dt><dd>Pengguna Akhir, Staf Operasional, dan Administrator Sistem</dd>
+      <dt>Tanggal Terbit</dt><dd>[YYYY-MM-DD]</dd>
+      <dt>Penyusun</dt><dd>[Nama Tim / Departemen Pengembang]</dd>
+      <dt>Status Aplikasi</dt><dd>[Produksi / UAT / Tahap Rilis]</dd>
+    </dl>
+    <p class="notice">Buku panduan ini disusun sebagai rujukan resmi operasional aplikasi sehari-hari. Simpan berkas ini untuk memudahkan penyelesaian kendala teknis mandiri.</p>
+  </header>
+
+  <nav class="chapter" id="daftar-isi" aria-label="Daftar isi">
+    <h2>Daftar Isi</h2>
+    <ol>
+      <li><a href="#gambaran-umum">1. Gambaran Umum dan Peran Pengguna</a></li>
+      <li><a href="#onboarding">2. Pendaftaran, Login, dan Akses Akun</a></li>
+      <li><a href="#fitur-utama">3. Panduan Operasional Fitur Utama</a></li>
+      <li><a href="#administrasi">4. Panduan Khusus Administrator</a></li>
+      <li><a href="#troubleshooting">5. Tanya Jawab (FAQ) dan Penanganan Kendala</a></li>
+      <li><a href="#batasan">6. Batasan Sistem dan Kontak Bantuan</a></li>
+    </ol>
+  </nav>
+
+  <section class="chapter" id="gambaran-umum">
+    <h2>1. Gambaran Umum dan Peran Pengguna</h2>
+    <p>[Jelaskan fungsi aplikasi, manfaat bagi pengguna, serta hak akses dan tanggung jawab masing-masing role pengguna.]</p>
+    <table>
+      <caption>Matriks Peran dan Hak Akses Pengguna</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 25%;">Peran (Role)</th>
+          <th scope="col" style="width: 50%;">Tanggung Jawab &amp; Hak Akses Fitur</th>
+          <th scope="col" style="width: 25%;">Area Menu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Pengguna / Pelanggan</td>
+          <td>Dapat mengakses dashboard pribadi, membuat transaksi, dan melihat riwayat.</td>
+          <td>Portal Pengguna</td>
+        </tr>
+        <tr>
+          <td>Administrator</td>
+          <td>Memiliki kendali penuh pengelolaan akun, persetujuan data, dan audit log.</td>
+          <td>Panel Manajemen</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chapter" id="onboarding">
+    <h2>2. Pendaftaran, Login, dan Akses Akun</h2>
+    <p>[Jelaskan langkah registrasi akun baru, aktivasi email/SMS, login pertama kali, dan cara memperbarui profil serta kata sandi.]</p>
+    <div class="screenshot-frame">
+      <!-- Sisipkan screenshot antarmuka login/onboarding di sini -->
+      <svg viewBox="0 0 500 120" width="100%" height="auto">
+        <rect width="500" height="120" fill="#f1f5f8" rx="6" stroke="#cbd5e1"/>
+        <text x="250" y="65" font-family="Cambria, serif" font-size="14" fill="#64748b" text-anchor="middle">[Tangkapan Layar: Form Login &amp; Autentikasi Pengguna]</text>
+      </svg>
+      <div class="figure-caption">Gambar 2.1: Tampilan antarmuka login dan autentikasi pengguna.</div>
+    </div>
+  </section>
+
+  <section class="chapter" id="fitur-utama">
+    <h2>3. Panduan Operasional Fitur Utama</h2>
+    <p>[Tuliskan panduan langkah-demi-langkah pengoperasian alur kerja inti aplikasi. Sisipkan tangkapan layar (screenshot) atau ilustrasi antarmuka pada setiap tahapan penting.]</p>
+    <h3>3.1 Navigasi Dashboard Utama</h3>
+    <p>[Jelaskan widget, indikator status, dan tombol aksi cepat yang tersedia di halaman utama.]</p>
+    <div class="screenshot-frame">
+      <!-- Sisipkan screenshot dashboard di sini -->
+      <svg viewBox="0 0 500 160" width="100%" height="auto">
+        <rect width="500" height="160" fill="#f1f5f8" rx="6" stroke="#cbd5e1"/>
+        <text x="250" y="85" font-family="Cambria, serif" font-size="14" fill="#64748b" text-anchor="middle">[Tangkapan Layar: Halaman Dashboard Utama Pengguna]</text>
+      </svg>
+      <div class="figure-caption">Gambar 3.1: Tampilan dashboard utama dan menu navigasi.</div>
+    </div>
+    <h3>3.2 Alur Transaksi / Operasi Utama</h3>
+    <p>[Langkah rinci membuat permohonan/transaksi: pemilihan data, pengisian formulir, validasi input, hingga konfirmasi berhasil.]</p>
+  </section>
+
+  <section class="chapter" id="administrasi">
+    <h2>4. Panduan Khusus Administrator</h2>
+    <p>[Instruksi kerja bagi tim pengelola sistem: aktivasi pengguna, pengaturan parameter operasional, verifikasi dokumen, dan pemantauan log audit.]</p>
+    <div class="screenshot-frame">
+      <svg viewBox="0 0 500 140" width="100%" height="auto">
+        <rect width="500" height="140" fill="#f1f5f8" rx="6" stroke="#cbd5e1"/>
+        <text x="250" y="75" font-family="Cambria, serif" font-size="14" fill="#64748b" text-anchor="middle">[Tangkapan Layar: Panel Kontrol Administrator Sistem]</text>
+      </svg>
+      <div class="figure-caption">Gambar 4.1: Antarmuka panel manajemen administrator.</div>
+    </div>
+  </section>
+
+  <section class="chapter" id="troubleshooting">
+    <h2>5. Tanya Jawab (FAQ) dan Penanganan Kendala</h2>
+    <p>[Daftar pertanyaan yang sering diajukan, penjelasan arti pesan peringatan sistem, serta langkah perbaikan yang dapat dilakukan secara mandiri oleh pengguna.]</p>
+    <table>
+      <caption>Panduan Pemecahan Masalah Mandiri (Troubleshooting)</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width: 30%;">Gejala / Pesan Error</th>
+          <th scope="col" style="width: 35%;">Kemungkinan Penyebab</th>
+          <th scope="col" style="width: 35%;">Solusi Rekomendasi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Akun Terkunci / Gagal Login</td>
+          <td>Salah memasukkan kata sandi lebih dari 3 kali.</td>
+          <td>Gunakan fitur 'Lupa Kata Sandi' atau hubungi Administrator.</td>
+        </tr>
+        <tr>
+          <td>Sesi Telah Berakhir</td>
+          <td>Tidak ada aktivitas selama lebih dari 30 menit.</td>
+          <td>Muat ulang halaman dan lakukan login kembali.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chapter" id="batasan">
+    <h2>6. Batasan Sistem dan Kontak Bantuan</h2>
+    <p>[Jelaskan batasan teknis aplikasi yang perlu diketahui pengguna (misal: kapasitas maksimal unggah dokumen, jam layanan), serta saluran bantuan resmi.]</p>
+    <dl class="metadata">
+      <dt>Pusat Layanan Bantuan (Helpdesk)</dt>
+      <dd>[Email / Nomor Kontak Dukungan Teknis]</dd>
+      <dt>Jam Operasional Dukungan</dt>
+      <dd>[Hari Kerja, 08:00 – 17:00 WIB]</dd>
+    </dl>
+  </section>
+
+  <footer class="document-end">
+    Dokumen Panduan Pengguna Resmi · Hak Cipta Dilindungi
+  </footer>
+
+</main>
+</body>
+</html>

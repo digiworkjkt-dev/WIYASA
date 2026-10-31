@@ -2,19 +2,16 @@
 
 ## Format delivery
 
-Manifest Markdown berikut adalah sumber kerja modular, bukan format output
-utama. Render semua bagian relevan menjadi satu laporan HTML profesional
-`app-documentation/laporan-dokumentasi-aplikasi.html`, self-contained dan siap cetak A4:
-margin 3 cm, Cambria 12 pt, mengikuti html-print.md. Section memiliki anchor
-stabil sesuai nama dokumen/ID. README memberi tautan ke laporan dan sumber.
-PDF bersyarat pada engine dan verifikasi hasil; footer/nomor halaman
-tidak dijanjikan tersedia pada setiap browser.
+Paket deliverable yang dihasilkan **wajib menggunakan Standar Opsi 2 (Pemisahan Dua Dokumen Berdasarkan Audiens)**:
+1. `app-documentation/README.md` pada root folder dokumentasi sebagai pintu masuk, ringkasan status, peta navigasi paket, dan panduan cetak PDF.
+2. Seluruh berkas modular Markdown (00-context s.d. 17-developer-guide) disimpan pada folder `app-documentation/sources/` sebagai Single Source of Truth (SSOT) teknis pengembang di git.
+3. `app-documentation/laporan-arsitektur-dan-spesifikasi.html`: Dokumen teknis dan arsitektur lengkap bagi Tim Pengembang, Arsitek, dan Auditor (menggunakan template `assets/report-a4.html`).
+4. `app-documentation/panduan-pengguna-aplikasi.html`: Buku panduan operasional mandiri bagi Klien, Pengguna Akhir, dan Administrator Sistem (menggunakan template `assets/user-guide-a4.html`), **wajib menyertakan tangkapan layar (screenshots) atau mockup antarmuka visual** pada alur onboarding, dashboard, transaksi utama, dan panel admin.
+(Catatan: `app-documentation/laporan-dokumentasi-aplikasi.html` tetap didukung sebagai format alternatif bila pengguna meminta satu dokumen tunggal).
 
-Seluruh output berada di `app-documentation/`: README output di root folder,
-sumber modular opsional pada `sources/`, serta PDF/lampiran/ZIP bila dihasilkan.
-Nama file manifest di bawah relatif terhadap folder sumber; bukan instruksi
-menyimpan output ke direktori instalasi skill. Narasi penyerahan wajib
-menyebut folder output dan path laporan yang benar-benar ada.
+Section HTML memiliki anchor stabil sesuai nama dokumen/ID. README memberi tautan ke laporan HTML dan seluruh berkas sumber pada `sources/`.
+PDF bersyarat pada ketersediaan engine dan verifikasi hasil; footer/nomor halaman tidak dijanjikan lintas engine.
+Nama file manifest di bawah relatif terhadap folder sumber `app-documentation/sources/`; bukan instruksi menyimpan output ke direktori instalasi skill. Narasi penyerahan wajib menyebut folder output, path laporan, dan struktur berkas sumber yang benar-benar ada.
 
 ## Manifest Standard
 
@@ -35,7 +32,7 @@ Gunakan nama berikut sebagai default; adaptasikan tanpa mengorbankan cakupan.
 | `09-delivery-plan.md` | Epic/task ber-ID dan requirement terkait, urutan dependency, definition of ready/done, milestone, risiko, owner belum ditentukan bila tidak diketahui |
 | `10-test-plan.md` | Unit/integration/E2E, test ber-ID, edge cases, security/accessibility/performance sesuai risiko, data/lingkungan uji, UAT, exit criteria, status planned |
 | `11-deployment-runbook.md` | Lingkungan, konfigurasi tanpa nilai secret, build/release, migration, monitoring, backup/restore, rollback dan batasnya, incident response, go-live checklist |
-| `12-user-admin-guide.md` | Workflow user/admin, onboarding, konfigurasi, troubleshooting, known limitations; jelaskan jika perilaku masih rencana |
+| `12-user-admin-guide.md` | Workflow user/admin, onboarding, konfigurasi, troubleshooting, known limitations, serta tangkapan layar (screenshots/mockups) pada alur penting |
 | `13-traceability.md` | Matriks FR/NFR ke AC, UX, component/data/API, task, test; gap, N/A dengan alasan, risiko dan blocker |
 | `14-decision-log.md` | ADR, asumsi, open questions, keputusan dan konsekuensi, changelog lintas dokumen |
 | `15-standards-compliance.md` | Register standar/regulasi, applicability dan dasar wajib/sukarela, edisi/status/sumber, mapping topik/klausul, kontrol, bukti, owner, gap dan rencana remediasi |
@@ -100,6 +97,15 @@ dokumentasi fiktif untuk memenuhi unit kompetensi.
 ### Architecture decision
 
 `ID | Status | Context | Options | Decision/proposal | Tradeoffs | Consequences | Affected docs`
+
+### Panduan pengguna dan administrator (12-user-admin-guide.md)
+
+Dokumen panduan pengguna wajib diproduksi secara terstruktur memuat 5 bagian:
+1. **Onboarding & Autentikasi:** Alur registrasi, login, verifikasi akun, dan hak akses awal per role.
+2. **Panduan Fitur Utama:** Prosedur operasional langkah-demi-langkah penggunaan fitur bagi setiap role pengguna (alur sukses dan mitigasi kesalahan input).
+3. **Panduan Administrator:** Prosedur administrasi data master, manajemen role/hak akses, persetujuan (approval workflow), dan monitoring audit log.
+4. **Penanganan Kendala (Troubleshooting & FAQ):** Solusi kendala umum, arti pesan error, dan tindakan pemulihan mandiri.
+5. **Batasan Sistem (Known Limitations):** Batasan operasional sistem yang diketahui serta fitur yang masih dalam tahap rencana.
 
 ### Open question
 
