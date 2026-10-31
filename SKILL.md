@@ -263,7 +263,7 @@ Struktur deliverable WAJIB lengkap mencakup komponen Opsi 2 (Audiens Terpisah):
 (Catatan: Berkas `app-documentation/laporan-dokumentasi-aplikasi.html` dapat digunakan jika pengguna secara spesifik meminta 1 dokumen master tunggal).
 
 Paragraf naratif dan catatan pada HTML wajib rata kanan-kiri (align justify: `text-align: justify; text-justify: inter-word; hyphens: auto;`).
-DILARANG KERAS menggunakan running header di bagian atas dokumen karena memicu tabrakan visual dan tampilan berantakan di peramban. Gunakan secara eksklusif running footer di margin bawah (`bottom: -22mm;` / `@bottom-left` & `@bottom-right`) untuk mencantumkan identitas resmi dokumen dan nomor halaman.
+DILARANG KERAS menggunakan running header atau elemen HTML `position: fixed` pada `@media print` karena memicu tabrakan visual dan menutupi judul bab di peramban. Gunakan secara eksklusif CSS Paged Media `@page` margin boxes (`@bottom-left` & `@bottom-right`) di margin bawah untuk mencantumkan identitas resmi dokumen dan nomor halaman, serta `<footer class="document-end">` sebagai penutup dokumen resmi.
 Validasi paket sebelum penyerahan menggunakan `python scripts/validate.py --package-dir app-documentation` untuk memastikan seluruh berkas lengkap, serta periksa keterlacakan melalui `python scripts/lint_traceability.py --dir app-documentation/sources`.
 PDF yang benar-benar dihasilkan, lampiran, dan paket ZIP juga disimpan dalam folder output ini. Jangan menimpa file pengguna yang tidak terkait atau menghapus versi lama tanpa izin; gunakan penamaan versi bila diperlukan.
 

@@ -113,9 +113,12 @@ Cambria bukan font yang pasti tersedia pada setiap OS atau container.
 **Aturan Baku Tata Naskah WIYASA:**
 - **DILARANG KERAS menggunakan Running Header (kop atas berulang).**
   Penggunaan running header terbukti menyebabkan rendering ganda dan tabrakan visual (*content overlap*) pada peramban web modern, terutama saat jeda halaman (*page break*) di mana garis dan teks header menimpa judul bab (`h2`) dan teks isi dokumen.
-- Seluruh dokumen cetak A4 resmi WIYASA menerapkan tata letak bersih (*clean top margin*):
+- **DILARANG KERAS menggunakan `position: fixed` pada `@media print`.**
+  Penggunaan elemen HTML dengan `position: fixed` saat dicetak pada peramban berbasis Chromium rentan mengalami mispositioning, di mana elemen melayang dan menutupi judul bab (`h2`) serta paragraf pembuka.
+- Seluruh dokumen cetak A4 resmi WIYASA menerapkan tata letak bersih (*clean layout*):
   1. **Bagian Atas Halaman:** Bersih total tanpa kop berulang. Margin atas 3 cm murni sebagai ruang kosong bernapas (*whitespace*), langsung diikuti oleh judul bab.
-  2. **Bagian Bawah Halaman (Running Footer):** Seluruh identitas dokumen dan nomor halaman ditempatkan secara eksklusif di bagian bawah lembar dokumen (`bottom: -22mm;` / `@bottom-left` & `@bottom-right`).
+  2. **Bagian Bawah Halaman (Running Footer):** Seluruh identitas dokumen dan nomor halaman ditempatkan secara eksklusif melalui CSS Paged Media `@page` (`@bottom-left` & `@bottom-right`), yang terisolasi di dalam kotak margin peramban sehingga tidak dapat bertabrakan dengan konten.
+  3. **Penutup Dokumen:** Elemen semantik `<footer class="document-end">` diletakkan di akhir dokumen sebagai penutup resmi.
 
 ### Implementasi Standar CSS Running Footer Tunggal:
 
@@ -125,7 +128,7 @@ Cambria bukan font yang pasti tersedia pada setiap OS atau container.
   size: A4 portrait;
   margin: 3cm;
   @bottom-left {
-    content: "WIYASA ? Dokumentasi Resmi Aplikasi";
+    content: "WIYASA · Dokumentasi Resmi Aplikasi";
     font-family: Cambria, "Times New Roman", serif;
     font-size: 8.5pt;
     color: #64748b;
@@ -148,20 +151,7 @@ Cambria bukan font yang pasti tersedia pada setiap OS atau container.
   @bottom-right { content: none; }
 }
 
-/* 2. Tampilan Layar (Screen View) */
-.running-footer {
-  margin-top: 15mm;
-  padding-top: 3mm;
-  border-top: 0.5pt solid #cbd5e1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: Cambria, "Times New Roman", serif;
-  font-size: 8.5pt;
-  color: #64748b;
-}
-
-/* 3. Pengulangan Cetak Peramban Bebas Masalah (@media print) */
+/* 2. Pengulangan Cetak Peramban Bebas Masalah (@media print) */
 @media print {
   html, body { background: white; margin: 0; padding: 0; }
   .report { width: auto; max-width: none; padding: 0; margin: 0; box-shadow: none; }
@@ -172,25 +162,7 @@ Cambria bukan font yang pasti tersedia pada setiap OS atau container.
   thead { display: table-header-group; }
   tr { break-inside: avoid; page-break-inside: avoid; }
   .notice { background: none; }
-  a { color: inherit; }
-
-  /* Running Footer Cetak: Ditempatkan presisi di dalam margin bawah 3cm */
-  .running-footer {
-    position: fixed;
-    bottom: -22mm;
-    left: 0;
-    right: 0;
-    height: 10mm;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 0.5pt solid #cbd5e1;
-    padding-top: 2mm;
-    font-size: 8.5pt;
-    color: #64748b;
-    background: transparent;
-  }
+  a { color: inherit; text-decoration: none; }
 }
 ```
 

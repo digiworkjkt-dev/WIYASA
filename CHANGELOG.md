@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.6.3 — 2026-10-31: Eliminasi Total Rogue Header & Fixed Footers Bug (True Clean Margin Architecture)
+
+- **Eliminasi Anomali Mispositioning Element Cetak Chromium (`position: fixed`):**
+  - Mengidentifikasi akar masalah teks berjalan "WIYASA · SAKIP OTONOM+ — Buku Panduan Pengguna & Administrator" yang melayang di bawah judul bab (`h2`): mesin cetak Chromium salah memposisikan elemen HTML ber-`position: fixed` di area konten halaman alih-alih di kotak margin.
+  - Menghapus seluruh elemen HTML `<footer class="running-footer">` dan aturan `position: fixed` dari seluruh berkas dokumen HTML cetak.
+  - Mengalihkan implementasi running footer 100% murni ke CSS Paged Media standar `@page` margin boxes (`@bottom-left` & `@bottom-right`), menjamin isolasi total teks footer di dalam kotak margin peramban sehingga secara fisik mustahil menabrak atau menutupi judul bab (`h2`).
+  - Menutup dokumen dengan elemen semantik `<footer class="document-end">` murni pada halaman terakhir.
+- **Pembaruan Berkas Nyata SAKIP OTONOM+:**
+  - Memperbarui secara langsung seluruh berkas aktif di direktori kerja pengguna: `D:\AI_LAB\Office\SAKIP OTONOM+\app-documentation\panduan-pengguna-aplikasi.html`, `laporan-arsitektur-dan-spesifikasi.html`, dan `laporan-dokumentasi-aplikasi.html`.
+- **Pengetatan Aturan Validasi (`scripts/validate.py`):**
+  - Menambahkan larangan mutlak penggunaan `position: fixed` saat `@media print` untuk mencegah kemunculan bug floating element serupa di masa depan.
+
 ## 1.6.2 ? 2026-10-31: Penghapusan Running Header demi Kebersihan Tata Letak Cetak (Header Elimination & Clean Footer-Only Layout)
 
 - **Eliminasi Menyeluruh Elemen Running Header (Kop Atas Berulang):**

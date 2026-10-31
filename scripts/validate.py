@@ -131,22 +131,14 @@ def validate_html_content(html_text: str, filename: str = "HTML") -> list[str]:
             "menyebabkan kop atas bertumpuk dan menimpa konten bab. Gunakan hanya @bottom-left / @bottom-right."
         )
 
-    if re.search(r'position:\s*fixed[^}]*?(?<!-)\btop:', html_text, re.I):
-        errors.append(
-            f"Larangan fixed header pada {filename}: Penggunaan position: fixed dengan property 'top' dilarang keras "
-            "karena menimpa konten dokumen. Hanya running footer (position: fixed dengan bottom) yang diperbolehkan."
-        )
-
-    # Pastikan position: fixed HANYA digunakan untuk running-footer
+    # Larangan mutlak position: fixed saat cetak:
+    # Pada Chromium print engine, position: fixed rentan mengalami mispositioning dan melayang menutupi judul bab (h2).
+    # Running footer wajib diimplementasikan murni via CSS Paged Media (@page {@bottom-left ... @bottom-right ...}).
     if "position: fixed" in html_text:
-        fixed_selectors = re.findall(r'([^{}]*)\{[^}]*position:\s*fixed[^}]*\}', html_text)
-        for selector in fixed_selectors:
-            sel_clean = selector.strip().lower()
-            if not any(k in sel_clean for k in [".running-footer", "footer"]):
-                errors.append(
-                    f"Penggunaan position: fixed tidak diizinkan pada '{selector.strip()}' di {filename}. "
-                    "Hanya diperbolehkan secara eksklusif untuk elemen footer cetak (.running-footer)."
-                )
+        errors.append(
+            f"Larangan position: fixed pada {filename}: Penggunaan position: fixed dilarang karena menyebabkan "
+            "elemen melayang dan menutupi teks bab pada peramban Chromium. Gunakan margin boxes @bottom-left/@bottom-right."
+        )
 
     # Deteksi kebocoran instruksi cetak peramban & meta-kriteria ke dalam badan dokumen aplikasi
     leakage_patterns = [
