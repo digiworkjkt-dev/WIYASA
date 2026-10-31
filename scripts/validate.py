@@ -118,31 +118,35 @@ def validate_html_content(html_text: str, filename: str = "HTML") -> list[str]:
     if not re.search(r'<footer[^>]*class="[^"]*(?:running-footer|document-end)', html_text):
         errors.append(f"Footer dokumen resmi tidak ditemukan pada {filename}. Setiap dokumen wajib memiliki elemen footer (.running-footer).")
 
-    # Pastikan position: fixed hanya digunakan untuk running footer/header cetak
+    # Larangan mutlak running header: dilarang keras memuat header berulang di bagian atas
+    if ".running-header" in html_text or re.search(r'<header[^>]*class="[^"]*running-header', html_text):
+        errors.append(
+            f"Larangan running header pada {filename}: Elemen .running-header dilarang digunakan karena memicu "
+            "rendering ganda dan tabrakan visual yang menimpa judul bab. Gunakan hanya running footer di bagian bawah."
+        )
+
+    if re.search(r'@top-(?:left|right|center)', html_text):
+        errors.append(
+            f"Larangan kop atas pada {filename}: Penggunaan @top-left / @top-right pada @page dilarang karena "
+            "menyebabkan kop atas bertumpuk dan menimpa konten bab. Gunakan hanya @bottom-left / @bottom-right."
+        )
+
+    if re.search(r'position:\s*fixed[^}]*?(?<!-)\btop:', html_text, re.I):
+        errors.append(
+            f"Larangan fixed header pada {filename}: Penggunaan position: fixed dengan property 'top' dilarang keras "
+            "karena menimpa konten dokumen. Hanya running footer (position: fixed dengan bottom) yang diperbolehkan."
+        )
+
+    # Pastikan position: fixed HANYA digunakan untuk running-footer
     if "position: fixed" in html_text:
         fixed_selectors = re.findall(r'([^{}]*)\{[^}]*position:\s*fixed[^}]*\}', html_text)
         for selector in fixed_selectors:
             sel_clean = selector.strip().lower()
-            if not any(k in sel_clean for k in [".running-footer", ".running-header", "footer"]):
+            if not any(k in sel_clean for k in [".running-footer", "footer"]):
                 errors.append(
                     f"Penggunaan position: fixed tidak diizinkan pada '{selector.strip()}' di {filename}. "
-                    "Hanya diperbolehkan untuk elemen header/footer cetak (.running-footer / .running-header)."
+                    "Hanya diperbolehkan secara eksklusif untuk elemen footer cetak (.running-footer)."
                 )
-
-    # Deteksi bahaya tabrakan konten: running header dilarang menggunakan top: 0 atau nilai positif
-    if re.search(r'position:\s*fixed[^}]*?(?<!-)\btop:\s*(?:0\b|[1-9]\d*(?:px|mm|pt))', html_text, re.I):
-        errors.append(
-            f"Bahaya tabrakan konten pada {filename}: Header fixed tidak boleh menggunakan top: 0 atau nilai positif "
-            "karena akan menimpa judul bab dan teks. Gunakan posisi aman di dalam margin atas (top: -22mm) "
-            "dan tambahkan padding-top: 8mm pada .chapter di @media print."
-        )
-
-    # Pastikan running-header menyertakan nowrap untuk mencegah wrap 2 baris yang menimpa konten
-    if ".running-header" in html_text and "nowrap" not in html_text.lower():
-        errors.append(
-            f"Risiko multi-baris pada {filename}: .running-header wajib menyertakan 'white-space: nowrap' dan "
-            "'text-overflow: ellipsis' agar judul dokumen tidak turun ke baris kedua dan menimpa konten."
-        )
 
     # Deteksi kebocoran instruksi cetak peramban & meta-kriteria ke dalam badan dokumen aplikasi
     leakage_patterns = [

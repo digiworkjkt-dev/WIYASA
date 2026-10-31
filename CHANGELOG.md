@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.6.2 ? 2026-10-31: Penghapusan Running Header demi Kebersihan Tata Letak Cetak (Header Elimination & Clean Footer-Only Layout)
+
+- **Eliminasi Menyeluruh Elemen Running Header (Kop Atas Berulang):**
+  - Menghapus elemen `.running-header` serta deklarasi `@top-left` dan `@top-right` pada `@page` dari seluruh dokumen dan template bawaan atas permintaan tata letak bersih.
+  - Menghilangkan anomali rendering ganda dan tabrakan visual pada peramban per halaman cetak di mana teks kop atas saling bertumpuk dan menimpa judul bab (`h2`).
+  - Menstandarisasi tata letak halaman A4 bersih: bagian atas halaman murni sebagai ruang margin kosong 3 cm (*clean top margin whitespace*), diikuti langsung oleh teks judul bab yang lapang dan mudah dibaca.
+  - Menegaskan bahwa identitas resmi dokumen dan penomoran halaman ditempatkan secara eksklusif pada **Running Footer** di bagian bawah lembar dokumen (`bottom: -22mm;` / `@bottom-left` & `@bottom-right`).
+- **Pengetatan Aturan Validasi (`scripts/validate.py`):**
+  - Menambahkan aturan pencegahan otomatis yang secara eksplisit menolak penggunaan elemen `.running-header`, `@top-left`, `@top-right`, atau `position: fixed` dengan properti `top`.
+- **Sinkronisasi Seluruh Dokumen:**
+  - Memperbarui kerangka `assets/report-a4.html`, `assets/user-guide-a4.html`, paket `DocsApp/`, dan `app-documentation/`.
+
 ## 1.6.1 ? 2026-10-31: Perbaikan Layout Header Anti-Tabrakan Konten (Anti-Collision Architecture)
 
 - **Eliminasi Cacat Tabrakan Visual Running Header Terhadap Konten Halaman:**

@@ -9,24 +9,6 @@
     @page {
       size: A4 portrait;
       margin: 3cm;
-      @top-left {
-        content: "WIYASA ? Panduan Pengguna dan Administrator";
-        font-family: Cambria, "Times New Roman", serif;
-        font-size: 8pt;
-        color: #64748b;
-        vertical-align: bottom;
-        padding-bottom: 2mm;
-        border-bottom: 0.5pt solid #cbd5e1;
-      }
-      @top-right {
-        content: "Dokumen Resmi Operasional";
-        font-family: Cambria, "Times New Roman", serif;
-        font-size: 8pt;
-        color: #64748b;
-        vertical-align: bottom;
-        padding-bottom: 2mm;
-        border-bottom: 0.5pt solid #cbd5e1;
-      }
       @bottom-left {
         content: "WIYASA ? Panduan Operasional Resmi";
         font-family: Cambria, "Times New Roman", serif;
@@ -47,8 +29,6 @@
       }
     }
     @page :first {
-      @top-left { content: none; }
-      @top-right { content: none; }
       @bottom-left { content: none; }
       @bottom-right { content: none; }
     }
@@ -100,25 +80,6 @@
     }
 
     .document-end { border-top: 1px solid #9eaeba; margin-top: 10mm; padding-top: 3mm; font-size: 11pt; color: #495b6a; }
-    .running-header, .running-footer {
-      font-family: Cambria, "Times New Roman", serif;
-      font-size: 8pt;
-      color: #64748b;
-    }
-    .running-header span, .running-footer span {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 48%;
-    }
-    .running-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 0.5pt solid #cbd5e1;
-      padding-bottom: 2mm;
-      margin-bottom: 8mm;
-    }
     .running-footer {
       margin-top: 15mm;
       padding-top: 3mm;
@@ -135,11 +96,7 @@
       html, body { background: white; margin: 0; padding: 0; }
       .report { width: auto; max-width: none; padding: 0; margin: 0; box-shadow: none; }
       .screen-only { display: none !important; }
-      .chapter {
-        break-before: page;
-        page-break-before: always;
-        padding-top: 8mm; /* BUFFER ANTI-TABRAKAN WAJIB: Menjamin jarak aman dari batas margin atas */
-      }
+      .chapter { break-before: page; page-break-before: always; }
       .cover {
         break-after: page;
         page-break-after: always;
@@ -154,28 +111,6 @@
       tr { break-inside: avoid; page-break-inside: avoid; }
       .notice { background: none; }
       a { color: inherit; }
-      .running-header {
-        position: fixed;
-        top: -22mm;
-        left: 0;
-        right: 0;
-        height: 8mm;
-        margin: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 0.5pt solid #cbd5e1;
-        padding-bottom: 1.5mm;
-        font-size: 8pt;
-        color: #64748b;
-        background: transparent;
-      }
-      .running-header span, .running-footer span {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 48%;
-      }
       .running-footer {
         position: fixed;
         bottom: -22mm;
@@ -210,11 +145,6 @@
       <dt>Status Aplikasi</dt><dd>[Produksi / UAT / Tahap Rilis]</dd>
     </dl>
     <p class="notice">Buku panduan ini disusun sebagai rujukan resmi operasional aplikasi sehari-hari. Simpan berkas ini untuk memudahkan penyelesaian kendala teknis mandiri.</p>
-  </header>
-
-  <header class="running-header" aria-hidden="true">
-    <span>WIYASA ? [Nama Aplikasi ? Panduan Pengguna]</span>
-    <span>Dokumen Resmi Operasional</span>
   </header>
 
   <nav class="chapter" id="daftar-isi" aria-label="Daftar isi">
