@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.6.0 ? 2026-10-31: Rebranding Resmi WIYASA & Running Page Footers
+
+- **Pengenalan Running Page Footers pada Dokumen Cetak A4:**
+  - Menambahkan elemen `.running-footer` dengan pengulangan otomatis pada setiap halaman cetak peramban (`position: fixed; bottom: -22mm;` di `@media print`) yang ditempatkan aman di dalam margin bawah 3cm tanpa menimpa isi dokumen.
+  - Menambahkan aturan CSS Paged Media standar (`@page { @bottom-left { ... } @bottom-right { ... } }`) dengan penomoran halaman otomatis (`counter(page)`) untuk engine paged media (WeasyPrint, Prince, modern Chromium).
+  - Memperbarui `assets/report-a4.html`, `assets/user-guide-a4.html`, dan laporan nyata di `DocsApp/` dengan running page footer resmi beridentitas WIYASA.
+- **Pembaruan Aturan Skrip Validasi (`scripts/validate.py`):**
+  - Mengganti larangan blanket `position: fixed` dengan validasi terarah: mewajibkan setiap dokumen memiliki elemen footer resmi (`.running-footer`) dan membatasi `position: fixed` secara ketat hanya untuk header/footer cetak.
+- **Migrasi & Rebranding Nama Repositori Menjadi WIYASA:**
+  - Mengubah nama repositori GitHub secara resmi dari `digiworkjkt-dev/app-documentation` menjadi `digiworkjkt-dev/WIYASA`.
+  - Memperbarui git remote origin ke `https://github.com/digiworkjkt-dev/WIYASA.git`.
+  - Mengadopsi identitas merek **WIYASA** (terinspirasi dari Begawan Wiyasa / Vyasa, sang mahaguru perangkum pustaka agung dan pencatat pengetahuan terstruktur).
+  - Nama teknis frontmatter resmi diperbarui menjadi `name: wiyasa` dengan alias pengenal pencarian `app-documentation`.
+  - Pembaruan seluruh dokumen panduan pengguna ([`PANDUAN_PENGGUNA.md`](PANDUAN_PENGGUNA.md)), katalog acuan, dan perkakas linter/validator menjadi ekosistem resmi WIYASA.
+
 ## 1.5.2 ? 2026-10-31
 
 - **Standarisasi Deliverable Opsi 2 (Pemisahan Dokumen Berdasarkan Audiens):**

@@ -108,37 +108,79 @@ Cambria bukan font yang pasti tersedia pada setiap OS atau container.
   Dilarang keras memuat tag `<script>`, `<iframe>`, `<object>`, atau atribut
   event handler (`onload`, `onerror`, `onclick`).
 
-## Footer dan nomor halaman
+## Footer dan Nomor Halaman (Running Page Footers)
 
-Dukungan footer dan nomor halaman bergantung pada browser/engine cetak.
-Catat engine/versi yang benar-benar dipakai; jangan mengklaim lintas browser.
+Seluruh dokumen resmi A4 yang dihasilkan WIYASA wajib menyertakan identitas halaman running footer pada setiap halaman cetak:
+1. **Sisi Kiri:** Identitas resmi dokumen (misal: `WIYASA ? Dokumentasi Resmi Aplikasi` atau judul modul terkait).
+2. **Sisi Kanan:** Status dokumen terkendali atau nomor halaman (`Halaman counter(page)`).
+3. **Garis Pemisah:** Garis tipis pembatas atas (`0.5pt solid #cbd5e1`) untuk menjaga kerapian visual.
 
-Pilihan:
-1. **Browser biasa:** header/footer bawaan dapat dipakai bila tersedia, tetapi
-   dapat menampilkan URL/path, mengubah area cetak, atau berbeda antar browser.
-   Default matikan header/footer bawaan untuk laporan bersih.
-2. **CSS paged media:** `@page` margin boxes/counter(page) hanya jika engine
-   mendukung dan hasil uji memperlihatkan nomor halaman yang benar.
-3. **Engine PDF:** gunakan template footer/pagination milik engine bila tersedia,
-   tanpa menggandakan footer CSS. Periksa posisi dan konsistensi margin.
-
-Template bawaan sengaja tidak membuat fixed footer di setiap halaman. Fixed
-footer dapat menimpa isi dan counter CSS pada elemen biasa bukan nomor halaman
-yang andal. Daftar isi default memakai tautan section, bukan nomor halaman
-perkiraan. Isi nomor halaman TOC hanya setelah pagination final diverifikasi.
-
-Contoh opsional untuk engine paged media yang telah diverifikasi:
+### Implementasi Standar CSS Multi-Engine:
 
 ```css
-/* Jangan aktifkan tanpa pemeriksaan engine dan hasil PDF. */
+/* 1. Dukungan CSS Paged Media (WeasyPrint, Prince, PagedJS, modern Chrome) */
 @page {
-  @bottom-center {
-    content: "Halaman " counter(page) " dari " counter(pages);
+  size: A4 portrait;
+  margin: 3cm;
+  @bottom-left {
+    content: "WIYASA ? Dokumentasi Resmi Aplikasi";
     font-family: Cambria, "Times New Roman", serif;
-    font-size: 12pt;
+    font-size: 8.5pt;
+    color: #64748b;
+    vertical-align: top;
+    padding-top: 2mm;
+    border-top: 0.5pt solid #cbd5e1;
+  }
+  @bottom-right {
+    content: "Halaman " counter(page);
+    font-family: Cambria, "Times New Roman", serif;
+    font-size: 8.5pt;
+    color: #64748b;
+    vertical-align: top;
+    padding-top: 2mm;
+    border-top: 0.5pt solid #cbd5e1;
+  }
+}
+@page :first {
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+
+/* 2. Tampilan Layar (Screen View) */
+.running-footer {
+  margin-top: 15mm;
+  padding-top: 3mm;
+  border-top: 0.5pt solid #cbd5e1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 8.5pt;
+  color: #64748b;
+}
+
+/* 3. Pengulangan Otomatis Peramban (Chromium Ctrl+P Print Engine) */
+@media print {
+  .running-footer {
+    position: fixed;
+    bottom: -22mm;
+    left: 0;
+    right: 0;
+    height: 10mm;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.5pt solid #cbd5e1;
+    padding-top: 2mm;
+    font-size: 8.5pt;
+    color: #64748b;
+    background: transparent;
   }
 }
 ```
+
+Posisi `bottom: -22mm` menempatkan footer tepat di dalam ruang margin bawah 3cm (30mm) tanpa pernah bertabrakan atau menimpa teks isi bab.
 
 ## Pemisahan panduan cetak dan konten dokumen
 

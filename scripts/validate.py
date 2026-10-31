@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validator untuk repositori skill app-documentation dan berkas deliverable HTML.
+Validator untuk repositori skill WIYASA (app-documentation) dan berkas deliverable HTML.
 Memeriksa metadata frontmatter, tautan relatif Markdown, keunikan heading,
 standar CSS cetak A4, aturan sanitasi keamanan (anti-XSS), dan integritas anchor.
 
@@ -114,8 +114,20 @@ def validate_html_content(html_text: str, filename: str = "HTML") -> list[str]:
     if not re.search(r'\.report\s*\{[^}]*padding:\s*0', html_text):
         errors.append(f"Risiko margin ganda pada {filename}: .report harus memiliki padding: 0 pada @media print")
 
+    # Cek kehadiran footer dokumen resmi (.running-footer atau .document-end)
+    if not re.search(r'<footer[^>]*class="[^"]*(?:running-footer|document-end)', html_text):
+        errors.append(f"Footer dokumen resmi tidak ditemukan pada {filename}. Setiap dokumen wajib memiliki elemen footer (.running-footer).")
+
+    # Pastikan position: fixed hanya digunakan untuk running footer/header cetak
     if "position: fixed" in html_text:
-        errors.append(f"Hindari position: fixed pada {filename} karena ketidakstabilan rendering footer browser")
+        fixed_selectors = re.findall(r'([^{}]*)\{[^}]*position:\s*fixed[^}]*\}', html_text)
+        for selector in fixed_selectors:
+            sel_clean = selector.strip().lower()
+            if not any(k in sel_clean for k in [".running-footer", ".running-header", "footer"]):
+                errors.append(
+                    f"Penggunaan position: fixed tidak diizinkan pada '{selector.strip()}' di {filename}. "
+                    "Hanya diperbolehkan untuk elemen header/footer cetak (.running-footer)."
+                )
 
     # Deteksi kebocoran instruksi cetak peramban & meta-kriteria ke dalam badan dokumen aplikasi
     leakage_patterns = [
@@ -215,7 +227,7 @@ def validate_repo() -> list[str]:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Validator repositori dan artefak HTML skill app-documentation (v1.5.0)."
+        description="Validator repositori dan artefak HTML skill WIYASA (v1.6.0)."
     )
     parser.add_argument(
         "--target",

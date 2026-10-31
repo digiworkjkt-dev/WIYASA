@@ -6,7 +6,32 @@
   <meta name="description" content="Kerangka panduan pengguna dan administrator aplikasi, A4, margin 3 cm, Cambria 12 pt, align justify.">
   <title>Panduan Pengguna dan Administrator Aplikasi</title>
   <style>
-    @page { size: A4 portrait; margin: 3cm; }
+    @page {
+      size: A4 portrait;
+      margin: 3cm;
+      @bottom-left {
+        content: "WIYASA ? Panduan Pengguna Resmi";
+        font-family: Cambria, "Times New Roman", serif;
+        font-size: 8.5pt;
+        color: #64748b;
+        vertical-align: top;
+        padding-top: 2mm;
+        border-top: 0.5pt solid #cbd5e1;
+      }
+      @bottom-right {
+        content: "Halaman " counter(page);
+        font-family: Cambria, "Times New Roman", serif;
+        font-size: 8.5pt;
+        color: #64748b;
+        vertical-align: top;
+        padding-top: 2mm;
+        border-top: 0.5pt solid #cbd5e1;
+      }
+    }
+    @page :first {
+      @bottom-left { content: none; }
+      @bottom-right { content: none; }
+    }
     * { box-sizing: border-box; }
     html { background: #e9edf2; }
     body {
@@ -54,7 +79,17 @@
       font-style: italic; text-align: center;
     }
 
-    .document-end { border-top: 1px solid #9eaeba; margin-top: 10mm; padding-top: 3mm; }
+    .document-end { border-top: 1px solid #9eaeba; margin-top: 10mm; padding-top: 3mm; font-size: 11pt; color: #495b6a; }
+    .running-footer {
+      margin-top: 15mm;
+      padding-top: 3mm;
+      border-top: 0.5pt solid #cbd5e1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8.5pt;
+      color: #64748b;
+    }
     @media screen and (max-width: 800px) {
       .report { width: 100%; margin: 0; padding: 20px; box-shadow: none; }
       .cover { min-height: auto; }
@@ -70,6 +105,22 @@
       tr { break-inside: avoid; page-break-inside: avoid; }
       .notice { background: none; }
       a { color: inherit; }
+      .running-footer {
+        position: fixed;
+        bottom: -22mm;
+        left: 0;
+        right: 0;
+        height: 10mm;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 0.5pt solid #cbd5e1;
+        padding-top: 2mm;
+        font-size: 8.5pt;
+        color: #64748b;
+        background: transparent;
+      }
     }
   </style>
 </head>
@@ -77,7 +128,7 @@
 <main class="report">
 
   <header class="cover" id="cover">
-    <p class="eyebrow">PANDUAN OPERASIONAL RESMI</p>
+    <p class="eyebrow">WIYASA ? PANDUAN OPERASIONAL RESMI</p>
     <h1>Panduan Pengguna dan Administrator: [Nama Aplikasi]</h1>
     <p>Petunjuk praktis pengoperasian fitur bagi seluruh pengguna dan prosedur pemeliharaan sistem bagi administrator.</p>
     <p><span class="badge">VERSI [1.0.0] · DOKUMEN PENGGUNA</span></p>

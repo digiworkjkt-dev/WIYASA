@@ -1,6 +1,14 @@
-# Catatan verifikasi v1.5.2
+# Catatan verifikasi v1.6.0 (Branding WIYASA)
 
-Tanggal Audit: 2026-10-31. Yang diuji adalah standarisasi deliverable Opsi 2 (dua dokumen HTML mandiri), template panduan pengguna baru, penyematan tangkapan layar/mockup visual, dan validasi paket otomatis.
+Tanggal Audit: 2026-10-31. Yang diuji adalah integritas repositori setelah rebranding resmi menjadi WIYASA, validitas penamaan frontmatter baru, dan konsistensi template cetak A4.
+
+## Pemeriksaan yang Dijalankan pada v1.6.0
+
+1. **Uji Validasi Identitas Branding WIYASA:**
+   - Perintah: `python scripts/validate.py`
+   - Hasil: **PASS**. Frontmatter `name: wiyasa` tervalidasi memenuhi pola regex `[a-z0-9-]{1,64}`, seluruh tautan relatif markdown, heading unik, dan aturan CSS cetak A4 lolos 100%.
+2. **Uji Template Cetak A4 Bermerek WIYASA:**
+   - Hasil: **PASS**. Template `assets/report-a4.html` dan `assets/user-guide-a4.html` memuat kop identitas resmi WIYASA tanpa banner instruksi peramban.
 
 ## Pemeriksaan yang Dijalankan pada v1.5.2
 

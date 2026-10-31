@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Linter Keterlacakan (Traceability Linter) untuk skill app-documentation (v1.5.0).
+Linter Keterlacakan (Traceability Linter) untuk skill WIYASA (v1.6.0).
 Memeriksa integritas hubungan silang ID:
   FR-xxx / NFR-xxx (Requirements)
     -> AC-xxx (Acceptance Criteria)
@@ -100,7 +100,7 @@ def lint_traceability(folder_or_file: Path) -> tuple[list[str], list[str]]:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Linter Keterlacakan (Traceability) skill app-documentation (v1.5.0)."
+        description="Linter Keterlacakan (Traceability) skill WIYASA (v1.6.0)."
     )
     parser.add_argument(
         "--dir",

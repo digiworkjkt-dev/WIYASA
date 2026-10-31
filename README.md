@@ -1,7 +1,8 @@
-# app-documentation
+# WIYASA ? App Documentation System
 
-Skill berbahasa Indonesia untuk membuat dan memperbarui dokumentasi pembangunan
-aplikasi end-to-end. Versi **1.5.2**.
+**WIYASA** adalah sistem standarisasi dokumentasi pembangunan aplikasi end-to-end berbahasa Indonesia yang dirancang untuk menghasilkan deliverable rekayasa perangkat lunak profesional, akuntabel, dan siap rilis.
+
+Terinspirasi dari Begawan Wiyasa (Vyasa)?pencatat agung dan perangkum pustaka semesta?skill ini mengubah kebutuhan bisnis menjadi paket spesifikasi produk, arsitektur sistem, skema data, API, pengujian, hingga buku panduan pengguna secara terstruktur. Versi **1.6.0**.
 
 ## Output
 
@@ -48,7 +49,7 @@ menginstalnya pada semua percakapan.
 
 Contoh instruksi:
 
-> Gunakan app-documentation untuk membuat seluruh dokumen MVP aplikasi booking.
+> Gunakan WIYASA untuk membuat seluruh dokumen MVP aplikasi booking.
 > Output laporan HTML A4, margin 3 cm, Cambria 12 pt. Tandai asumsi dan blocker.
 
 > Perbarui dokumentasi aplikasi existing setelah perubahan izin admin.

@@ -1,9 +1,9 @@
 ---
-name: app-documentation
+name: wiyasa
 description: Membuat dan memperbarui paket dokumentasi aplikasi end-to-end—brief, PRD, SRS, UX, arsitektur, database, API, security, backlog, testing, deployment, dan panduan—dengan pemetaan standar industri, SNI, SKKNI, dan regulasi Indonesia berdasarkan sektor dan bukti. Gunakan untuk semua dokumen aplikasi, spesifikasi sebelum coding, handoff developer, dokumentasi mengacu SNI/SKKNI, atau sinkronisasi dokumen. Tidak menyatakan kepatuhan, kompetensi, atau sertifikasi tanpa bukti dan asesmen yang sesuai. Untuk hanya PRD/roadmap, gunakan product-manager bila tersedia.
 ---
 
-# App Documentation
+# WIYASA ? App Documentation Engine
 
 Versi skill: 1.5.0 — baseline referensi diverifikasi 2026-10-30.
 

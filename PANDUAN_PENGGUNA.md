@@ -1,12 +1,12 @@
-# Panduan Pengguna: Skill `app-documentation` (v1.5.2)
+# Panduan Pengguna: WIYASA (v1.6.0)
 
-Selamat datang di Panduan Pengguna resmi skill **`app-documentation`**. Dokumen ini menjelaskan cara menggunakan skill untuk memproduksi paket dokumentasi aplikasi end-to-end secara terstandarisasi, lengkap, dan siap rilis.
+Selamat datang di Panduan Pengguna resmi **WIYASA** (sistem dokumentasi rekayasa perangkat lunak terpadu). Dokumen ini menjelaskan cara mengoperasikan skill WIYASA untuk memproduksi paket dokumentasi aplikasi end-to-end secara terstandarisasi, lengkap, dan siap rilis.
 
 ---
 
-## 1. Pengenalan Skill app-documentation
+## 1. Pengenalan Skill WIYASA
 
-Skill `app-documentation` adalah modul keahlian AI untuk merancang, menyusun, dan memperbarui seluruh dokumentasi teknis dan bisnis perangkat lunak secara profesional.
+**WIYASA** adalah modul keahlian AI untuk merancang, menyusun, dan memperbarui seluruh dokumentasi teknis dan bisnis perangkat lunak secara profesional.
 
 ### Prinsip Utama Deliverable
 1. **Paket Lengkap Multi-Berkas:** Setiap eksekusi wajib menghasilkan struktur paket lengkap, bukan hanya satu berkas HTML saja.
@@ -52,10 +52,10 @@ app-documentation/
 Anda dapat memicu skill ini melalui instruksi percakapan. Berikut adalah contoh instruksi berdasarkan kebutuhan:
 
 ### Skenario A: Produksi Paket Dokumentasi Baru (Default Standard)
-> *"Gunakan skill app-documentation untuk menyusun dokumentasi lengkap aplikasi booking lapangan olahraga, mulai dari spesifikasi produk, arsitektur, database, API, hingga panduan pengguna. Output paket lengkap pada folder app-documentation."*
+> *"Gunakan skill WIYASA untuk menyusun dokumentasi lengkap aplikasi booking lapangan olahraga, mulai dari spesifikasi produk, arsitektur, database, API, hingga panduan pengguna. Output paket lengkap pada folder app-documentation."*
 
 ### Skenario B: Paket Ringkas untuk MVP Cepat (Lean)
-> *"Gunakan app-documentation dengan cakupan Lean untuk mendokumentasikan MVP portal internal monitoring presensi pegawai. Fokus pada requirement inti, skema database, alur UX, dan panduan pengguna."*
+> *"Gunakan WIYASA dengan cakupan Lean untuk mendokumentasikan MVP portal internal monitoring presensi pegawai. Fokus pada requirement inti, skema database, alur UX, dan panduan pengguna."*
 
 ### Skenario C: Pembaruan Fitur Aplikasi Existing
 > *"Perbarui dokumentasi pada folder app-documentation karena ada penambahan fitur pembatalan transaksi oleh Admin. Pastikan ID requirement tetap stabil, dan sinkronkan berkas sumber Markdown serta laporan HTML."*
